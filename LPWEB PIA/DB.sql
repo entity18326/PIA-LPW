@@ -1,23 +1,49 @@
--- Sentencia 1: Escribe la sentencia SQL para traer todos los productos con toda su información.
-SELECT * FROM Products;
--- Sentencia 2: Escribe la sentencia SQL para traer todos los productos desplegando solo el nombre y el precio unitario.
-SELECT ProductName, UnitPrice FROM Products;
--- Sentencia 3: Escribe la sentencia SQL para traer solo los productos descontinuados.
-SELECT Discontinued FROM Products
-WHERE Discontinued = '1';
--- Sentencia 4: Escribe la sentencia SQL para traer todos los productos ordenados por precio unitario de más caro a más barato.
-SELECT * FROM Products
-ORDER BY UnitPrice DESC;
--- Sentencia 5: Escribe la sentencia SQL para traer los empleados que viven en 'USA'
-SELECT Country FROM Employees
-WHERE Country = 'USA';
--- Sentencia 6: Escribe la sentencia SQL para traer al empleado con ID igual a 5
-SELECT EmployeeID FROM Employees
-Where EmployeeID = 5; 
--- Sentencia 7: Escribe la sentencia SQL para traer todas las órdenes de compra que se hayan hecho en 'France' y 'Belgium'
-SELECT * FROM Orders
-WHERE ShipCountry IN ('France', 'Belgium');
--- Sentencia 8: Escribe la sentencia SQL para traer el total de clientes que hay para cada 'ContactTitle'
-SELECT ContactTitle, COUNT(*) AS TotalClientes
-FROM Customers
-GROUP BY ContactTitle;
+CREATE TABLE Usuarios (
+  ID_Usuario INT,
+  Nombre TEXT,
+  Contrase�a TEXT,
+  Rol INT,
+  PRIMARY KEY (ID_Usuario)
+);
+
+CREATE TABLE Productos (
+  ID_Producto INT,
+  ID_Usuario INT,
+  Nombre TEXT,
+  Fecha DATETIME,
+  Camara TEXT,
+  Pantalla TEXT,
+  Bater�a TEXT,
+  Caracteristicas TEXT,
+  Imagen TEXT,
+  Visitas INT,
+  PRIMARY KEY (ID_Producto),
+  FOREIGN KEY (ID_Usuario) REFERENCES Usuarios(ID_Usuario)
+);
+
+CREATE TABLE Estadisticas (
+  ID_Estadistica INT,
+  Visitas_Noticias INT,
+  ID_Producto INT,
+  Visitas_Productos INT,
+  ID_Noticia INT,
+  Nombre TEXT,
+  Fecha DATETIME,
+  Visitas_Tot INT,
+  PRIMARY KEY (ID_Estadistica)
+);
+
+CREATE TABLE Noticias (
+  ID_Noticia INT,
+  ID_Usuario INT,
+  ID_Poducto INT,
+  Imagen TEXT,
+  Fecha DATETIME,
+  Texto TEXT,
+  Resumen TEXT,
+  VIsitas INT,
+  PRIMARY KEY (ID_Noticia),
+  FOREIGN KEY (ID_Poducto) REFERENCES Productos(ID_Producto),
+  FOREIGN KEY (ID_Usuario) REFERENCES Usuarios(ID_Usuario)
+);
+
