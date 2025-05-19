@@ -6,10 +6,6 @@
 
 body{
 background-color: rgb(58, 58, 58);
-background-image: url(../Imagenes/modern-gray-technology-background_2770697.webp);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
 }
 
 /* Css para el menú */
@@ -23,7 +19,7 @@ background-image: url(../Imagenes/modern-gray-technology-background_2770697.webp
 }
 
 .menu li:first-child {
-    margin-right: auto; /* Empuja los otros elementos hacia la derecha */
+    margin-right: auto;
 }
 
 .menu li {
@@ -72,25 +68,47 @@ background-image: url(../Imagenes/modern-gray-technology-background_2770697.webp
 }
 /* Css para el scroll infinito */
 
-.Bienvenida
-{
+/* Estilo para el formulario de login */
+    .container {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      width: 30%;
+      width: 100%;
+    }
+
+.login-container * {
+  box-sizing: border-box;
+}
+    .login-container {
+      background: rgb(139, 139, 139);
+      padding: 30px;
+      border-radius: 30px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+      width: 70%;
+    }
+    .login-container h2 {
       text-align: center;
-      margin: 0 auto;
       color: white;
-}
+    }
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: rgb(206, 206, 206);
+      border: 1px solid #000000;
+      border-radius: 4px;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #b9b9b9;
+      color: rgb(0, 0, 0);
+      border: none;
 
-.footer-imagenes {
-  display: flex;
-  justify-content: center; /* Centra las imágenes horizontalmente */
-  gap: 20px;               /* Espacio entre imágenes */
-  background-color: #555;
-}
-
-.footer-imagenes img {
-  height: auto;
-}
+      cursor: pointer;
+    }
+    .login-container button:hover {
+      background-color: #d1d1d1;
+    }

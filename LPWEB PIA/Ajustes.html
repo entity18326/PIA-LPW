@@ -3,18 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="CSS/CSS.css">
+    <link rel="stylesheet" type="text/css" href="CSS/CSS_Ajustes.css">
 </head>
-    <body>
+<body>
         <nav>
         <ul class="menu">
             <li><a href="Inicio.html"><img src="Imagenes/LOGO.png" alt="" id="logo"></a></li>
             <li><a href="Inicio.html">Inicio</a></li>
-            <li><a href="Pantallas/Noticias.html">Noticias</a></li>
-            <li><a href="Pantallas/Productos.html">Productos</a></li>
-            <li><a href="Pantallas/Login.html"><img src="Imagenes/Iniciar sesión.png" alt=""></a></li>
-            <li><a href="Pantallas/Ajustes.html"><img src="Imagenes/Ajustes.png" alt=""></a></li>
+            <li class="Admin" class="Publicador"><a href="CRUD_N.html">CRUD_N</a></li>
+            <li class="Admin" class="Publicador"><a href="CRUD_P.html">CRUD_P</a></li>
+            <li class="Admin"><a href="CRUD_U.html">CRUD_U</a></li>
+            <li><a href="Noticias.html">Noticias</a></li>
+            <li><a href="Productos.html">Productos</a></li>
+            <li><a href="Login.html"><img src="Imagenes/Iniciar sesión.png" alt=""></a></li>
+            <li><a href="Ajustes.html"><img src="Imagenes/Ajustes.png" alt=""></a></li>
         </ul>
         </nav>
-    </body>
+        
+  <main>
+    <div class="settings-container">
+      <!-- Ajuste de tema -->
+      <div class="setting-item">
+        <label for="tema">Tema:</label>
+        <select id="tema" name="tema">
+          <option value="claro">Claro</option>
+          <option value="oscuro">Oscuro</option>
+        </select>
+      </div>
+
+      <div class="divider"></div>
+      <!-- Ajuste de tamaño de texto -->
+      <div class="setting-item">
+        <label for="tamano-texto">Tamaño de texto:</label>
+        <input type="range" id="tamano-texto" name="tamano-texto" min="12" max="32" value="16" oninput="cambiarTamanoTexto(this.value)">
+        <span id="tamano-texto-valor">16px</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Guardar ajustes -->
+      <div class="setting-item">
+        <button onclick="guardarAjustes()">Guardar Ajustes</button>
+      </div>
+    </div>
+  </main>
+</body>
 </html>
