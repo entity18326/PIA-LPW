@@ -19,10 +19,10 @@ const BrandShowcase = ({ brands }: BrandShowcaseProps) => {
           className="text-center mb-12"
         >
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Browse by Brand
+            Explorar por Marca
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Explore phones by your favorite manufacturers and discover what makes each brand unique.
+            Descubre teléfonos por tus fabricantes favoritos y conoce qué hace única a cada marca.
           </p>
         </motion.div>
 

@@ -28,8 +28,7 @@ const ComparePage = () => {
     setPhone1(selectedPhone1);
     setPhone2(selectedPhone2);
     
-    // In a real app, this would be an API call to compare the phones
-    // For demo, use mock data
+    // Aquí se haría una llamada a la API para obtener los resultados
     setResults(mockComparisonResults);
     setHasCompared(true);
     
@@ -49,10 +48,10 @@ const ComparePage = () => {
         className="text-center mb-12"
       >
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          Compare Phones
+          Comparar Teléfonos
         </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Select two phones to see a detailed side-by-side comparison of specifications, features, and performance.
+          Selecciona dos teléfonos para ver una comparación detallada de especificaciones, características y rendimiento.
         </p>
       </motion.div>
       

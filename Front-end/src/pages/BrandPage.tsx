@@ -12,13 +12,12 @@ const BrandPage = () => {
   const [brandPhones, setBrandPhones] = useState<Phone[]>([]);
   
   useEffect(() => {
-    // In a real app, this would be a fetch from an API
-    // For demo, find the brand with matching slug
+    // Aqui se obtiene los datos de la API
     const foundBrand = brands.find(b => b.slug === brand);
     setBrandData(foundBrand || null);
     
     if (foundBrand) {
-      // Get phones from this brand
+      // Obtener los teléfonos de la marca
       const brandPhones = phones.filter(p => p.brand.toLowerCase() === foundBrand.name.toLowerCase());
       setBrandPhones(brandPhones);
     }
@@ -27,14 +26,14 @@ const BrandPage = () => {
   if (!brandData) {
     return (
       <div className="container mx-auto px-4 sm:px-6 py-12 text-center">
-        <p className="text-gray-600 dark:text-gray-400">Brand not found</p>
+        <p className="text-gray-600 dark:text-gray-400">Marca no encontrada</p>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen">
-      {/* Brand Header */}
+      {/* Headers */}
       <div className="bg-white dark:bg-gray-800 py-12">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-8">
@@ -43,7 +42,7 @@ const BrandPage = () => {
               className="inline-flex items-center text-primary-500 dark:text-primary-400 hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
             >
               <ArrowLeft size={16} className="mr-2" />
-              Back to All Brands
+              Volver a todas las marcas
             </Link>
           </div>
           
@@ -78,7 +77,7 @@ const BrandPage = () => {
         </div>
       </div>
       
-      {/* Brand Phones */}
+      {/* Marcas de telefonos */}
       <div className="bg-gray-50 dark:bg-gray-900 py-12">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.h2
@@ -87,7 +86,7 @@ const BrandPage = () => {
             transition={{ duration: 0.5 }}
             className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8"
           >
-            {brandData.name} Phones
+            Teléfonos {brandData.name}
           </motion.h2>
           
           {brandPhones.length > 0 ? (
@@ -99,7 +98,7 @@ const BrandPage = () => {
           ) : (
             <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-lg shadow-md">
               <p className="text-gray-600 dark:text-gray-400">
-                No phones available for this brand at the moment.
+                No hay teléfonos disponibles para esta marca por el momento.
               </p>
             </div>
           )}

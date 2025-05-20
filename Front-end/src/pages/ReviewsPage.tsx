@@ -37,15 +37,15 @@ const ReviewsPage = () => {
         className="text-center mb-12"
       >
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          Phone Reviews
+          Reseñas de Teléfonos
         </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Expert analysis and in-depth reviews of the latest smartphones, with detailed specifications and comparisons.
+          Análisis de expertos y reseñas detalladas de los últimos smartphones, con especificaciones y comparaciones detalladas.
         </p>
       </motion.div>
       
       <div className="mb-8 max-w-2xl mx-auto">
-        <SearchBar placeholder="Search for phone reviews..." />
+        <SearchBar placeholder="Buscar reseñas de teléfonos..." />
       </div>
       
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
@@ -57,7 +57,7 @@ const ReviewsPage = () => {
           >
             {brandOptions.map((brand) => (
               <option key={brand} value={brand}>
-                {brand === 'all' ? 'All Brands' : brand}
+                {brand === 'all' ? 'Todas las marcas' : brand}
               </option>
             ))}
           </select>
@@ -67,15 +67,15 @@ const ReviewsPage = () => {
             onChange={(e) => setSortBy(e.target.value)}
             className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg py-2 px-4 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
           >
-            <option value="newest">Newest First</option>
-            <option value="rating">Highest Rated</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="price-low">Price: Low to High</option>
+            <option value="newest">Más nuevos primero</option>
+            <option value="rating">Mejor calificados</option>
+            <option value="price-high">Precio: mayor a menor</option>
+            <option value="price-low">Precio: menor a mayor</option>
           </select>
         </div>
         
         <div className="text-sm text-gray-500 dark:text-gray-400">
-          Showing {filteredPhones.length} phones
+          Mostrando {filteredPhones.length} teléfonos
         </div>
       </div>
       
@@ -87,7 +87,7 @@ const ReviewsPage = () => {
       
       {filteredPhones.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-gray-500 dark:text-gray-400">No phones match your filter criteria.</p>
+          <p className="text-gray-500 dark:text-gray-400">Ningún teléfono coincide con tus criterios de filtro.</p>
         </div>
       )}
     </div>

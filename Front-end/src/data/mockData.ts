@@ -1,6 +1,6 @@
 import { Phone, NewsArticle, Brand, ComparisonResult } from '../types';
 
-// Mock Phones Data
+// Mock Telefonos
 export const phones: Phone[] = [
   {
     id: '1',
@@ -11,20 +11,20 @@ export const phones: Phone[] = [
     releaseDate: '2023-09-22',
     rating: 4.7,
     specs: {
-      display: '6.7-inch Super Retina XDR OLED, 120Hz',
-      processor: 'A17 Pro Bionic',
+      pantalla: '6.7-pulgadas Super Retina XDR OLED, 120Hz',
+      procesador: 'A17 Pro Bionic',
       ram: '8GB',
-      storage: '256GB / 512GB / 1TB',
-      camera: '48MP main, 12MP ultrawide, 12MP telephoto with 5x optical zoom',
-      battery: '4,441 mAh',
-      os: 'iOS 17'
+      almacenamiento: '256GB / 512GB / 1TB',
+      camara: '48MP principal, 12MP ultra gran angular, 12MP teleobjetivo con zoom óptico de 5x',
+      bateria: '4,441 mAh',
+      sistemaOperativo: 'iOS 17'
     },
     highlights: [
-      'Titanium design reduces weight by 19g',
-      'Action button replaces mute switch',
-      'Industry-leading A17 Pro chip',
-      'USB-C with USB 3.0 speeds',
-      'Improved camera system with 5x optical zoom'
+      'El diseño de titanio reduce el peso en 19 gramos',
+      'El botón de acción reemplaza el interruptor de silencio',
+      'Chip A17 Pro líder en la industria',
+      'USB-C con velocidades USB 3.0',
+      'Sistema de cámara mejorado con zoom óptico de 5x'
     ],
     slug: 'apple-iphone-15-pro-max'
   },
@@ -37,20 +37,20 @@ export const phones: Phone[] = [
     releaseDate: '2024-01-31',
     rating: 4.6,
     specs: {
-      display: '6.8-inch Dynamic AMOLED 2X, 120Hz',
-      processor: 'Snapdragon 8 Gen 3',
+      pantalla: '6.8-pulgadas Dynamic AMOLED 2X, 120Hz',
+      procesador: 'Snapdragon 8 Gen 3',
       ram: '12GB',
-      storage: '256GB / 512GB / 1TB',
-      camera: '200MP main, 12MP ultrawide, 50MP telephoto with 5x optical zoom, 10MP telephoto with 3x optical zoom',
-      battery: '5,000 mAh',
-      os: 'Android 14 with One UI 6.1'
+      almacenamiento: '256GB / 512GB / 1TB',
+      camara: '200MP principal, 12MP ultra gran angular, 50MP telefoto con zoom óptico de 5x, 10MP telefoto con zoom óptico de 3x',
+      bateria: '5,000 mAh',
+      sistemaOperativo: 'Android 14 con One UI 6.1'
     },
     highlights: [
-      'Titanium frame with improved durability',
-      'S Pen included with enhanced responsiveness',
-      'AI-enhanced photography features',
-      'Seven years of OS updates',
-      'Galaxy AI features like Circle to Search'
+      'Estructura de titanio con durabilidad mejorada',
+      'S Pen incluido con mayor capacidad de respuesta',
+      'Funciones de fotografía mejoradas por IA',
+      'Siete años de actualizaciones de sistema operativo',
+      'Funciones Galaxy AI como Círculo para Buscar'
     ],
     slug: 'samsung-galaxy-s24-ultra'
   },
@@ -63,20 +63,20 @@ export const phones: Phone[] = [
     releaseDate: '2023-10-12',
     rating: 4.5,
     specs: {
-      display: '6.7-inch Super Actua OLED, 120Hz',
-      processor: 'Google Tensor G3',
+      pantalla: '6.7-pulgadas Super Actua OLED, 120Hz',
+      procesador: 'Google Tensor G3',
       ram: '12GB',
-      storage: '128GB / 256GB / 512GB / 1TB',
-      camera: '50MP main, 48MP ultrawide, 48MP telephoto with 5x optical zoom',
-      battery: '5,050 mAh',
-      os: 'Android 14'
+      almacenamiento: '128GB / 256GB / 512GB / 1TB',
+      camara: '50MP principal, 48MP ultra gran angular, 48MP telefoto con zoom óptico de 5x',
+      bateria: '5,050 mAh',
+      sistemaOperativo: 'Android 14'
     },
     highlights: [
-      'Enhanced Google AI features',
-      'Temperature sensor for measuring objects',
-      'Improved Night Sight photography',
-      'Seven years of OS and security updates',
-      'Magic Editor for advanced photo editing'
+      'Funciones de IA de Google mejoradas',
+      'Sensor de temperatura para medir objetos',
+      'Fotografía Night Sight mejorada',
+      'Siete años de actualizaciones de sistema operativo y seguridad',
+      'Magic Editor para edición avanzada de fotos'
     ],
     slug: 'google-pixel-8-pro'
   },
@@ -89,20 +89,20 @@ export const phones: Phone[] = [
     releaseDate: '2024-02-25',
     rating: 4.4,
     specs: {
-      display: '6.73-inch LTPO AMOLED, 120Hz',
-      processor: 'Snapdragon 8 Gen 3',
+      pantalla: '6.73-pulgadas LTPO AMOLED, 120Hz',
+      procesador: 'Snapdragon 8 Gen 3',
       ram: '16GB',
-      storage: '512GB / 1TB',
-      camera: 'Quad 50MP Leica system with variable aperture',
-      battery: '5,000 mAh',
-      os: 'Android 14 with HyperOS'
+      almacenamiento: '512GB / 1TB',
+      camara: 'Sistema Leica cuádruple de 50MP con apertura variable',
+      bateria: '5,000 mAh',
+      sistemaOperativo: 'Android 14 con HyperOS'
     },
     highlights: [
-      'Leica co-engineered quad camera system',
-      'Variable aperture from f/1.63 to f/4.0',
-      '90W wired and 50W wireless charging',
-      'IP68 water and dust resistance',
-      'Light sensor with 3,000,000:1 contrast'
+      'Sistema de cámara cuádruple Leica co-diseñado',
+      'Apertura variable de f/1.63 a f/4.0',
+      'Carga por cable de 90W y carga inalámbrica de 50W',
+      'Resistencia al agua y polvo IP68',
+      'Sensor de luz con contraste de 3,000,000:1'
     ],
     slug: 'xiaomi-14-ultra'
   },
@@ -115,157 +115,157 @@ export const phones: Phone[] = [
     releaseDate: '2024-01-23',
     rating: 4.3,
     specs: {
-      display: '6.82-inch LTPO AMOLED, 120Hz',
-      processor: 'Snapdragon 8 Gen 3',
+      pantalla: '6.82-pulgadas LTPO AMOLED, 120Hz',
+      procesador: 'Snapdragon 8 Gen 3',
       ram: '12GB / 16GB',
-      storage: '256GB / 512GB',
-      camera: '50MP main, 48MP ultrawide, 64MP telephoto with 3x optical zoom',
-      battery: '5,400 mAh',
-      os: 'Android 14 with OxygenOS 14'
+      almacenamiento: '256GB / 512GB',
+      camara: '50MP principal, 48MP ultra gran angular, 64MP telefoto con zoom óptico de 3x',
+      bateria: '5,400 mAh',
+      sistemaOperativo: 'Android 14 con OxygenOS 14'
     },
     highlights: [
-      'Industry-leading 100W SUPERVOOC charging',
-      'Hasselblad camera system for natural colors',
-      'Rain Touch technology for wet screen usage',
-      'Aqua Touch for use with wet hands',
-      '4th generation Hasselblad camera tuning'
+      'Carga SUPERVOOC de 100W líder en la industria',
+      'Sistema de cámara Hasselblad para colores naturales',
+      'Tecnología Rain Touch para uso con pantalla mojada',
+      'Aqua Touch para uso con manos mojadas',
+      '4ta generación de ajuste de cámara Hasselblad'
     ],
     slug: 'oneplus-12'
   }
 ];
 
-// Mock News Articles
+// Mock Noticias
 export const news: NewsArticle[] = [
   {
     id: '1',
-    title: 'Apple to Launch iPhone 16 with Revolutionary AI Features',
-    excerpt: 'The upcoming iPhone 16 series is rumored to feature groundbreaking AI capabilities powered by an enhanced Neural Engine.',
-    content: 'Apple is set to unveil the iPhone 16 series later this year, and according to industry insiders, the new devices will feature revolutionary AI capabilities. The enhanced Neural Engine is expected to process complex AI tasks locally, offering improved privacy and faster response times compared to cloud-based solutions.\n\nThe new AI features, collectively known as "Apple Intelligence," will enable advanced photo editing, natural language processing, and personalized recommendations. These capabilities will be deeply integrated into iOS 18, which is also expected to receive a significant redesign.\n\nAnalysts predict that these AI enhancements could drive a major upgrade cycle for Apple, potentially boosting iPhone sales beyond previous expectations.\n\n"Apple\'s approach to on-device AI processing could set a new standard for the industry," said tech analyst Ming-Chi Kuo. "By processing data locally instead of sending it to the cloud, Apple can offer both enhanced privacy and faster performance."',
+    title: 'Apple lanzará el iPhone 16 con funciones revolucionarias de IA',
+    excerpt: 'Se rumorea que la próxima serie iPhone 16 contará con capacidades de IA innovadoras impulsadas por un Neural Engine mejorado.',
+    content: 'Apple está lista para presentar la serie iPhone 16 este año, y según fuentes de la industria, los nuevos dispositivos contarán con capacidades revolucionarias de IA. Se espera que el Neural Engine mejorado procese tareas complejas de IA localmente, ofreciendo mayor privacidad y tiempos de respuesta más rápidos en comparación con soluciones basadas en la nube.\n\nLas nuevas funciones de IA, conocidas colectivamente como "Apple Intelligence", permitirán edición avanzada de fotos, procesamiento de lenguaje natural y recomendaciones personalizadas. Estas capacidades estarán profundamente integradas en iOS 18, que también se espera reciba un rediseño significativo.\n\nLos analistas predicen que estas mejoras de IA podrían impulsar un importante ciclo de actualización para Apple, potencialmente aumentando las ventas de iPhone más allá de las expectativas previas.\n\n"El enfoque de Apple para el procesamiento de IA en el dispositivo podría establecer un nuevo estándar para la industria", dijo el analista tecnológico Ming-Chi Kuo. "Al procesar los datos localmente en lugar de enviarlos a la nube, Apple puede ofrecer mayor privacidad y mejor rendimiento."',
     image: 'https://images.pexels.com/photos/9775015/pexels-photo-9775015.jpeg',
     author: 'Mark Richards',
     date: '2024-04-18',
-    category: 'Rumors',
-    tags: ['Apple', 'iPhone 16', 'AI', 'iOS 18'],
+    category: 'Rumores',
+    tags: ['Apple', 'iPhone 16', 'IA', 'iOS 18'],
     slug: 'apple-iphone-16-ai-features'
   },
   {
     id: '2',
-    title: 'Samsung Developing Revolutionary Graphene Battery Technology',
-    excerpt: 'Samsung\'s research team has made significant progress on graphene battery technology, promising faster charging and longer lifespans.',
-    content: 'Samsung researchers have reportedly achieved a breakthrough in graphene battery technology, according to a recent report from the Korea Herald. The new battery technology could potentially revolutionize smartphone battery performance with charging times as low as 8 minutes for a full charge and a lifespan that\'s substantially longer than current lithium-ion batteries.\n\nGraphene, a single layer of carbon atoms arranged in a two-dimensional honeycomb lattice, has been heralded as a "wonder material" for its extraordinary properties. It\'s about 200 times stronger than steel, incredibly lightweight, and an excellent conductor of heat and electricity.\n\n"This could be the most significant advancement in mobile battery technology in over a decade," said Dr. Kim Ji-hyun, a materials science expert at Seoul National University. "If Samsung can successfully commercialize this technology, it would address one of the most persistent pain points for smartphone users."\n\nSamsung has not officially commented on when the technology might appear in consumer devices, but industry analysts suggest that limited implementation could begin as early as 2026, with mass production following in subsequent years.',
+    title: 'Samsung desarrolla tecnología revolucionaria de baterías de grafeno',
+    excerpt: 'El equipo de investigación de Samsung ha logrado avances significativos en la tecnología de baterías de grafeno, prometiendo cargas más rápidas y mayor duración.',
+    content: 'Investigadores de Samsung han logrado un avance en la tecnología de baterías de grafeno, según un informe reciente del Korea Herald. Esta nueva tecnología podría revolucionar el rendimiento de las baterías de los smartphones, con tiempos de carga de hasta 8 minutos para una carga completa y una vida útil sustancialmente mayor que las baterías de ion-litio actuales.\n\nEl grafeno, una sola capa de átomos de carbono dispuestos en una estructura de panal bidimensional, ha sido considerado un "material milagroso" por sus propiedades extraordinarias. Es unas 200 veces más fuerte que el acero, increíblemente ligero y un excelente conductor de calor y electricidad.\n\n"Esto podría ser el avance más importante en tecnología de baterías móviles en más de una década", dijo la experta en ciencia de materiales Dra. Kim Ji-hyun, de la Universidad Nacional de Seúl. "Si Samsung logra comercializar esta tecnología, resolvería uno de los problemas más persistentes para los usuarios de smartphones."\n\nSamsung no ha comentado oficialmente cuándo podría aparecer esta tecnología en dispositivos de consumo, pero los analistas de la industria sugieren que la implementación limitada podría comenzar en 2026, con producción en masa en los años siguientes.',
     image: 'https://images.pexels.com/photos/3888151/pexels-photo-3888151.jpeg',
     author: 'Sarah Johnson',
     date: '2024-04-15',
-    category: 'Technology',
-    tags: ['Samsung', 'Battery Technology', 'Graphene', 'Research'],
+    category: 'Tecnología',
+    tags: ['Samsung', 'Tecnología de baterías', 'Grafeno', 'Investigación'],
     slug: 'samsung-graphene-battery-technology'
   },
   {
     id: '3',
-    title: 'Google Unveils Android 15 Beta with Enhanced Privacy Controls',
-    excerpt: 'The first beta of Android 15 introduces comprehensive privacy features and an updated design language.',
-    content: 'Google has released the first beta of Android 15 to developers, showcasing a range of new privacy features and design enhancements. The update introduces a revamped permission system that gives users more granular control over what data apps can access and when they can access it.\n\nOne of the most significant additions is the new Privacy Dashboard, which provides a comprehensive view of which apps have accessed sensitive permissions over time. Users can easily revoke permissions directly from this dashboard, making privacy management more accessible than ever.\n\n"With Android 15, we\'re focusing on giving users more control and transparency," said Dave Burke, VP of Engineering for Android. "We believe privacy is a fundamental right, and we\'re building tools that make it easier for users to understand and manage how their data is being used."\n\nThe beta also introduces a refreshed design language that builds upon the Material You customization introduced in Android 12. The new interface includes more fluid animations, improved widgets, and enhanced customization options.\n\nDevelopers can download the Android 15 Beta now, with the public release expected in fall 2024.',
+    title: 'Google presenta Android 15 Beta con controles de privacidad mejorados',
+    excerpt: 'La primera beta de Android 15 introduce funciones de privacidad integrales y un lenguaje de diseño actualizado.',
+    content: 'Google ha lanzado la primera beta de Android 15 para desarrolladores, mostrando una gama de nuevas funciones de privacidad y mejoras de diseño. La actualización introduce un sistema de permisos renovado que brinda a los usuarios un control más detallado sobre qué datos pueden acceder las aplicaciones y cuándo pueden hacerlo.\n\nUna de las adiciones más significativas es el nuevo Panel de Privacidad, que proporciona una vista completa de qué aplicaciones han accedido a permisos sensibles a lo largo del tiempo. Los usuarios pueden revocar permisos directamente desde este panel, facilitando la gestión de la privacidad.\n\n"Con Android 15, nos enfocamos en dar a los usuarios más control y transparencia", dijo Dave Burke, VP de Ingeniería para Android. "Creemos que la privacidad es un derecho fundamental y estamos construyendo herramientas que facilitan a los usuarios entender y gestionar cómo se utiliza su información."\n\nLa beta también introduce un lenguaje de diseño renovado que amplía la personalización Material You introducida en Android 12. La nueva interfaz incluye animaciones más fluidas, widgets mejorados y más opciones de personalización.\n\nLos desarrolladores pueden descargar la Beta de Android 15 ahora, con el lanzamiento público previsto para otoño de 2024.',
     image: 'https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg',
     author: 'John Doe',
     date: '2024-04-12',
     category: 'Software',
-    tags: ['Google', 'Android 15', 'Privacy', 'Beta'],
+    tags: ['Google', 'Android 15', 'Privacidad', 'Beta'],
     slug: 'google-android-15-beta-privacy-controls'
   },
   {
     id: '4',
-    title: 'Xiaomi Showcases Breakthrough in Battery Technology',
-    excerpt: 'Xiaomi\'s new silicon-oxygen anode battery tech promises 20% higher capacity while maintaining fast charging capabilities.',
-    content: 'Xiaomi has unveiled its latest innovation in battery technology, featuring silicon-oxygen anode materials that could increase battery capacity by up to 20% compared to traditional lithium-ion batteries with the same physical size.\n\nDuring a technology showcase event in Beijing, Xiaomi demonstrated how the new battery tech works alongside their proprietary fast-charging solution, delivering a full charge in just 20 minutes without sacrificing the increased capacity.\n\n"Battery technology has been a bottleneck in smartphone evolution for years," said Lei Jun, Xiaomi\'s founder and CEO. "With this breakthrough, we\'re addressing both capacity and charging speed simultaneously, which has traditionally been a difficult balance to achieve."\n\nThe company claims that phones equipped with the new battery technology could last up to 1.5 days with heavy usage, significantly improving the user experience. Xiaomi plans to implement this technology in its flagship devices starting next year.\n\nIndustry analysts note that advancements in battery technology are particularly important as features like AI processing and high-refresh-rate displays continue to increase power demands in modern smartphones.',
+    title: 'Xiaomi presenta avance en tecnología de baterías',
+    excerpt: 'La nueva tecnología de baterías de ánodo de silicio-oxígeno de Xiaomi promete un 20% más de capacidad manteniendo la carga rápida.',
+    content: 'Xiaomi ha presentado su última innovación en tecnología de baterías, con materiales de ánodo de silicio-oxígeno que podrían aumentar la capacidad de la batería hasta en un 20% en comparación con las baterías de ion-litio tradicionales del mismo tamaño físico.\n\nDurante un evento de presentación tecnológica en Beijing, Xiaomi demostró cómo la nueva tecnología de batería funciona junto con su solución de carga rápida propietaria, logrando una carga completa en solo 20 minutos sin sacrificar la mayor capacidad.\n\n"La tecnología de baterías ha sido un cuello de botella en la evolución de los smartphones durante años", dijo Lei Jun, fundador y CEO de Xiaomi. "Con este avance, abordamos tanto la capacidad como la velocidad de carga al mismo tiempo, lo cual tradicionalmente ha sido difícil de lograr."\n\nLa compañía afirma que los teléfonos equipados con esta tecnología podrían durar hasta 1.5 días con uso intensivo, mejorando significativamente la experiencia del usuario. Xiaomi planea implementar esta tecnología en sus dispositivos insignia a partir del próximo año.\n\nLos analistas de la industria señalan que los avances en tecnología de baterías son especialmente importantes a medida que funciones como el procesamiento de IA y las pantallas de alta frecuencia de actualización continúan aumentando la demanda de energía en los smartphones modernos.',
     image: 'https://images.pexels.com/photos/4526400/pexels-photo-4526400.jpeg',
     author: 'Lisa Wong',
     date: '2024-04-10',
-    category: 'Technology',
-    tags: ['Xiaomi', 'Battery', 'Innovation', 'Fast Charging'],
+    category: 'Tecnología',
+    tags: ['Xiaomi', 'Batería', 'Innovación', 'Carga rápida'],
     slug: 'xiaomi-silicon-oxygen-battery-technology'
   },
   {
     id: '5',
-    title: 'OnePlus Confirms Partnership with Hasselblad Extended for Five More Years',
-    excerpt: 'OnePlus and Hasselblad have renewed their camera collaboration with plans for custom hardware beyond just software tuning.',
-    content: 'OnePlus has announced a five-year extension of its partnership with legendary camera manufacturer Hasselblad, signaling a deeper integration of photography expertise into future OnePlus devices. The renewed collaboration will expand beyond the current software color calibration to include custom hardware development.\n\n"Our partnership with Hasselblad has been instrumental in elevating the OnePlus camera experience," said Pete Lau, founder of OnePlus. "This extended agreement allows us to work on long-term camera innovations that weren\'t possible in our initial collaboration."\n\nAccording to OnePlus, future devices will feature custom Hasselblad optical designs and specialized sensors developed specifically for OnePlus smartphones. The companies are also working on computational photography algorithms that leverage Hasselblad\'s color science expertise.\n\nThe partnership has already yielded significant improvements in OnePlus camera performance, particularly in areas like color accuracy and portrait photography. The OnePlus 12 series, featuring third-generation Hasselblad camera tuning, has received praise for its natural color reproduction and improved dynamic range.\n\n"We\'re excited to deepen our relationship with OnePlus," said Bronius Rudnickas, Marketing Manager at Hasselblad. "By combining Hasselblad\'s 80 years of imaging expertise with OnePlus\'s technological innovation, we aim to redefine what\'s possible in smartphone photography."',
+    title: 'OnePlus confirma extensión de la alianza con Hasselblad por cinco años más',
+    excerpt: 'OnePlus y Hasselblad han renovado su colaboración en cámaras con planes para hardware personalizado más allá de la calibración de software.',
+    content: 'OnePlus ha anunciado una extensión de cinco años de su alianza con el legendario fabricante de cámaras Hasselblad, señalando una integración más profunda de la experiencia fotográfica en futuros dispositivos OnePlus. La colaboración renovada se expandirá más allá de la calibración de color por software para incluir desarrollo de hardware personalizado.\n\n"Nuestra alianza con Hasselblad ha sido fundamental para elevar la experiencia de cámara en OnePlus", dijo Pete Lau, fundador de OnePlus. "Este acuerdo extendido nos permite trabajar en innovaciones de cámara a largo plazo que no eran posibles en nuestra colaboración inicial."\n\nSegún OnePlus, los futuros dispositivos contarán con diseños ópticos Hasselblad personalizados y sensores especializados desarrollados específicamente para smartphones OnePlus. Las compañías también trabajan en algoritmos de fotografía computacional que aprovechan la experiencia en ciencia del color de Hasselblad.\n\nLa alianza ya ha dado mejoras significativas en el rendimiento de la cámara de OnePlus, especialmente en precisión de color y fotografía de retrato. La serie OnePlus 12, con la tercera generación de ajuste de cámara Hasselblad, ha recibido elogios por su reproducción natural de colores y mejor rango dinámico.\n\n"Estamos emocionados de profundizar nuestra relación con OnePlus", dijo Bronius Rudnickas, Gerente de Marketing en Hasselblad. "Al combinar los 80 años de experiencia en imagen de Hasselblad con la innovación tecnológica de OnePlus, buscamos redefinir lo que es posible en la fotografía móvil."',
     image: 'https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg',
     author: 'Michael Zhang',
     date: '2024-04-08',
-    category: 'Partnerships',
-    tags: ['OnePlus', 'Hasselblad', 'Camera', 'Photography'],
+    category: 'Alianzas',
+    tags: ['OnePlus', 'Hasselblad', 'Cámara', 'Fotografía'],
     slug: 'oneplus-hasselblad-partnership-extension'
   }
 ];
 
-// Mock Brands Data
+// Mock Marcas
 export const brands: Brand[] = [
   {
     id: '1',
     name: 'Apple',
     logo: 'https://images.pexels.com/photos/9574410/pexels-photo-9574410.jpeg',
-    description: 'Apple Inc. is an American multinational technology company that designs, develops, and sells consumer electronics, computer software, and online services. The company is known for its premium hardware products including iPhone, iPad, Mac, Apple Watch, and AirPods.',
+    description: 'Apple Inc. es una empresa multinacional estadounidense que diseña, desarrolla y vende productos electrónicos de consumo, software y servicios en línea. La compañía es conocida por sus productos de hardware premium como iPhone, iPad, Mac, Apple Watch y AirPods.',
     slug: 'apple'
   },
   {
     id: '2',
     name: 'Samsung',
     logo: 'https://images.pexels.com/photos/7974/pexels-photo.jpg',
-    description: 'Samsung Electronics Co., Ltd. is a South Korean multinational electronics company and the flagship subsidiary of the Samsung Group. Samsung is known for producing a wide range of consumer and industry electronics, including smartphones like the Galaxy series.',
+    description: 'Samsung Electronics Co., Ltd. es una empresa multinacional surcoreana y la filial principal del Grupo Samsung. Samsung es conocida por producir una amplia gama de productos electrónicos de consumo e industriales, incluidos smartphones como la serie Galaxy.',
     slug: 'samsung'
   },
   {
     id: '3',
     name: 'Google',
     logo: 'https://images.pexels.com/photos/905163/pexels-photo-905163.jpeg',
-    description: 'Google LLC is an American multinational technology company that specializes in Internet-related services and products. Google entered the smartphone market with the Pixel series, known for exceptional camera quality and pure Android experience.',
+    description: 'Google LLC es una empresa multinacional estadounidense que se especializa en servicios y productos relacionados con Internet. Google ingresó al mercado de smartphones con la serie Pixel, conocida por su calidad de cámara excepcional y experiencia Android pura.',
     slug: 'google'
   },
   {
     id: '4',
     name: 'Xiaomi',
     logo: 'https://images.pexels.com/photos/9574387/pexels-photo-9574387.jpeg',
-    description: 'Xiaomi Corporation is a Chinese electronics company founded in 2010. The company has quickly become one of the world\'s largest smartphone manufacturers, known for offering high-performance devices at affordable price points.',
+    description: 'Xiaomi Corporation es una empresa china de electrónica fundada en 2010. La compañía se ha convertido rápidamente en uno de los mayores fabricantes de smartphones del mundo, conocida por ofrecer dispositivos de alto rendimiento a precios asequibles.',
     slug: 'xiaomi'
   },
   {
     id: '5',
     name: 'OnePlus',
     logo: 'https://images.pexels.com/photos/1042143/pexels-photo-1042143.jpeg',
-    description: 'OnePlus Technology Co., Ltd. is a Chinese consumer electronics manufacturer founded in 2013. The company initially gained popularity through its "flagship killer" smartphones that offered high-end specifications at lower prices than competitors.',
+    description: 'OnePlus Technology Co., Ltd. es un fabricante chino de productos electrónicos de consumo fundado en 2013. La compañía ganó popularidad inicialmente por sus smartphones "flagship killer" que ofrecían especificaciones de gama alta a precios más bajos que la competencia.',
     slug: 'oneplus'
   },
   {
     id: '6',
     name: 'Nothing',
     logo: 'https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg',
-    description: 'Nothing is a consumer technology company based in London, founded by Carl Pei, co-founder of OnePlus. The company focuses on creating products with distinctive transparent designs and innovative features, including smartphones and audio products.',
+    description: 'Nothing es una empresa de tecnología de consumo con sede en Londres, fundada por Carl Pei, cofundador de OnePlus. La compañía se enfoca en crear productos con diseños transparentes distintivos y características innovadoras, incluidos smartphones y productos de audio.',
     slug: 'nothing'
   }
 ];
 
-// Mock Comparison Results
+// Mock Comparaciones
 export const mockComparisonResults: ComparisonResult[] = [
   {
-    category: 'Display',
+    category: 'Pantalla',
     phone1Score: 9.2,
     phone2Score: 9.4,
     winner: 'phone2'
   },
   {
-    category: 'Performance',
+    category: 'Rendimiento',
     phone1Score: 9.6,
     phone2Score: 9.3,
     winner: 'phone1'
   },
   {
-    category: 'Camera',
+    category: 'Cámara',
     phone1Score: 9.0,
     phone2Score: 9.5,
     winner: 'phone2'
   },
   {
-    category: 'Battery Life',
+    category: 'Batería',
     phone1Score: 8.7,
     phone2Score: 9.2,
     winner: 'phone2'
@@ -277,13 +277,13 @@ export const mockComparisonResults: ComparisonResult[] = [
     winner: 'phone1'
   },
   {
-    category: 'Design',
+    category: 'Diseño',
     phone1Score: 9.5,
     phone2Score: 9.5,
     winner: 'tie'
   },
   {
-    category: 'Value',
+    category: 'Valor',
     phone1Score: 8.5,
     phone2Score: 9.0,
     winner: 'phone2'

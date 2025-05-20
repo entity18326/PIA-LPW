@@ -25,7 +25,7 @@ const LatestNews = ({ news }: LatestNewsProps) => {
               transition={{ duration: 0.5 }}
               className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2"
             >
-              Latest Tech News
+              Últimas Noticias
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ const LatestNews = ({ news }: LatestNewsProps) => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-gray-600 dark:text-gray-400 max-w-2xl"
             >
-              Stay up-to-date with the latest smartphone announcements, industry trends, and tech innovations.
+              Mantente al día con los últimos anuncios de smartphones, tendencias de la industria e innovaciones tecnológicas.
             </motion.p>
           </div>
           <motion.div 
@@ -47,7 +47,7 @@ const LatestNews = ({ news }: LatestNewsProps) => {
               to="/news" 
               className="inline-flex items-center text-primary-500 dark:text-primary-400 font-medium hover:text-primary-600 dark:hover:text-primary-300 transition-colors group mt-4 md:mt-0"
             >
-              View all news 
+              Ver todas las noticias 
               <ArrowRight size={18} className="ml-1 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>

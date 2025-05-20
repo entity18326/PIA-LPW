@@ -66,14 +66,14 @@ const HeroSection = ({ featuredPhone }: HeroSectionProps) => {
               />
             </div>
             
-            {/* Decorative elements */}
+            {/* Elementos decorativos */}
             <div className="absolute top-1/2 left-1/2 w-64 h-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-400/20 dark:bg-primary-500/10 blur-2xl z-0"></div>
             <div className="absolute top-1/4 right-1/4 w-32 h-32 rounded-full bg-accent-500/20 blur-xl z-0 animate-pulse-slow"></div>
           </motion.div>
         </div>
       </div>
       
-      {/* Wave divider */}
+      {/* Division */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-auto">
           <path

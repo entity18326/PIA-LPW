@@ -94,11 +94,11 @@ const SearchPage = () => {
         className="text-center mb-8"
       >
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          Search Results
+          Resultados de búsqueda
         </h1>
         <div className="max-w-2xl mx-auto">
           <SearchBar 
-            placeholder="Search for phones, news, brands..." 
+            placeholder="Buscar teléfonos, noticias, marcas..." 
             className="w-full"
           />
         </div>
@@ -108,7 +108,7 @@ const SearchPage = () => {
         <>
           <div className="mb-8 text-center">
             <p className="text-gray-600 dark:text-gray-400">
-              {totalResults} results for "<span className="font-semibold">{query}</span>"
+              {totalResults} resultados para "<span className="font-semibold">{query}</span>"
             </p>
           </div>
           
@@ -118,7 +118,7 @@ const SearchPage = () => {
               {searchResults.phones.length > 0 && (
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Phones ({searchResults.phones.length})
+                    Teléfonos ({searchResults.phones.length})
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {searchResults.phones.map((phone) => (
@@ -132,7 +132,7 @@ const SearchPage = () => {
               {searchResults.news.length > 0 && (
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    News Articles ({searchResults.news.length})
+                    Noticias ({searchResults.news.length})
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {searchResults.news.map((article) => (
@@ -146,7 +146,7 @@ const SearchPage = () => {
               {searchResults.brands.length > 0 && (
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Brands ({searchResults.brands.length})
+                    Marcas ({searchResults.brands.length})
                   </h2>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
                     {searchResults.brands.map((brand) => (
@@ -174,10 +174,10 @@ const SearchPage = () => {
           ) : (
             <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-lg shadow-md">
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                No results found for "{query}".
+                No se encontraron resultados para "{query}".
               </p>
               <p className="text-gray-500 dark:text-gray-400 text-sm">
-                Try different keywords or check for spelling errors.
+                Intenta con otras palabras clave o revisa si hay errores de ortografía.
               </p>
             </div>
           )}
@@ -185,7 +185,7 @@ const SearchPage = () => {
       ) : (
         <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-lg shadow-md">
           <p className="text-gray-600 dark:text-gray-400">
-            Enter a search term to find phones, news articles, or brands.
+            Ingresa un término de búsqueda para encontrar teléfonos, noticias o marcas.
           </p>
         </div>
       )}

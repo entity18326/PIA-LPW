@@ -10,7 +10,7 @@ interface ComparisonTableProps {
 }
 
 const ComparisonTable = ({ phone1, phone2, results }: ComparisonTableProps) => {
-  // Helper function to render winner indicator
+  // Funcion para renderizar el indicador de ganador
   const renderWinnerIndicator = (winner: 'phone1' | 'phone2' | 'tie') => {
     if (winner === 'tie') {
       return <Minus size={18} className="text-gray-500" />;
@@ -30,7 +30,7 @@ const ComparisonTable = ({ phone1, phone2, results }: ComparisonTableProps) => {
         {/* Header */}
         <div className="bg-gray-50 dark:bg-gray-700 p-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-center">
-            Specifications
+            Especifiaciones
           </h3>
         </div>
         <div className="bg-gray-50 dark:bg-gray-700 p-4">
@@ -45,10 +45,10 @@ const ComparisonTable = ({ phone1, phone2, results }: ComparisonTableProps) => {
         </div>
       </div>
 
-      {/* Phone images */}
+      {/* Imagenes */}
       <div className="grid grid-cols-3 divide-x divide-gray-200 dark:divide-gray-700">
         <div className="p-6 flex items-center justify-center bg-gray-100 dark:bg-gray-750">
-          <h4 className="font-medium text-gray-700 dark:text-gray-300">Device</h4>
+          <h4 className="font-medium text-gray-700 dark:text-gray-300">Dispositivo</h4>
         </div>
         <div className="p-6 flex items-center justify-center">
           <img 
@@ -66,10 +66,10 @@ const ComparisonTable = ({ phone1, phone2, results }: ComparisonTableProps) => {
         </div>
       </div>
 
-      {/* Price */}
+      {/* Precio */}
       <div className="grid grid-cols-3 divide-x divide-gray-200 dark:divide-gray-700">
         <div className="p-6 flex items-center bg-gray-100 dark:bg-gray-750">
-          <h4 className="font-medium text-gray-700 dark:text-gray-300">Price</h4>
+          <h4 className="font-medium text-gray-700 dark:text-gray-300">Precio</h4>
         </div>
         <div className="p-6 flex items-center justify-center font-medium text-gray-900 dark:text-white">
           ${phone1.price.toLocaleString()}
@@ -79,7 +79,7 @@ const ComparisonTable = ({ phone1, phone2, results }: ComparisonTableProps) => {
         </div>
       </div>
 
-      {/* Specifications */}
+      {/* Especificaciones */}
       {Object.entries(phone1.specs).map(([key, value], index) => (
         <div 
           key={key}
@@ -101,10 +101,10 @@ const ComparisonTable = ({ phone1, phone2, results }: ComparisonTableProps) => {
         </div>
       ))}
 
-      {/* Results */}
+      {/* Resultados */}
       <div className="bg-gray-50 dark:bg-gray-700 p-4">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-center mb-4">
-          Comparison Results
+          Resultados
         </h3>
         
         <div className="divide-y divide-gray-200 dark:divide-gray-600">

@@ -25,7 +25,7 @@ const LatestReviews = ({ phones }: LatestReviewsProps) => {
               transition={{ duration: 0.5 }}
               className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2"
             >
-              Latest Phone Reviews
+              Últimas Reseñas de Teléfonos
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ const LatestReviews = ({ phones }: LatestReviewsProps) => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-gray-600 dark:text-gray-400 max-w-2xl"
             >
-              Discover in-depth reviews of the newest smartphones with detailed specifications, performance analysis, and comparisons.
+              Descubre reseñas detalladas de los smartphones más nuevos con especificaciones, análisis de rendimiento y comparaciones.
             </motion.p>
           </div>
           <motion.div 
@@ -47,7 +47,7 @@ const LatestReviews = ({ phones }: LatestReviewsProps) => {
               to="/reviews" 
               className="inline-flex items-center text-primary-500 dark:text-primary-400 font-medium hover:text-primary-600 dark:hover:text-primary-300 transition-colors group mt-4 md:mt-0"
             >
-              View all reviews 
+              Ver todas las reseñas
               <ArrowRight size={18} className="ml-1 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>

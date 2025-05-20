@@ -11,13 +11,11 @@ const NewsDetail = () => {
   const [relatedArticles, setRelatedArticles] = useState<NewsArticle[]>([]);
   
   useEffect(() => {
-    // In a real app, this would be a fetch from an API
-    // For demo, find the article with matching slug
+    // Aqui se obtiene los datos de la API
     const foundArticle = news.find(a => a.slug === id);
     setArticle(foundArticle || null);
     
     if (foundArticle) {
-      // Get related articles with same category or tags
       const related = news
         .filter(a => a.id !== foundArticle.id && 
           (a.category === foundArticle.category || 
@@ -30,7 +28,7 @@ const NewsDetail = () => {
   if (!article) {
     return (
       <div className="container mx-auto px-4 sm:px-6 py-12 text-center">
-        <p className="text-gray-600 dark:text-gray-400">Loading article...</p>
+        <p className="text-gray-600 dark:text-gray-400">Cargando artículo...</p>
       </div>
     );
   }
@@ -38,7 +36,7 @@ const NewsDetail = () => {
   // Format the date
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat('en-US', {
+    return new Intl.DateTimeFormat('es-MX', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -65,7 +63,7 @@ const NewsDetail = () => {
               className="inline-flex items-center text-white hover:text-gray-200 transition-colors"
             >
               <ArrowLeft size={16} className="mr-2" />
-              Back to News
+              Volver a Noticias
             </Link>
           </div>
           
@@ -138,7 +136,7 @@ const NewsDetail = () => {
                         {article.author}
                       </p>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Technology Writer
+                        Redactor de tecnología
                       </p>
                     </div>
                   </div>
@@ -161,7 +159,7 @@ const NewsDetail = () => {
               >
                 <div className="bg-gray-50 dark:bg-gray-700 px-6 py-4">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Related Articles
+                    Artículos Relacionados
                   </h3>
                 </div>
                 <div className="divide-y divide-gray-200 dark:divide-gray-700">

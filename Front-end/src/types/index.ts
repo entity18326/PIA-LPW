@@ -13,13 +13,13 @@ export interface Phone {
 }
 
 export interface PhoneSpecs {
-  display: string;
-  processor: string;
+  pantalla: string;
+  procesador: string;
   ram: string;
-  storage: string;
-  camera: string;
-  battery: string;
-  os: string;
+  almacenamiento: string;
+  camara: string;
+  bateria: string;
+  sistemaOperativo: string;
 }
 
 // News related types

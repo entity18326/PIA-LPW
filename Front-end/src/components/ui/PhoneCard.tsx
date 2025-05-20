@@ -47,7 +47,7 @@ const PhoneCard = ({ phone, featured = false }: PhoneCardProps) => {
           />
           {featured && (
             <div className="absolute top-4 right-4 bg-primary-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-              Featured
+              Novedades
             </div>
           )}
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">

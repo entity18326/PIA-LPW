@@ -9,10 +9,8 @@ import { Phone } from '../types';
 const HomePage = () => {
   const [featuredPhone, setFeaturedPhone] = useState<Phone>(phones[0]);
 
-  // Simulate loading data and selecting a featured phone
   useEffect(() => {
-    // In a real app, this would be fetched from an API
-    // For demo, just take the first phone as featured
+    // Aquí se podría hacer una llamada a la API para obtener el teléfono destacado
     setFeaturedPhone(phones[0]);
   }, []);
 

@@ -8,19 +8,19 @@ interface SpecTableProps {
 
 const SpecTable = ({ specs, className = '' }: SpecTableProps) => {
   const specItems = [
-    { label: 'Display', value: specs.display },
-    { label: 'Processor', value: specs.processor },
+    { label: 'Pantalla', value: specs.pantalla },
+    { label: 'Procesador', value: specs.procesador },
     { label: 'RAM', value: specs.ram },
-    { label: 'Storage', value: specs.storage },
-    { label: 'Camera', value: specs.camera },
-    { label: 'Battery', value: specs.battery },
-    { label: 'Operating System', value: specs.os },
+    { label: 'Almacenamiento', value: specs.almacenamiento },
+    { label: 'Cámara', value: specs.camara },
+    { label: 'Batería', value: specs.bateria },
+    { label: 'Sistema Operativo', value: specs.sistemaOperativo },
   ];
 
   return (
     <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden ${className}`}>
       <div className="bg-gray-50 dark:bg-gray-700 px-6 py-4">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Specifications</h3>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Especificaciones</h3>
       </div>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         {specItems.map((item, index) => (

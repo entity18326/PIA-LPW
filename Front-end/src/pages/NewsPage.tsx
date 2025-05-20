@@ -22,15 +22,15 @@ const NewsPage = () => {
         className="text-center mb-12"
       >
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          Mobile Tech News
+          Noticias de Tecnología Móvil
         </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Stay up to date with the latest smartphone news, announcements, and industry trends.
+          Mantente al día con las últimas noticias, anuncios y tendencias de la industria de smartphones.
         </p>
       </motion.div>
       
       <div className="mb-8 max-w-2xl mx-auto">
-        <SearchBar placeholder="Search for news articles..." />
+        <SearchBar placeholder="Buscar artículos de noticias..." />
       </div>
       
       <div className="flex flex-wrap gap-3 justify-center mb-8">
@@ -44,7 +44,7 @@ const NewsPage = () => {
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
             }`}
           >
-            {cat === 'all' ? 'All Categories' : cat}
+            {cat === 'all' ? 'Todas las categorías' : cat}
           </button>
         ))}
       </div>
@@ -65,7 +65,7 @@ const NewsPage = () => {
       
       {filteredNews.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-gray-500 dark:text-gray-400">No news articles found for this category.</p>
+          <p className="text-gray-500 dark:text-gray-400">No se encontraron artículos de noticias para esta categoría.</p>
         </div>
       )}
     </div>

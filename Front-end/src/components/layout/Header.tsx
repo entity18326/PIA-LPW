@@ -47,11 +47,8 @@ const Header = () => {
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
             >
-              <Smartphone className="h-8 w-8 text-primary-500 dark:text-primary-400" /> {/* Logo */}
+              <img src="src\assets\logo_odinmobile.png" alt="Logo" className="w-40 rounded-full" />
             </motion.div>
-            <span className="font-bold text-xl sm:text-2xl text-gray-50 dark:text-white">
-              OdinMobile
-            </span>
           </Link>
 
           {/* Navbar para escritorio */}

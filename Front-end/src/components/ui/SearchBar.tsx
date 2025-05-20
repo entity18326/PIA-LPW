@@ -70,7 +70,7 @@ const SearchBar = ({ placeholder = 'Search for phones, news, or brands...', clas
           animate={{ opacity: 1, y: 0 }}
           className="absolute top-full left-0 right-0 mt-1 text-xs text-gray-500 dark:text-gray-400 px-4"
         >
-          Press Enter to search
+          Presiona enter para buscar
         </motion.div>
       )}
     </div>

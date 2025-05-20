@@ -12,13 +12,10 @@ const ReviewDetail = () => {
   const [relatedPhones, setRelatedPhones] = useState<Phone[]>([]);
   
   useEffect(() => {
-    // In a real app, this would be a fetch from an API
-    // For demo, find the phone with matching slug
     const foundPhone = phones.find(p => p.slug === id);
     setPhone(foundPhone || null);
     
     if (foundPhone) {
-      // Get related phones of same brand (excluding current phone)
       const related = phones
         .filter(p => p.brand === foundPhone.brand && p.id !== foundPhone.id)
         .slice(0, 3);
@@ -29,7 +26,7 @@ const ReviewDetail = () => {
   if (!phone) {
     return (
       <div className="container mx-auto px-4 sm:px-6 py-12 text-center">
-        <p className="text-gray-600 dark:text-gray-400">Loading review...</p>
+        <p className="text-gray-600 dark:text-gray-400">Cargando reseña...</p>
       </div>
     );
   }
@@ -61,7 +58,7 @@ const ReviewDetail = () => {
               className="inline-flex items-center text-primary-500 dark:text-primary-400 hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
             >
               <ArrowLeft size={16} className="mr-2" />
-              Back to Reviews
+              Volver a Reseñas
             </Link>
           </div>
           
@@ -98,7 +95,7 @@ const ReviewDetail = () => {
                 </span>
                 <div className="flex mr-4">{renderStars(phone.rating)}</div>
                 <span className="text-gray-500 dark:text-gray-400 text-sm">
-                  Expert Review
+                  Reseña de experto
                 </span>
               </div>
               
@@ -108,7 +105,7 @@ const ReviewDetail = () => {
               
               <div className="mb-8">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                  Key Features
+                  Características clave
                 </h3>
                 <ul className="space-y-3">
                   {phone.highlights.map((highlight, index) => (
@@ -124,7 +121,7 @@ const ReviewDetail = () => {
               
               <div className="flex space-x-4">
                 <button className="px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors">
-                  Check Prices
+                  Ver precios
                 </button>
                 <button className="p-3 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
                   <Share2 size={20} className="text-gray-700 dark:text-gray-300" />
@@ -146,34 +143,34 @@ const ReviewDetail = () => {
               className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 md:p-8 mb-8"
             >
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Overview
+                Descripción general
               </h2>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                The {phone.brand} {phone.name} is a flagship smartphone that showcases the brand's latest innovations and cutting-edge technology. Released on {new Date(phone.releaseDate).toLocaleDateString()}, this device has quickly become a benchmark for premium smartphones.
+                El {phone.brand} {phone.name} es un smartphone insignia que muestra las últimas innovaciones y tecnología de punta de la marca. Lanzado el {new Date(phone.releaseDate).toLocaleDateString()}, este dispositivo se ha convertido rápidamente en un referente para los smartphones premium.
               </p>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                Powered by the {phone.specs.processor} processor and equipped with {phone.specs.ram} of RAM, the {phone.name} delivers exceptional performance for even the most demanding applications and games. The {phone.specs.display} display offers stunning visuals with vivid colors and smooth motion, perfect for multimedia consumption and gaming.
+                Impulsado por el procesador {phone.specs.procesador} y equipado con {phone.specs.ram} de RAM, el {phone.name} ofrece un rendimiento excepcional incluso para las aplicaciones y juegos más exigentes. La pantalla {phone.specs.pantalla} ofrece imágenes impresionantes con colores vivos y movimiento fluido, perfecta para consumir multimedia y jugar.
               </p>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                In the camera department, the {phone.name} features {phone.specs.camera}, allowing users to capture professional-quality photos and videos in various lighting conditions. The device runs on {phone.specs.os}, offering a clean, intuitive user interface with the latest features and security updates.
+                En el apartado de cámaras, el {phone.name} cuenta con {phone.specs.camara}, permitiendo a los usuarios capturar fotos y videos de calidad profesional en diversas condiciones de iluminación. El dispositivo funciona con {phone.specs.sistemaOperativo}, ofreciendo una interfaz limpia e intuitiva con las últimas funciones y actualizaciones de seguridad.
               </p>
               <p className="text-gray-700 dark:text-gray-300">
-                With a {phone.specs.battery} battery, the {phone.name} provides all-day battery life for most users, even with heavy usage. The device also supports fast charging, wireless charging, and reverse wireless charging, offering versatile power options for users on the go.
+                Con una batería de {phone.specs.bateria}, el {phone.name} proporciona autonomía para todo el día para la mayoría de los usuarios, incluso con uso intensivo. El dispositivo también soporta carga rápida, carga inalámbrica y carga inalámbrica inversa, ofreciendo opciones versátiles para usuarios en movimiento.
               </p>
             </motion.div>
             
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 md:p-8">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Performance & User Experience
+                Rendimiento y experiencia de usuario
               </h2>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                The {phone.name} delivers excellent performance in day-to-day tasks, with apps launching quickly and multitasking handled smoothly. Gaming performance is particularly impressive, with even demanding titles running at high frame rates with consistent stability.
+                El {phone.name} ofrece un excelente rendimiento en las tareas del día a día, con aplicaciones que se abren rápidamente y multitarea fluida. El rendimiento en juegos es particularmente impresionante, incluso en títulos exigentes que corren a altas tasas de cuadros y con estabilidad constante.
               </p>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                The user interface is polished and responsive, with thoughtful features that enhance the overall experience. Animations are smooth, and the system rarely shows any lag or stuttering, even under heavy loads.
+                La interfaz de usuario es pulida y responsiva, con funciones pensadas para mejorar la experiencia general. Las animaciones son fluidas y el sistema rara vez muestra retrasos o parpadeos, incluso bajo cargas pesadas.
               </p>
               <p className="text-gray-700 dark:text-gray-300">
-                Battery life is reliable, typically lasting a full day with moderate to heavy usage. The fast charging capability is a welcome addition, allowing the device to charge from 0 to 50% in about 30 minutes, which is convenient for quick top-ups during the day.
+                La batería es confiable, normalmente dura todo el día con uso moderado a intensivo. La carga rápida es una adición bienvenida, permitiendo cargar el dispositivo de 0 a 50% en unos 30 minutos, lo cual es conveniente para recargas rápidas durante el día.
               </p>
             </div>
           </div>
@@ -185,7 +182,7 @@ const ReviewDetail = () => {
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
                 <div className="bg-gray-50 dark:bg-gray-700 px-6 py-4">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Related Phones
+                    Teléfonos relacionados
                   </h3>
                 </div>
                 <div className="p-6">

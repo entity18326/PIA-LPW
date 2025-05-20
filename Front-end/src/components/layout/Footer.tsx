@@ -11,8 +11,7 @@ const Footer = () => {
           {/* About */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <Smartphone className="h-6 w-6 text-primary-500 dark:text-primary-400" />
-              <span className="font-bold text-xl text-gray-100 dark:text-white">OdinMobile</span>
+              <img src="src\assets\logo_odinmobile.png" alt="Logo" className="w-40 rounded-full" />
             </div>
             <p className="text-gray-100 dark:text-gray-400 mb-4">
               Tu fuente confiable para las últimas noticias, reseñas y comparaciones de teléfonos móviles. Mantente al día con las nuevas tecnologías y lanzamientos.
@@ -47,17 +46,17 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/news" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                <Link to="/noticias" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
                   Tech News
                 </Link>
               </li>
               <li>
-                <Link to="/compare" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                <Link to="/comparar" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
                   Compare Phones
                 </Link>
               </li>
               <li>
-                <Link to="/brands/apple" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                <Link to="/marcas/apple" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
                   Browse by Brand
                 </Link>
               </li>
@@ -74,27 +73,27 @@ const Footer = () => {
             <h3 className="font-semibold text-lg mb-4 text-gray-100 dark:text-white">Marcas Populares</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/brands/apple" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                <Link to="/marcas/apple" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
                   Apple
                 </Link>
               </li>
               <li>
-                <Link to="/brands/samsung" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                <Link to="/marcas/samsung" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
                   Samsung
                 </Link>
               </li>
               <li>
-                <Link to="/brands/google" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                <Link to="/marcas/google" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
                   Google
                 </Link>
               </li>
               <li>
-                <Link to="/brands/xiaomi" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                <Link to="/marcas/xiaomi" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
                   Xiaomi
                 </Link>
               </li>
               <li>
-                <Link to="/brands/oneplus" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                <Link to="/marcas/oneplus" className="text-gray-100 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
                   OnePlus
                 </Link>
               </li>
@@ -108,7 +107,7 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin size={18} className="mr-2 text-primary-500 dark:text-primary-400 flex-shrink-0 mt-0.5" />
                 <span className="text-gray-100 dark:text-gray-400">
-                  123 Tech Street, Digital City, 12345
+                  Santa Inés 505, California Residencial, General Escobedo, Nuevo León, México
                 </span>
               </li>
               <li className="flex items-center">
