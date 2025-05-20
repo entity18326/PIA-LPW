@@ -6,7 +6,7 @@
 
 body{
 background-color: rgb(58, 58, 58);
-background-image: url(../Imagenes/modern-gray-technology-background_2770697.webp);
+background-image: url(../Imagenes/Fondo.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -86,11 +86,26 @@ background-image: url(../Imagenes/modern-gray-technology-background_2770697.webp
 
 .footer-imagenes {
   display: flex;
-  justify-content: center; /* Centra las imágenes horizontalmente */
-  gap: 20px;               /* Espacio entre imágenes */
+  justify-content: center;
+  gap: 20px;
   background-color: #555;
 }
 
 .footer-imagenes img {
   height: auto;
+}
+
+footer div{
+  color: white;
+  justify-content: center;
+  text-align: center;
+}
+
+.Contactos
+{
+    background-color: rgb(119, 119, 119);
+}
+
+footer div img{
+  width: 100%;
 }

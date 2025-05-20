@@ -23,7 +23,7 @@ background-image: url(../Imagenes/modern-gray-technology-background_2770697.webp
 }
 
 .menu li:first-child {
-    margin-right: auto; /* Empuja los otros elementos hacia la derecha */
+    margin-right: auto;
 }
 
 .menu li {
@@ -86,8 +86,8 @@ background-image: url(../Imagenes/modern-gray-technology-background_2770697.webp
 
 .footer-imagenes {
   display: flex;
-  justify-content: center; /* Centra las imágenes horizontalmente */
-  gap: 20px;               /* Espacio entre imágenes */
+  justify-content: center;
+  gap: 20px;
   background-color: #555;
 }
 
@@ -98,7 +98,7 @@ background-image: url(../Imagenes/modern-gray-technology-background_2770697.webp
     .table-container {
       width: 80%;
       max-width: 900px;
-      background-color: #f0f0f0;
+      background-color: #555555;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -113,13 +113,13 @@ background-image: url(../Imagenes/modern-gray-technology-background_2770697.webp
     table {
       width: 100%;
       border-collapse: collapse;
-      background-color: #fff;
+      background-color: #9b9b9b;
     }
 
     th, td {
       padding: 12px 15px;
       text-align: left;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #9b9b9b;
     }
 
     th {
@@ -156,10 +156,11 @@ background-image: url(../Imagenes/modern-gray-technology-background_2770697.webp
     .btn-delete:hover {
       background-color: #343a40;
     }
+
 .crud-centro {
   min-height: calc(100vh - 60px); /* Resta la altura del menú */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 0; /* Para que no quede pegado al borde en pantallas pequeñas */
+  padding: 40px 0;
 }
