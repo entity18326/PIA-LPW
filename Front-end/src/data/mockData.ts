@@ -7,9 +7,7 @@ export const phones: Phone[] = [
     brand: 'Apple',
     name: 'iPhone 15 Pro Max',
     image: 'https://i.blogs.es/718a10/img_2085/1200_800.jpeg',
-    price: 1099,
     releaseDate: '2023-09-22',
-    rating: 4.7,
     specs: {
       pantalla: '6.7-pulgadas Super Retina XDR OLED, 120Hz',
       procesador: 'A17 Pro Bionic',
@@ -33,9 +31,7 @@ export const phones: Phone[] = [
     brand: 'Samsung',
     name: 'Galaxy S24 Ultra',
     image: 'https://images.samsung.com/is/image/samsung/assets/mx/smartphones/galaxy-s24-ultra/buy/01_S24Ultra-Group-KV_PC_0527_final.jpg?imbypass=true',
-    price: 1299,
     releaseDate: '2024-01-31',
-    rating: 4.6,
     specs: {
       pantalla: '6.8-pulgadas Dynamic AMOLED 2X, 120Hz',
       procesador: 'Snapdragon 8 Gen 3',
@@ -59,9 +55,7 @@ export const phones: Phone[] = [
     brand: 'Google',
     name: 'Pixel 8 Pro',
     image: 'https://m.media-amazon.com/images/I/71XEjCc4yLL._AC_UF894,1000_QL80_.jpg',
-    price: 999,
     releaseDate: '2023-10-12',
-    rating: 4.5,
     specs: {
       pantalla: '6.7-pulgadas Super Actua OLED, 120Hz',
       procesador: 'Google Tensor G3',
@@ -85,9 +79,7 @@ export const phones: Phone[] = [
     brand: 'Xiaomi',
     name: 'Xiaomi 14 Ultra',
     image: 'https://www.notebookcheck.org/uploads/tx_nbc2/Xiaomi_14_Ultra.jpg',
-    price: 1299,
     releaseDate: '2024-02-25',
-    rating: 4.4,
     specs: {
       pantalla: '6.73-pulgadas LTPO AMOLED, 120Hz',
       procesador: 'Snapdragon 8 Gen 3',
@@ -111,9 +103,7 @@ export const phones: Phone[] = [
     brand: 'OnePlus',
     name: 'OnePlus 12',
     image: 'https://www.oneplus.com/content/dam/oasis/page/2024/global/product/waffle/share.jpg',
-    price: 799,
     releaseDate: '2024-01-23',
-    rating: 4.3,
     specs: {
       pantalla: '6.82-pulgadas LTPO AMOLED, 120Hz',
       procesador: 'Snapdragon 8 Gen 3',

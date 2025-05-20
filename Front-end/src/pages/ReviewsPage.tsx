@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PhoneCard from '../components/ui/PhoneCard';
 import SearchBar from '../components/ui/SearchBar';
-import { Phone } from '../types';
 import { phones } from '../data/mockData';
 import { motion } from 'framer-motion';
 
@@ -18,12 +17,6 @@ const ReviewsPage = () => {
     .sort((a, b) => {
       if (sortBy === 'newest') {
         return new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime();
-      } else if (sortBy === 'rating') {
-        return b.rating - a.rating;
-      } else if (sortBy === 'price-high') {
-        return b.price - a.price;
-      } else if (sortBy === 'price-low') {
-        return a.price - b.price;
       }
       return 0;
     });

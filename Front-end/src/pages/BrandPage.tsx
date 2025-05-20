@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import PhoneCard from '../components/ui/PhoneCard';
 import { brands, phones } from '../data/mockData';

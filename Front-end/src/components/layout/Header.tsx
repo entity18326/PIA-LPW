@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Moon, Sun, Search, Smartphone, LogIn } from 'lucide-react';
+import { Menu, X, Moon, Sun, Search, LogIn } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -14,7 +14,6 @@ const Header = () => {
     { name: 'Reviews', path: '/reviews' },
     { name: 'Noticias', path: '/noticias' },
     { name: 'Comparar', path: '/comparar' },
-    { name: 'Marcas', path: '/marcas/apple' },
   ];
 
   useEffect(() => {
@@ -78,10 +77,10 @@ const Header = () => {
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <Link
                 to="/search"
-                className="p-2 rounded-full hover:bg-gray-900 dark:hover:bg-gray-800 transition-colors"
+                className="p-2 rounded-full transition-colors"
                 aria-label="Search"
               >
-                <Search className="h-5 w-5 text-gray-50 dark:text-gray-300" />
+                <Search className="h-5 w-5 text-gray-50" />
               </Link>
             </motion.div>
 
@@ -89,13 +88,13 @@ const Header = () => {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 rounded-full dark:hover:bg-gray-800 transition-colors">
+              className="p-2 rounded-full transition-colors">
                 <Link
                   to="/login"
                   className="p-2 rounded-full transition-colors"
                   aria-label="Login"
                 >
-                  <LogIn className="h-5 w-5 text-gray-50 dark:text-gray-300" />
+                  <LogIn className="h-5 w-5 text-gray-50" />
                 </Link>
             </motion.button>
 
@@ -105,7 +104,7 @@ const Header = () => {
               whileTap={{ scale: 0.9 }}
               className="p-2 rounded-full dark:hover:bg-gray-800 transition-colors"
               onClick={toggleTheme}
-              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+              aria-label={theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'}
             >
               {theme === 'light' ? (
                 <Moon className="h-5 w-5 text-gray-50" />

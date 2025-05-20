@@ -1,4 +1,3 @@
-import React from 'react';
 import { Phone, ComparisonResult } from '../../types';
 import { Check, X, Minus } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -63,19 +62,6 @@ const ComparisonTable = ({ phone1, phone2, results }: ComparisonTableProps) => {
             alt={`${phone2.brand} ${phone2.name}`}
             className="h-48 object-contain"
           />
-        </div>
-      </div>
-
-      {/* Precio */}
-      <div className="grid grid-cols-3 divide-x divide-gray-200 dark:divide-gray-700">
-        <div className="p-6 flex items-center bg-gray-100 dark:bg-gray-750">
-          <h4 className="font-medium text-gray-700 dark:text-gray-300">Precio</h4>
-        </div>
-        <div className="p-6 flex items-center justify-center font-medium text-gray-900 dark:text-white">
-          ${phone1.price.toLocaleString()}
-        </div>
-        <div className="p-6 flex items-center justify-center font-medium text-gray-900 dark:text-white">
-          ${phone2.price.toLocaleString()}
         </div>
       </div>
 
