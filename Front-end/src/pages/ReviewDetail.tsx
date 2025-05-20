@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Share2, Star, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Share2, ChevronRight } from 'lucide-react';
 import { Phone } from '../types';
 import { phones } from '../data/mockData';
 import SpecTable from '../components/ui/SpecTable';
@@ -30,22 +30,6 @@ const ReviewDetail = () => {
       </div>
     );
   }
-  
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }).map((_, index) => (
-      <Star
-        key={index}
-        size={20}
-        className={`${
-          index < Math.floor(rating)
-            ? 'text-accent-500 fill-accent-500'
-            : index < rating
-            ? 'text-accent-500 fill-accent-500 opacity-50'
-            : 'text-gray-300 dark:text-gray-600'
-        }`}
-      />
-    ));
-  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -88,20 +72,6 @@ const ReviewDetail = () => {
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 {phone.name}
               </h1>
-              
-              <div className="flex items-center mb-6">
-                <span className="text-2xl font-bold text-gray-900 dark:text-white mr-2">
-                  {phone.rating.toFixed(1)}
-                </span>
-                <div className="flex mr-4">{renderStars(phone.rating)}</div>
-                <span className="text-gray-500 dark:text-gray-400 text-sm">
-                  Reseña de experto
-                </span>
-              </div>
-              
-              <div className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                ${phone.price.toLocaleString()}
-              </div>
               
               <div className="mb-8">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
@@ -202,9 +172,6 @@ const ReviewDetail = () => {
                           <h4 className="font-medium text-gray-900 dark:text-white">
                             {related.name}
                           </h4>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
-                            ${related.price.toLocaleString()}
-                          </p>
                         </div>
                       </Link>
                     ))}

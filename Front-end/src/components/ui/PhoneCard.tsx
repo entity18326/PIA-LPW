@@ -1,6 +1,4 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { Star } from 'lucide-react';
 import { Phone } from '../../types';
 import { motion } from 'framer-motion';
 
@@ -10,22 +8,6 @@ interface PhoneCardProps {
 }
 
 const PhoneCard = ({ phone, featured = false }: PhoneCardProps) => {
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }).map((_, index) => (
-      <Star
-        key={index}
-        size={16}
-        className={`${
-          index < Math.floor(rating)
-            ? 'text-accent-500 fill-accent-500'
-            : index < rating
-            ? 'text-accent-500 fill-accent-500 opacity-50'
-            : 'text-gray-300 dark:text-gray-600'
-        }`}
-      />
-    ));
-  };
-
   return (
     <motion.div
       whileHover={{ y: -5 }}
@@ -52,8 +34,6 @@ const PhoneCard = ({ phone, featured = false }: PhoneCardProps) => {
           )}
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
             <div className="flex items-center">
-              <span className="text-white font-bold mr-2">{phone.rating.toFixed(1)}</span>
-              <div className="flex">{renderStars(phone.rating)}</div>
             </div>
           </div>
         </div>
@@ -65,9 +45,6 @@ const PhoneCard = ({ phone, featured = false }: PhoneCardProps) => {
             {phone.name}
           </h3>
           <div className="flex justify-between items-center">
-            <span className="text-lg font-semibold text-gray-900 dark:text-white">
-              ${phone.price.toLocaleString()}
-            </span>
             <span className="text-xs text-gray-500 dark:text-gray-400">
               Released: {new Date(phone.releaseDate).toLocaleDateString()}
             </span>

@@ -4,9 +4,7 @@ export interface Phone {
   brand: string;
   name: string;
   image: string;
-  price: number;
   releaseDate: string;
-  rating: number;
   specs: PhoneSpecs;
   highlights: string[];
   slug: string;
