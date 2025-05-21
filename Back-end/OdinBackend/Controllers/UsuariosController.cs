@@ -5,6 +5,8 @@ using OdinBackend.Models;
 
 namespace OdinBackend.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class UsuariosController : ControllerBase
     {
         private readonly LpwPiaContext _context;

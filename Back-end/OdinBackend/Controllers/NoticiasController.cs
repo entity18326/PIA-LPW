@@ -5,6 +5,8 @@ using OdinBackend.Models;
 
 namespace OdinBackend.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class NoticiasController : ControllerBase
     {
         private readonly LpwPiaContext _context;
@@ -16,9 +18,11 @@ namespace OdinBackend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetNoticia(int id)
         {
-            // Simulación de la obtención de una noticia
-            var noticia = new { Id = id, Titulo = "Noticia de ejemplo", Contenido = "Contenido de la noticia" };
-            return Ok(noticia);
+            var noticia = await _context.Noticias.FindAsync(id);
+            if (noticia == null)
+                return NotFound();
+
+            return Ok(noticia); // Fix: Wrap the result in Ok() to return IActionResult
         }
 
         [HttpPost]
