@@ -349,10 +349,55 @@
           }
         }
       }
+    },
+    "/api/Usuarios/login": {
+      "post": {
+        "tags": [
+          "Usuarios"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "Auth": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Noticia": {
         "type": "object",
         "properties": {
@@ -463,7 +508,7 @@
       "Usuario": {
         "type": "object",
         "properties": {
-          "idUsuario": {
+          "iD_Usuario": {
             "type": "integer",
             "format": "int32"
           },
@@ -475,7 +520,7 @@
             "type": "string",
             "nullable": true
           },
-          "rol": {
+          "iD_Rol": {
             "type": "integer",
             "format": "int32",
             "nullable": true

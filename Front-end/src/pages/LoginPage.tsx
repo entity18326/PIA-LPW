@@ -11,7 +11,6 @@ interface LoginRequest {
 interface User {
   id: number;
   name?: string;
-  email: string;
   nombre?: string; // Por si tu API usa 'nombre' en lugar de 'name'
 }
 
@@ -31,7 +30,7 @@ interface ApiError {
 
 // Configuración de Axios
 const api = axios.create({
-  baseURL: 'http://localhost:7039', // URL base de tu API
+  baseURL: 'https://localhost:7039/api', // URL base de tu API
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -77,17 +76,8 @@ const LoginPage: React.FC = () => {
         password
       };
 
-      // Opción 1: Si tienes un endpoint de autenticación específico
-      const response: AxiosResponse<LoginResponse> = await api.post('/api/Usuarios/login', loginData);
-      
-      // Opción 2: Si usas el endpoint de usuarios para login
-      // const response: AxiosResponse<LoginResponse> = await api.post('/api/Usuarios/login', loginData);
-      
-      // Opción 3: Si necesitas validar contra el endpoint de usuarios existente
-      // const response: AxiosResponse<LoginResponse> = await api.get('/api/Usuarios', {
-      //   params: loginData
-      // });
-      
+      const response: AxiosResponse<LoginResponse> = await api.post('/Usuarios/login', loginData);
+
       // Manejo de respuesta exitosa
       const { data } = response;
       
@@ -98,18 +88,22 @@ const LoginPage: React.FC = () => {
         
         // También podrías guardarlo en un context o state manager
         console.log('Token recibido:', data.token);
+        // Guardar el token (ejemplo)
+        localStorage.setItem("token", data.token);
       }
       
       // Mensaje de éxito
-      const userName = data.user?.name || data.user?.nombre || data.user?.email || 'usuario';
+      const userName = data.user?.name || data.user?.nombre || 'usuario';
       alert(`¡Bienvenido ${userName}!`);
       
       // Limpiar formulario
       setUsername('');
       setPassword('');
       
-      // Aquí podrías redirigir al usuario o cambiar el estado de la aplicación
-      // navigate('/dashboard'); // Si usas React Router
+      console.log('Usuario autenticado:', data.user?.nombre);
+
+      // Redirigir o actualizar el estado global de autenticación
+
       
     } catch (error) {
       console.error('Error de login:', error);
@@ -227,7 +221,7 @@ const LoginPage: React.FC = () => {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock size={18} className="text-blue-500" />
+                  <Lock size={18} className="text-primary-500" />
                 </div>
                 <input
                   id="password"
@@ -285,8 +279,8 @@ const LoginPage: React.FC = () => {
                 disabled={isLoading}
                 className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors ${
                   isLoading 
-                    ? 'bg-blue-400 cursor-not-allowed' 
-                    : 'bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+                    ? 'bg-primary-500 cursor-not-allowed' 
+                    : 'bg-primary-500 hover:bg-primary-400 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
                 }`}
               >
                 {isLoading ? (

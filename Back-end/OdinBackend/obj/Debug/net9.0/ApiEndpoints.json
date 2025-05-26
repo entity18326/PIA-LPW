@@ -205,5 +205,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdinBackend.Controllers.UsuariosController",
+    "Method": "Login",
+    "RelativePath": "api/Usuarios/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "OdinBackend.Models.Auth",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

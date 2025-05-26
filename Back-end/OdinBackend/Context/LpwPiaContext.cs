@@ -26,7 +26,7 @@ public partial class LpwPiaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=192.168.1.83;Database=LPW_PIA;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=192.168.0.231;Database=LPW_PIA;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,7 +40,7 @@ public partial class LpwPiaContext : DbContext
             entity.Property(e => e.Fecha).HasColumnType("datetime");
             entity.Property(e => e.IdNoticia).HasColumnName("ID_Noticia");
             entity.Property(e => e.IdProducto).HasColumnName("ID_Producto");
-            entity.Property(e => e.Nombre).HasColumnType("text");
+            entity.Property(e => e.Nombre).HasColumnType("varchar(100)");
             entity.Property(e => e.VisitasNoticias).HasColumnName("Visitas_Noticias");
             entity.Property(e => e.VisitasProductos).HasColumnName("Visitas_Productos");
             entity.Property(e => e.VisitasTot).HasColumnName("Visitas_Tot");
@@ -93,13 +93,13 @@ public partial class LpwPiaContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuarios__DE4431C53FFF7C97");
+            entity.HasKey(e => e.ID_Usuario).HasName("PK__Usuarios__DE4431C53FFF7C97");
 
-            entity.Property(e => e.IdUsuario)
+            entity.Property(e => e.ID_Usuario)
                 .ValueGeneratedNever()
                 .HasColumnName("ID_Usuario");
-            entity.Property(e => e.Contraseña).HasColumnType("text");
-            entity.Property(e => e.Nombre).HasColumnType("text");
+            entity.Property(e => e.Contraseña).HasColumnType("varchar(100)");
+            entity.Property(e => e.Nombre).HasColumnType("varchar(100)");
         });
 
         OnModelCreatingPartial(modelBuilder);
