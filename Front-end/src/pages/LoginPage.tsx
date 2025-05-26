@@ -1,25 +1,66 @@
 import { useState } from 'react';
-import { User, Lock, Mail, Eye, EyeOff } from 'lucide-react';
+import { User, Lock, User2, Eye, EyeOff } from 'lucide-react';
+import axios, { AxiosResponse, AxiosError } from 'axios';
 
-export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+// Interfaces para tipado
+interface LoginRequest {
+  username: string;
+  password: string;
+}
 
-  const handleSubmit = (e: React.FormEvent) => {
+interface User {
+  id: number;
+  name?: string;
+  email: string;
+  nombre?: string; // Por si tu API usa 'nombre' en lugar de 'name'
+}
+
+interface LoginResponse {
+  token?: string;
+  user?: User;
+  message?: string;
+  success?: boolean;
+}
+
+interface ApiError {
+  message?: string;
+  error?: string;
+  Message?: string; // Por si tu API usa 'Message' con mayúscula
+  errors?: Record<string, string[]>;
+}
+
+// Configuración de Axios
+const api = axios.create({
+  baseURL: 'http://localhost:7039', // URL base de tu API
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  }
+});
+
+// Interceptor para manejar respuestas y errores globalmente
+api.interceptors.response.use(
+  (response: AxiosResponse) => response,
+  (error: AxiosError) => {
+    console.error('API Error:', error);
+    return Promise.reject(error);
+  }
+);
+
+const LoginPage: React.FC = () => {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setError('');
     
     // Validación básica
-    if (!email || !password) {
+    if (!username || !password) {
       setError('Por favor, completa todos los campos');
-      return;
-    }
-    
-    if (!email.includes('@') || !email.includes('.')) {
-      setError('Por favor, ingresa un correo electrónico válido');
       return;
     }
     
@@ -28,12 +69,111 @@ export default function LoginPage() {
       return;
     }
     
-    // Simulación de inicio de sesión
     setIsLoading(true);
-    setTimeout(() => {
+    
+    try {
+      const loginData: LoginRequest = {
+        username,
+        password
+      };
+
+      // Opción 1: Si tienes un endpoint de autenticación específico
+      const response: AxiosResponse<LoginResponse> = await api.post('/api/Usuarios/login', loginData);
+      
+      // Opción 2: Si usas el endpoint de usuarios para login
+      // const response: AxiosResponse<LoginResponse> = await api.post('/api/Usuarios/login', loginData);
+      
+      // Opción 3: Si necesitas validar contra el endpoint de usuarios existente
+      // const response: AxiosResponse<LoginResponse> = await api.get('/api/Usuarios', {
+      //   params: loginData
+      // });
+      
+      // Manejo de respuesta exitosa
+      const { data } = response;
+      
+      // Guardar token en memoria o configurar para futuras peticiones
+      if (data.token) {
+        // Configurar token para futuras peticiones
+        api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+        
+        // También podrías guardarlo en un context o state manager
+        console.log('Token recibido:', data.token);
+      }
+      
+      // Mensaje de éxito
+      const userName = data.user?.name || data.user?.nombre || data.user?.email || 'usuario';
+      alert(`¡Bienvenido ${userName}!`);
+      
+      // Limpiar formulario
+      setUsername('');
+      setPassword('');
+      
+      // Aquí podrías redirigir al usuario o cambiar el estado de la aplicación
+      // navigate('/dashboard'); // Si usas React Router
+      
+    } catch (error) {
+      console.error('Error de login:', error);
+      
+      const axiosError = error as AxiosError<ApiError>;
+      
+      if (axiosError.response) {
+        // El servidor respondió con un código de error
+        const status = axiosError.response.status;
+        const errorData = axiosError.response.data;
+        const errorMessage = errorData?.message || 
+                           errorData?.error || 
+                           errorData?.Message;
+        
+        switch (status) {
+          case 400:
+            setError('Datos de entrada inválidos. Verifica la información.');
+            break;
+          case 401:
+            setError('Credenciales incorrectas. Verifica tu email y contraseña.');
+            break;
+          case 404:
+            setError('Usuario no encontrado o endpoint no disponible.');
+            break;
+          case 422:
+            // Manejo especial para errores de validación
+            if (errorData?.errors) {
+              const validationErrors = Object.values(errorData.errors).flat();
+              setError(validationErrors.join(', '));
+            } else {
+              setError(errorMessage || 'Datos de entrada inválidos.');
+            }
+            break;
+          case 429:
+            setError('Demasiados intentos. Intenta más tarde.');
+            break;
+          case 500:
+            setError('Error interno del servidor. Intenta más tarde.');
+            break;
+          default:
+            setError(errorMessage || 'Error al iniciar sesión. Intenta nuevamente.');
+        }
+      } else if (axiosError.request) {
+        // La petición se hizo pero no hubo respuesta
+        setError('No se pudo conectar con el servidor. Verifica tu conexión y que el servidor esté ejecutándose.');
+      } else {
+        // Algo más ocurrió al configurar la petición
+        setError('Error inesperado. Intenta nuevamente.');
+      }
+    } finally {
       setIsLoading(false);
-      alert('¡Inicio de sesión exitoso!');
-    }, 1500);
+    }
+  };
+
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setPassword(e.target.value);
+  };
+
+  const togglePasswordVisibility = (): void => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -45,109 +185,170 @@ export default function LoginPage() {
             <User size={30} className="text-primary-500" />
           </div>
           <h2 className="text-2xl font-bold text-white">Bienvenido de nuevo</h2>
-          <p className="text-white">Inicia sesión para continuar</p>
+          <p className="text-blue-100">Inicia sesión para continuar</p>
         </div>
         
         {/* Formulario */}
         <div className="p-6 space-y-6">
           {error && (
-            <div className="text-primary-100 p-3 rounded-lg text-sm">
-              {error}
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg text-sm">
+              <strong>Error:</strong> {error}
             </div>
           )}
           
-          {/* Campo de correo electrónico */}
-          <div className="space-y-2">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-100">
-              Correo electrónico
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Mail size={18} className="text-primary-500" />
-              </div>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="correo@ejemplo.com"
-              />
-            </div>
-          </div>
-          
-          {/* Campo de contraseña */}
-          <div className="space-y-2">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-100">
-              Contraseña
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock size={18} className="text-primary-500" />
-              </div>
-              <input
-                id="password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="••••••••"
-              />
-              <div 
-                className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <EyeOff size={18} className="text-gray-400" />
-                ) : (
-                  <Eye size={18} className="text-gray-400" />
-                )}
-              </div>
-            </div>
-          </div>
-          
-          {/* Enlaces y recordatorio */}
-          <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-              />
-              <label htmlFor="remember-me" className="ml-2 block text-gray-100">
-                Recordarme
+          <form onSubmit={handleSubmit}>
+            {/* Campo de correo electrónico */}
+            <div className="space-y-2 mb-6">
+              <label htmlFor="username" className="block text-sm font-medium text-gray-100">
+                Nombre de usuario
               </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <User2 size={18} className="text-primary-500" />
+                </div>
+                <input
+                  id="username"
+                  name="username"
+                  type="username"
+                  value={username}
+                  onChange={handleUsernameChange}
+                  disabled={isLoading}
+                  required
+                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  placeholder="Nombre de usuario"
+                />
+              </div>
             </div>
-            <div className="font-medium text-primary-300 hover:text-primary-100 cursor-pointer">
-              ¿Olvidaste tu contraseña?
+            
+            {/* Campo de contraseña */}
+            <div className="space-y-2 mb-6">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-100">
+                Contraseña
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Lock size={18} className="text-blue-500" />
+                </div>
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={handlePasswordChange}
+                  disabled={isLoading}
+                  required
+                  minLength={6}
+                  className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  onClick={togglePasswordVisibility}
+                  disabled={isLoading}
+                >
+                  {showPassword ? (
+                    <EyeOff size={18} className="text-gray-400 hover:text-gray-600" />
+                  ) : (
+                    <Eye size={18} className="text-gray-400 hover:text-gray-600" />
+                  )}
+                </button>
+              </div>
             </div>
-          </div>
-          
-          {/* Botón de inicio de sesión */}
-          <div>
-            <button
-              onClick={handleSubmit}
-              disabled={isLoading}
-              className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
-                isLoading ? 'bg-indigo-400' : 'bg-primary-500 hover:bg-primary-400'
-              } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500`}
-            >
-              {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
-            </button>
-          </div>
+            
+            {/* Enlaces y recordatorio */}
+            <div className="flex items-center justify-between text-sm mb-6">
+              <div className="flex items-center">
+                <input
+                  id="remember-me"
+                  name="remember-me"
+                  type="checkbox"
+                  disabled={isLoading}
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded disabled:opacity-50"
+                />
+                <label htmlFor="remember-me" className="ml-2 block text-gray-100">
+                  Recordarme
+                </label>
+              </div>
+              <button
+                type="button"
+                className="font-medium text-blue-300 hover:text-blue-100 cursor-pointer"
+              >
+                ¿Olvidaste tu contraseña?
+              </button>
+            </div>
+            
+            {/* Botón de inicio de sesión */}
+            <div className="mb-6">
+              <button
+                type="submit"
+                disabled={isLoading}
+                className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors ${
+                  isLoading 
+                    ? 'bg-blue-400 cursor-not-allowed' 
+                    : 'bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+                }`}
+              >
+                {isLoading ? (
+                  <div className="flex items-center">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Iniciando sesión...
+                  </div>
+                ) : (
+                  'Iniciar sesión'
+                )}
+              </button>
+            </div>
+          </form>
           
           {/* Registro */}
           <div className="text-center text-sm">
             <span className="text-gray-100">¿No tienes una cuenta? </span>
-            <span className="font-medium text-primary-300 hover:text-primary-100 cursor-pointer">
+            <button
+              type="button"
+              className="font-medium text-blue-300 hover:text-blue-100 cursor-pointer"
+            >
               Regístrate ahora
-            </span>
+            </button>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default LoginPage;
+
+// Función auxiliar para hacer peticiones autenticadas después del login
+export const authenticatedRequest = async <T = any>(
+  endpoint: string, 
+  options: any = {}
+): Promise<T> => {
+  try {
+    const response: AxiosResponse<T> = await api({
+      url: endpoint,
+      ...options
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error en petición autenticada:', error);
+    throw error;
+  }
+};
+
+// Función para limpiar la autenticación (logout)
+export const logout = (): void => {
+  delete api.defaults.headers.common['Authorization'];
+  // Aquí también podrías limpiar el estado global de autenticación
+};
+
+// Función para verificar si el usuario está autenticado
+export const isAuthenticated = (): boolean => {
+  return !!api.defaults.headers.common['Authorization'];
+};
+
+// Función para obtener el token actual
+export const getToken = (): string | undefined => {
+  const authHeader = api.defaults.headers.common['Authorization'] as string;
+  return authHeader?.replace('Bearer ', '');
+};
