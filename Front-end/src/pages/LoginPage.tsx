@@ -93,7 +93,10 @@ const LoginPage: React.FC = () => {
       }
       
       // Mensaje de éxito
-      const userName = data.user?.name || data.user?.nombre || 'usuario';
+      const userName = data.user?.name || data.user?.nombre || 'Usuario';
+      if (data.message) {
+        alert(data.message);
+      }
       alert(`¡Bienvenido ${userName}!`);
       
       // Limpiar formulario

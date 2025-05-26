@@ -69,7 +69,6 @@ namespace OdinBackend.Controllers
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
             // Opcional: aquí podrías generar un token JWT o devolver info del usuario
-
             return Ok(new
             {
                 token = tokenString,

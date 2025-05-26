@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\context\\lpwpiacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:context\\lpwpiacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -94,7 +94,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Auth.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Auth.cs",
               "RelativeDocumentMoniker": "Models\\Auth.cs",
@@ -102,8 +102,7 @@
               "RelativeToolTip": "Models\\Auth.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T14:24:26.456Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-26T14:24:26.456Z"
             },
             {
               "$type": "Document",
@@ -113,7 +112,7 @@
               "RelativeDocumentMoniker": "Controllers\\UsuariosController.cs",
               "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\UsuariosController.cs",
               "RelativeToolTip": "Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAUwDwAAAB6AAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAqwEsAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T22:43:56.988Z",
               "EditorCaption": ""
@@ -132,20 +131,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
               "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-20T18:49:13.547Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T18:49:13.547Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -153,12 +151,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAAAC8AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T18:47:37.279Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T18:47:37.279Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "LpwPiaContext.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Context\\LpwPiaContext.cs",
               "RelativeDocumentMoniker": "Context\\LpwPiaContext.cs",
@@ -166,8 +163,7 @@
               "RelativeToolTip": "Context\\LpwPiaContext.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAWwB8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T18:47:12.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T18:47:12.012Z"
             },
             {
               "$type": "Document",
@@ -203,8 +199,7 @@
               "RelativeToolTip": "Models\\Usuario.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T18:46:42.616Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T18:46:42.616Z"
             },
             {
               "$type": "Document",

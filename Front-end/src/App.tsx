@@ -12,6 +12,7 @@ import ComparePage from './pages/ComparePage';
 import SearchPage from './pages/SearchPage';
 import BrandPage from './pages/BrandPage';
 import LoginPage from './pages/LoginPage';
+import ProductosPage from './pages/ProductosPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -43,6 +44,7 @@ function App() {
               <Route path="/search" element={<SearchPage />} />
               <Route path="/marcas/:brand" element={<BrandPage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/productos" element={<ProductosPage />} />
             </Routes>
           </main>
           <Footer />
