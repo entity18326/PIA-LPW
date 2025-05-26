@@ -1,5 +1,74 @@
 [
   {
+    "ContainingType": "OdinBackend.Controllers.NoticiasController",
+    "Method": "CrearNoticia",
+    "RelativePath": "api/Noticias",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "noticia",
+        "Type": "OdinBackend.Models.Noticia",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdinBackend.Controllers.NoticiasController",
+    "Method": "GetNoticia",
+    "RelativePath": "api/Noticias/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdinBackend.Controllers.NoticiasController",
+    "Method": "ActualizarNoticia",
+    "RelativePath": "api/Noticias/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "noticia",
+        "Type": "OdinBackend.Models.Noticia",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdinBackend.Controllers.NoticiasController",
+    "Method": "EliminarNoticia",
+    "RelativePath": "api/Noticias/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OdinBackend.Controllers.ProductosController",
     "Method": "CrearProducto",
     "RelativePath": "api/Productos",
@@ -125,75 +194,6 @@
     "ContainingType": "OdinBackend.Controllers.UsuariosController",
     "Method": "EliminarUsuario",
     "RelativePath": "api/Usuarios/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OdinBackend.Controllers.NoticiasController",
-    "Method": "CrearNoticia",
-    "RelativePath": "odinapi/Noticias",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "noticia",
-        "Type": "OdinBackend.Models.Noticia",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OdinBackend.Controllers.NoticiasController",
-    "Method": "GetNoticia",
-    "RelativePath": "odinapi/Noticias/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OdinBackend.Controllers.NoticiasController",
-    "Method": "ActualizarNoticia",
-    "RelativePath": "odinapi/Noticias/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "noticia",
-        "Type": "OdinBackend.Models.Noticia",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OdinBackend.Controllers.NoticiasController",
-    "Method": "EliminarNoticia",
-    "RelativePath": "odinapi/Noticias/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

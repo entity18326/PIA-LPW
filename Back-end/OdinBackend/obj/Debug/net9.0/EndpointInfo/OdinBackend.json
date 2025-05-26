@@ -5,7 +5,7 @@
     "version": "v1"
   },
   "paths": {
-    "/odinapi/Noticias/{id}": {
+    "/api/Noticias/{id}": {
       "get": {
         "tags": [
           "Noticias"
@@ -89,7 +89,7 @@
         }
       }
     },
-    "/odinapi/Noticias": {
+    "/api/Noticias": {
       "post": {
         "tags": [
           "Noticias"
