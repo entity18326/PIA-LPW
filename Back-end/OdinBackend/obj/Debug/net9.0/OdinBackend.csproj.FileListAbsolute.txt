@@ -330,3 +330,4 @@ C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net
 C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\OdinBackend.pdb
 C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\OdinBackend.genruntimeconfig.cache
 C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\ref\OdinBackend.dll
+C:\Users\GAMER\Desktop\UANL\Trabajos\DecimoSemestre\ProyectoLabWeb\PIA-LPW\Back-end\OdinBackend\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

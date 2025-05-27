@@ -36,51 +36,6 @@ namespace OdinBackend.Controllers
             return CreatedAtAction(nameof(GetUsuario), new { id = usuario.ID_Usuario }, usuario);
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login(Auth login)
-        {
-            // Buscar al usuario por nombre de usuario
-            var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(u => u.Nombre.Equals(login.Username));
-
-            if (usuario == null)
-                return Unauthorized("Usuario no encontrado");
-
-            // Validar la contraseña (asumiendo que está en texto plano, aunque lo ideal es encriptarla)
-            if (usuario.Contraseña != login.Password)
-                return Unauthorized("Contraseña incorrecta");
-                
-            // Crear claims (datos dentro del token)
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, usuario.ID_Usuario.ToString()),
-                new Claim(ClaimTypes.Name, usuario.Nombre),
-                new Claim("NombreCompleto", usuario.Nombre ?? "")
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("12345678901234567890123456789012345678901234567890"));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.UtcNow.AddHours(2),
-                signingCredentials: creds);
-
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
-            // Opcional: aquí podrías generar un token JWT o devolver info del usuario
-            return Ok(new
-            {
-                token = tokenString,
-                mensaje = "Login exitoso",
-                usuario = new
-                {
-                    usuario.ID_Usuario,
-                    usuario.Nombre
-                }
-            });
-        }
-
         [HttpPut("{id}")]
         public async Task<IActionResult> ActualizarUsuario(int id, Usuario usuario)
         {

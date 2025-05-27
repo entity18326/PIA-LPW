@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "OdinBackend.Controllers.AuthController",
+    "Method": "LoginAsync",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "credentials",
+        "Type": "OdinBackend.Models.Auth",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdinBackend.Controllers.AuthController",
+    "Method": "GetUsuario",
+    "RelativePath": "api/Auth/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OdinBackend.Controllers.NoticiasController",
     "Method": "CrearNoticia",
     "RelativePath": "api/Noticias",
@@ -201,22 +227,6 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OdinBackend.Controllers.UsuariosController",
-    "Method": "Login",
-    "RelativePath": "api/Usuarios/login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "login",
-        "Type": "OdinBackend.Models.Auth",
         "IsRequired": true
       }
     ],
