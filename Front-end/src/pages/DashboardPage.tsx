@@ -53,12 +53,13 @@ interface NewsItem {
 }
 
 interface Productos {
-  id: number;
+  iD_Usuario: number;
+  iD_Producto: number;
   nombre: string;
   fecha: string;
   camara: string;
   pantalla: string;
-  bateria: string;
+  batería: string;
   caracteristicas: string;
   imagen: string;
 }
@@ -290,7 +291,7 @@ const AdminDashboard: React.FC = () => {
   const handleDeleteProduct = async (id: number): Promise<void> => {
     try {
       await mockApi.deleteProduct(id);
-      setProducts(prev => prev.filter(item => item.id !== id));
+      setProducts(prev => prev.filter(item => item.iD_Producto !== id));
     } catch (error) {
       console.error('Error deleting product:', error);
     }
@@ -311,12 +312,13 @@ const AdminDashboard: React.FC = () => {
       // Si la respuesta es exitosa, actualizar la lista local
       if (response.data) {
         const newProduct: Productos = {
-          id: response.data.id || Date.now(),
+          iD_Usuario: usuario?.id || 0, // Asignar el ID del usuario actual
+          iD_Producto: response.data.id || Date.now(),
           nombre: productData.nombre,
           fecha: productData.fecha,
           camara: productData.camara,
           pantalla: productData.pantalla,
-          bateria: productData.bateria,
+          batería: productData.bateria,
           caracteristicas: productData.caracteristicas,
           imagen: productData.imagen
         };
@@ -465,7 +467,9 @@ const AdminDashboard: React.FC = () => {
       <div className="p-6 border-b border-gray-200">
         <div className="flex justify-between items-center">
           <h3 className="text-xl font-bold text-gray-900">Productos de Celulares</h3>
-          <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2" onClick={() => console.log('Add new product')}>
+          <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
+            onClick={handleNewProduct}
+            disabled={loading}>
             <Plus className="w-4 h-4" />
             Nuevo Producto
           </button>
@@ -486,7 +490,7 @@ const AdminDashboard: React.FC = () => {
           </thead>
           <tbody className="divide-y divide-gray-200">
             {products.map((product) => (
-              <tr key={product.id} className="hover:bg-gray-50">
+              <tr key={product.iD_Producto} className="hover:bg-gray-50">
                 <td className="px-6 py-4">
                   <div className="font-medium text-gray-900">{product.nombre}</div>
                 </td>
@@ -504,7 +508,7 @@ const AdminDashboard: React.FC = () => {
                 </td>
                 <td className="px-6 py-4">
                   <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full 'bg-green-100 text-green-800">
-                    {product.bateria}
+                    {product.batería}
                   </span>
                 </td>
                 <td className="px-6 py-4">
@@ -517,13 +521,13 @@ const AdminDashboard: React.FC = () => {
                   <div className="flex gap-2">
                     <button 
                       className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg"
-                      onClick={() => console.log('Edit product:', product.id)}
+                      onClick={() => console.log('Edit product:', product.iD_Producto)}
                     >
                       <Edit className="w-4 h-4" />
                     </button>
                     <button 
                       className="p-2 text-red-600 hover:bg-red-100 rounded-lg"
-                      onClick={() => handleDeleteProduct(product.id)}
+                      onClick={() => handleDeleteProduct(product.iD_Producto)}
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -534,6 +538,13 @@ const AdminDashboard: React.FC = () => {
           </tbody>
         </table>
       </div>
+      {/* Modal de Formulario de Producto */}
+      <ProductoFormModal
+        isOpen={showProductForm}
+        onClose={handleCloseModal}
+        onSubmit={handleSubmitProduct}
+        loading={loading}
+      />
     </div>
   );
 

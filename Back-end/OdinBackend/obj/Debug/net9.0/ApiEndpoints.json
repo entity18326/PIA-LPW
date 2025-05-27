@@ -103,7 +103,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "producto",
+        "Name": "productoDto",
         "Type": "OdinBackend.Models.Producto",
         "IsRequired": true
       }

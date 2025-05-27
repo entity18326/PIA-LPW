@@ -26,7 +26,7 @@ public partial class LpwPiaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=MIGUELLU\\MSSQLSERVER01;Database=LPW_PIA;User Id=apiuser;Password=F8zbVxwVB;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=192.168.0.231;Database=LPW_PIA;User Id=sa;Password=timty288;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -59,7 +59,7 @@ public partial class LpwPiaContext : DbContext
             entity.Property(e => e.Imagen).HasColumnType("text");
             entity.Property(e => e.Resumen).HasColumnType("text");
             entity.Property(e => e.Texto).HasColumnType("text");
-            entity.Property(e => e.Visitas).HasColumnName("VIsitas");
+            entity.Property(e => e.Visitas).HasColumnName("Visitas");
 
             entity.HasOne(d => d.IdPoductoNavigation).WithMany(p => p.Noticia)
                 .HasForeignKey(d => d.IdPoducto)
@@ -77,14 +77,14 @@ public partial class LpwPiaContext : DbContext
             entity.Property(e => e.IdProducto)
                 .ValueGeneratedNever()
                 .HasColumnName("ID_Producto");
-            entity.Property(e => e.Batería).HasColumnType("text");
-            entity.Property(e => e.Camara).HasColumnType("text");
-            entity.Property(e => e.Caracteristicas).HasColumnType("text");
+            entity.Property(e => e.Batería).HasColumnType("varchar(100)");
+            entity.Property(e => e.Camara).HasColumnType("varchar(100)");
+            entity.Property(e => e.Caracteristicas).HasColumnType("varchar(MAX)");
             entity.Property(e => e.Fecha).HasColumnType("datetime");
             entity.Property(e => e.IdUsuario).HasColumnName("ID_Usuario");
-            entity.Property(e => e.Imagen).HasColumnType("text");
-            entity.Property(e => e.Nombre).HasColumnType("text");
-            entity.Property(e => e.Pantalla).HasColumnType("text");
+            entity.Property(e => e.Imagen).HasColumnType("varchar(MAX)");
+            entity.Property(e => e.Nombre).HasColumnType("varchar(100)");
+            entity.Property(e => e.Pantalla).HasColumnType("varchar(100)");
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.IdUsuario)

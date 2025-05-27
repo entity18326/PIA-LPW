@@ -28,12 +28,41 @@ namespace OdinBackend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CrearProducto(Producto producto) // Fix: Change return type to IActionResult  
+        public async Task<IActionResult> CrearProducto(Producto productoDto)
         {
-            _context.Productos.Add(producto);
-            await _context.SaveChangesAsync();
+            try
+            {
+                if (productoDto == null)
+                {
+                    return BadRequest(new { message = "Datos del producto son requeridos" });
+                }
 
-            return CreatedAtAction(nameof(GetProducto), new { id = producto.IdProducto }, producto);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var producto = new Producto
+                {
+                    Nombre = productoDto.Nombre,
+                    Fecha = DateTime.Now,
+                    Camara = productoDto.Camara,
+                    Pantalla = productoDto.Pantalla,
+                    Batería = productoDto.Batería, // Mapear correctamente
+                    Caracteristicas = productoDto.Caracteristicas,
+                    Imagen = productoDto.Imagen,
+                    IdUsuario = 1 // Asignar usuario por defecto o desde el token
+                };
+
+                _context.Productos.Add(producto);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(GetProducto), new { id = producto.IdProducto }, producto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error al crear producto", error = ex.Message });
+            }
         }
 
         [HttpPut("{id}")]

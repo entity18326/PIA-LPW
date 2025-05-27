@@ -1,54 +1,58 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\",
+  "WorkspaceRootPath": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\context\\lpwpiacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:context\\lpwpiacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\models\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:models\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\context\\lpwpiacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:context\\lpwpiacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\models\\estadistica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:models\\estadistica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\models\\noticia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:models\\noticia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|c:\\users\\gamer\\desktop\\uanl\\trabajos\\decimosemestre\\proyectolabweb\\pia-lpw\\back-end\\odinbackend\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EB1DB55-AEFC-4473-B548-D0402A766C8C}|OdinBackend.csproj|solutionrelative:models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\estadistica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\estadistica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\noticia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\noticia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 289,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -102,115 +106,125 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-27T16:14:24.359Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "JwtService.cs",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Services\\JwtService.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Services\\JwtService.cs",
               "RelativeDocumentMoniker": "Services\\JwtService.cs",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Services\\JwtService.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Services\\JwtService.cs",
               "RelativeToolTip": "Services\\JwtService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBcAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-27T11:00:47.876Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Controllers\\AuthController.cs",
               "ViewState": "AgIAACMAAAAAAAAAAAAowD8AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T10:41:02.961Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-27T10:41:02.961Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Program.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Program.cs",
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T18:47:37.279Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T18:47:37.279Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "Auth.cs",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Auth.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Auth.cs",
               "RelativeDocumentMoniker": "Models\\Auth.cs",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Auth.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Auth.cs",
               "RelativeToolTip": "Models\\Auth.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T14:24:26.456Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-26T14:24:26.456Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\UsuariosController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\UsuariosController.cs",
               "RelativeToolTip": "Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAqwCQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAA+wDMAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T22:43:56.988Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "ProductosController.cs",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\ProductosController.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\ProductosController.cs",
               "RelativeDocumentMoniker": "Controllers\\ProductosController.cs",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\ProductosController.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\ProductosController.cs",
               "RelativeToolTip": "Controllers\\ProductosController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBUAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwB0AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T18:57:31.496Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\appsettings.json",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAB7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-05-20T18:49:13.547Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "LpwPiaContext.cs",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Context\\LpwPiaContext.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Context\\LpwPiaContext.cs",
               "RelativeDocumentMoniker": "Context\\LpwPiaContext.cs",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Context\\LpwPiaContext.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Context\\LpwPiaContext.cs",
               "RelativeToolTip": "Context\\LpwPiaContext.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAWwBwAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAmwD0AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T18:47:12.012Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "Estadistica.cs",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Estadistica.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Estadistica.cs",
               "RelativeDocumentMoniker": "Models\\Estadistica.cs",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Estadistica.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Estadistica.cs",
               "RelativeToolTip": "Models\\Estadistica.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -218,11 +232,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Noticia.cs",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Noticia.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Noticia.cs",
               "RelativeDocumentMoniker": "Models\\Noticia.cs",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Noticia.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Noticia.cs",
               "RelativeToolTip": "Models\\Noticia.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -230,28 +244,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Usuario.cs",
               "RelativeDocumentMoniker": "Models\\Usuario.cs",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Usuario.cs",
               "RelativeToolTip": "Models\\Usuario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T18:46:42.616Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 6,
               "Title": "Producto.cs",
-              "DocumentMoniker": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Producto.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Producto.cs",
               "RelativeDocumentMoniker": "Models\\Producto.cs",
-              "ToolTip": "C:\\Users\\GAMER\\Desktop\\UANL\\Trabajos\\DecimoSemestre\\ProyectoLabWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Producto.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Producto.cs",
               "RelativeToolTip": "Models\\Producto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T18:46:27.479Z"
+              "WhenOpened": "2025-05-20T18:46:27.479Z",
+              "EditorCaption": ""
             }
           ]
         },
