@@ -18,5 +18,4 @@ public partial class Usuario
 
     public virtual ICollection<Noticia> Noticia { get; set; } = new List<Noticia>();
 
-    public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
 }

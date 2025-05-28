@@ -5,10 +5,11 @@ import axiosInstance from '../axios/Axios';
 import LoginPage from './LoginPage';
 import { useNavigate } from 'react-router-dom';
 import ProductoFormModal from '../components/ui/ProductoFormModal';
+import { create } from 'framer-motion/client';
 
 // Interfaces de Autenticación
 interface Usuario {
-  id: number;
+  iD_Usuario: number;
   nombre: string;
   iD_Rol: number;
   roleName: string;
@@ -53,13 +54,12 @@ interface NewsItem {
 }
 
 interface Productos {
-  iD_Usuario: number;
   iD_Producto: number;
   nombre: string;
   fecha: string;
   camara: string;
   pantalla: string;
-  batería: string;
+  bateria: string;
   caracteristicas: string;
   imagen: string;
 }
@@ -218,17 +218,27 @@ const mockApi = {
     }
   }),
   
-  getNews: (): Promise<ApiResponse<NewsItem[]>> => 
-    axiosInstance.get<NewsItem[]>('/Noticias'),
-
   getProducts: (): Promise<ApiResponse<Productos[]>> => 
     axiosInstance.get<Productos[]>('/Productos'),
 
-  deleteNews: (id: number): Promise<void> => Promise.resolve(),
-  deleteProduct: (id: number): Promise<void> => Promise.resolve()
+  getNews: (): Promise<ApiResponse<NewsItem[]>> => 
+    axiosInstance.get<NewsItem[]>('/Noticias'),
+
+  deleteNews: (id: number): Promise<void> => 
+    axiosInstance.delete(`/Noticias/${id}`).then(() => {}),
+
+  deleteProduct: (id: number): Promise<void> => 
+    axiosInstance.delete(`/Productos/${id}`).then(() => {}),
+
+  editProduct: (id: number, updatedProductData: any): Promise<Productos> => 
+    axiosInstance.put(`/Productos/${id}`, updatedProductData).then(res => res.data),
+
+  createProduct: (productData: ProductoFormData): Promise<Productos> =>
+    axiosInstance.post<Productos>('/Productos', productData).then(res => res.data)
 };
 
 const AdminDashboard: React.FC = () => {
+  const [editProduct, setEditProduct] = useState<Productos | null>(null);
   const [showProductForm, setShowProductForm] = useState<boolean>(false);
   const { usuario, isAuthenticated, isAdmin, logout } = useAuth();
   const [visitStats, setVisitStats] = useState<VisitStats | null>(null);
@@ -257,15 +267,15 @@ const AdminDashboard: React.FC = () => {
   const loadDashboardData = async (): Promise<void> => {
     setLoading(true);
     try {
-      const [statsResponse, newsResponse, productsResponse] = await Promise.all([
+      const [statsResponse, productsResponse] = await Promise.all([
         mockApi.getVisitStats(),
-        mockApi.getNews(),
-        mockApi.getProducts()
+        mockApi.getProducts(),
+        //mockApi.getNews() 
       ]);
       
       setVisitStats(statsResponse.data);
-      setNews(newsResponse.data);
       setProducts(productsResponse.data);
+      //setNews(newsResponse.data);
     } catch (error) {
       console.error('Error loading dashboard data:', error);
     } finally {
@@ -297,46 +307,53 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
+  const handleEdittProducts = async (id: number, updatedProductData: any): Promise<void> => {
+    try {
+      const updatedProduct = await mockApi.editProduct(id, updatedProductData);
+      // Actualizar el producto en la lista local
+      setProducts(prev =>
+        prev.map(item => (item.iD_Producto === id ? updatedProduct : item))
+      );
+    } catch (error) {
+      console.error('Error al editar producto:', error);
+    }
+  };
+
+  const handleEditProducts = (product: Productos): void => {
+    setEditProduct(product);
+    setShowProductForm(true);
+  };
+
   // Función para manejar nuevo producto
   const handleNewProduct = (): void => {
     setShowProductForm(true);
   };
 
-  // Función para manejar el envío del formulario
-  const handleSubmitProduct = async (productData: ProductoFormData): Promise<void> => {
-    setLoading(true);
-    try {
-      // Llamada a la API para crear el producto
-      const response = await axiosInstance.post('/Productos', productData);
-      
-      // Si la respuesta es exitosa, actualizar la lista local
-      if (response.data) {
-        const newProduct: Productos = {
-          iD_Usuario: usuario?.id || 0, // Asignar el ID del usuario actual
-          iD_Producto: response.data.id || Date.now(),
-          nombre: productData.nombre,
-          fecha: productData.fecha,
-          camara: productData.camara,
-          pantalla: productData.pantalla,
-          batería: productData.bateria,
-          caracteristicas: productData.caracteristicas,
-          imagen: productData.imagen
-        };
-        
-        setProducts(prev => [...prev, newProduct]);
-        setShowProductForm(false); // Cerrar el modal después del éxito
-        
-        // Mostrar mensaje de éxito
-        alert('Producto agregado exitosamente!');
-      }
-    } catch (error) {
-      console.error('Error al agregar producto:', error);
-      alert('Error al agregar producto. Por favor intenta de nuevo.');
-      throw error;
-    } finally {
-      setLoading(false);
+// Función para manejar el envío del formulario
+
+const handleSubmitProduct = async (product: ProductoFormData) => {
+  setLoading(true);
+  try {
+    if (editProduct) {
+      const updated = await mockApi.editProduct(editProduct.iD_Producto, {
+        ...product
+      });
+      setProducts(prev =>
+        prev.map(p => (p.iD_Producto === editProduct.iD_Producto ? updated : p))
+      );
+    } else {
+      const newProduct = await mockApi.createProduct(product);
+      setProducts(prev => [...prev, newProduct]);
     }
-  };
+    setShowProductForm(false);
+    setEditProduct(null); // Limpiar estado de edición
+  } catch (error) {
+    console.error("Error guardando producto:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   // Función para cerrar el modal
   const handleCloseModal = (): void => {
@@ -486,6 +503,7 @@ const AdminDashboard: React.FC = () => {
               <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Bateria</th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Caracteristicas</th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Imagen</th>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Editar</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -496,20 +514,13 @@ const AdminDashboard: React.FC = () => {
                 </td>
                 <td className="px-6 py-4 text-gray-600">{product.fecha}</td>
                 <td className="px-6 py-4">
-                  <span className="font-semibold text-green-600">
-                    ${product.camara}
-                  </span>
+                  {product.camara}
                 </td>
                 <td className="px-6 py-4">
-                  <div className="flex items-center text-gray-600">
-                    <Eye className="w-4 h-4 mr-2" />
-                    {product.pantalla.toLocaleString()}
-                  </div>
+                  {product.pantalla}
                 </td>
                 <td className="px-6 py-4">
-                  <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full 'bg-green-100 text-green-800">
-                    {product.batería}
-                  </span>
+                  {product.bateria}
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex items-center">
@@ -518,10 +529,15 @@ const AdminDashboard: React.FC = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4">
+                  <div className="flex items-center">
+                    <span className="ml-1 text-gray-600">{product.imagen}</span>
+                  </div>
+                </td>
+                <td className="px-6 py-4">
                   <div className="flex gap-2">
                     <button 
                       className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg"
-                      onClick={() => console.log('Edit product:', product.iD_Producto)}
+                      onClick={() => handleEditProducts(product)}
                     >
                       <Edit className="w-4 h-4" />
                     </button>
@@ -544,6 +560,7 @@ const AdminDashboard: React.FC = () => {
         onClose={handleCloseModal}
         onSubmit={handleSubmitProduct}
         loading={loading}
+        productToEdit={editProduct}
       />
     </div>
   );

@@ -133,6 +133,16 @@
       }
     },
     "/api/Noticias": {
+      "get": {
+        "tags": [
+          "Noticias"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "post": {
         "tags": [
           "Noticias"
@@ -248,6 +258,16 @@
       }
     },
     "/api/Productos": {
+      "get": {
+        "tags": [
+          "Productos"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "post": {
         "tags": [
           "Productos"
@@ -461,14 +481,9 @@
       "Producto": {
         "type": "object",
         "properties": {
-          "idProducto": {
+          "iD_Producto": {
             "type": "integer",
             "format": "int32"
-          },
-          "idUsuario": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
           },
           "nombre": {
             "type": "string",
@@ -487,7 +502,7 @@
             "type": "string",
             "nullable": true
           },
-          "batería": {
+          "bateria": {
             "type": "string",
             "nullable": true
           },
@@ -497,21 +512,6 @@
           },
           "imagen": {
             "type": "string",
-            "nullable": true
-          },
-          "visitas": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "idUsuarioNavigation": {
-            "$ref": "#/components/schemas/Usuario"
-          },
-          "noticia": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Noticia"
-            },
             "nullable": true
           }
         },
@@ -541,13 +541,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Noticia"
-            },
-            "nullable": true
-          },
-          "productos": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Producto"
             },
             "nullable": true
           }

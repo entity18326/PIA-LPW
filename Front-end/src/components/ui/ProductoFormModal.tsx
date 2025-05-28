@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Plus, Upload, AlertCircle } from 'lucide-react';
 
 // Interface para el formulario de producto
@@ -29,13 +29,15 @@ interface ProductoFormModalProps {
   onClose: () => void;
   onSubmit: (product: ProductoFormData) => Promise<void>;
   loading?: boolean;
+  productToEdit?: ProductoFormData | null;
 }
 
 const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
-  loading = false
+  loading = false,
+  productToEdit = null
 }) => {
   const [formData, setFormData] = useState<ProductoFormData>({
     nombre: '',
@@ -46,6 +48,23 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
     caracteristicas: '',
     imagen: ''
   });
+
+  useEffect(() => {
+  if (productToEdit) {
+    setFormData(productToEdit);
+  } else {
+    // Si no hay producto a editar, resetea el formulario
+    setFormData({
+      nombre: '',
+      fecha: '',
+      camara: '',
+      pantalla: '',
+      bateria: '',
+      caracteristicas: '',
+      imagen: ''
+    });
+  }
+}, [productToEdit, isOpen]);
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState<boolean>(false);

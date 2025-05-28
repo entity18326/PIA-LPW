@@ -27,6 +27,16 @@
   },
   {
     "ContainingType": "OdinBackend.Controllers.NoticiasController",
+    "Method": "GetNoticias",
+    "RelativePath": "api/Noticias",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdinBackend.Controllers.NoticiasController",
     "Method": "CrearNoticia",
     "RelativePath": "api/Noticias",
     "HttpMethod": "POST",
@@ -92,6 +102,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdinBackend.Controllers.ProductosController",
+    "Method": "GetProductos",
+    "RelativePath": "api/Productos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -5,9 +5,7 @@ namespace OdinBackend.Models;
 
 public partial class Producto
 {
-    public int IdProducto { get; set; }
-
-    public int? IdUsuario { get; set; }
+    public int ID_Producto { get; set; }
 
     public string? Nombre { get; set; }
 
@@ -17,15 +15,10 @@ public partial class Producto
 
     public string? Pantalla { get; set; }
 
-    public string? Batería { get; set; }
+    public string? Bateria { get; set; }
 
     public string? Caracteristicas { get; set; }
 
     public string? Imagen { get; set; }
 
-    public int? Visitas { get; set; }
-
-    public virtual Usuario? IdUsuarioNavigation { get; set; }
-
-    public virtual ICollection<Noticia> Noticia { get; set; } = new List<Noticia>();
 }

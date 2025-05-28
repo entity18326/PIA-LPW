@@ -25,6 +25,26 @@ namespace OdinBackend.Controllers
             return Ok(noticia); // Fix: Wrap the result in Ok() to return IActionResult
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetNoticias()
+        {
+            try
+            {
+                var noticias = await _context.Noticias.ToListAsync();
+
+                if (noticias == null || !noticias.Any())
+                {
+                    return NotFound(new { message = "No se encontraron noticias" });
+                }
+
+                return Ok(noticias);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error al obtener noticias", error = ex.Message });
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> CrearNoticia(Noticia noticia)
         {

@@ -27,6 +27,26 @@ namespace OdinBackend.Controllers
             return Ok(producto); // Fix: Wrap the result in Ok() to return IActionResult
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetProductos()
+        {
+            try
+            {
+                var productos = await _context.Productos.ToListAsync();
+
+                if (productos == null || !productos.Any())
+                {
+                    return NotFound(new { message = "No se encontraron productos" });
+                }
+
+                return Ok(productos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error al obtener productos", error = ex.Message });
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> CrearProducto(Producto productoDto)
         {
@@ -48,27 +68,26 @@ namespace OdinBackend.Controllers
                     Fecha = DateTime.Now,
                     Camara = productoDto.Camara,
                     Pantalla = productoDto.Pantalla,
-                    Batería = productoDto.Batería, // Mapear correctamente
+                    Bateria = productoDto.Bateria,
                     Caracteristicas = productoDto.Caracteristicas,
-                    Imagen = productoDto.Imagen,
-                    IdUsuario = 1 // Asignar usuario por defecto o desde el token
+                    Imagen = productoDto.Imagen
                 };
 
                 _context.Productos.Add(producto);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetProducto), new { id = producto.IdProducto }, producto);
+                return CreatedAtAction(nameof(GetProducto), new { id = producto.ID_Producto }, producto);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = "Error al crear producto", error = ex.Message });
+                return StatusCode(500, new { message = "Error al crear producto", error = ex.InnerException.Message });
             }
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> ActualizarProducto(int id, Producto producto)
         {
-            if (id != producto.IdProducto)
+            if (id != producto.ID_Producto)
                 return BadRequest("El ID no coincide");
 
             _context.Entry(producto).State = EntityState.Modified;
@@ -79,7 +98,7 @@ namespace OdinBackend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Productos.Any(e => e.IdProducto == id))
+                if (!_context.Productos.Any(e => e.ID_Producto == id))
                     return NotFound();
                 else
                     throw;
