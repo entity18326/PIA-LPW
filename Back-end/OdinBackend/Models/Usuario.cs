@@ -16,6 +16,6 @@ public partial class Usuario
     [Column("ID_Rol")]
     public int? ID_Rol { get; set; }
 
-    public virtual ICollection<Noticia> Noticia { get; set; } = new List<Noticia>();
+    //public virtual ICollection<Noticia> Noticia { get; set; } = new List<Noticia>();
 
 }

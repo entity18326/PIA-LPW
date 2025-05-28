@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { User, Lock, User2, Eye, EyeOff } from 'lucide-react';
 import { AxiosResponse, AxiosError } from 'axios';
 import axiosInstance from '../axios/Axios';
-import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../App'; // Ajusta la ruta según tu estructura
 
 // Interfaces para tipado
 interface LoginRequest {
@@ -13,7 +12,7 @@ interface LoginRequest {
 
 interface Usuario {
   iD_Usuario: number;
-  nombre?: string; // Por si tu API usa 'nombre' en lugar de 'name'
+  nombre?: string;
   iD_Rol: number;
 }
 
@@ -21,22 +20,22 @@ interface LoginResponse {
   token?: string;
   usuario?: Usuario;
   mensaje?: string;
-  }
+}
 
 interface ApiError {
   message?: string;
   error?: string;
-  Message?: string; // Por si tu API usa 'Message' con mayúscula
+  Message?: string;
   errors?: Record<string, string[]>;
 }
 
-const getRedirectPath = (role: string): string => {
-  const roleRoutes: Record<string, string> = {
-    'Admin': '/admin/dashboard',
-    'Publicador': '/publisher/dashboard'
+const getRedirectPath = (roleId: number): string => {
+  const roleRoutes: Record<number, string> = {
+    1: '/admin/dashboard',     // Admin
+    2: '/publisher/dashboard'  // Publicador
   };
   
-  return roleRoutes[role.toLowerCase()] || '/dashboard';
+  return roleRoutes[roleId] || '/dashboard';
 };
 
 // Interceptor para manejar respuestas y errores globalmente
@@ -49,7 +48,7 @@ axiosInstance.interceptors.response.use(
 );
 
 const LoginPage: React.FC = () => {
-  const navigate = useNavigate();
+  const { login: authLogin } = useAuth(); // Usar el método login del contexto
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -80,64 +79,66 @@ const LoginPage: React.FC = () => {
       };
 
       const response: AxiosResponse<LoginResponse> = await axiosInstance.post('/Auth/login', loginData);
-
-      // Manejo de respuesta exitosa
       const { data } = response;
       
-      // Guardar token en memoria o configurar para futuras peticiones
-      if (data.token) {
-        // Configurar token para futuras peticiones
-        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-        
-        // También podrías guardarlo en un context o state manager
-        console.log('Token recibido:', data.token);
-        // Guardar el token (ejemplo) 
-        localStorage.setItem("token", data.token);
+      if (!data.token || !data.usuario) {
+        setError('Respuesta del servidor incompleta');
+        return;
       }
+
+      if (!data.usuario.iD_Rol) {
+        setError('El usuario no tiene un rol asignado. Contacta al administrador.');
+        return;
+      }
+
+      if (!data.usuario.iD_Usuario) {
+        setError('El usuario no tiene un ID asignado. Contacta al administrador.');
+        return;
+      }
+
+      // Configurar token para futuras peticiones
+      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
       
-      // Mensaje de éxito
-      const userName = data.usuario?.nombre;
-      const Rol = data.usuario?.iD_Rol;
-      alert(`¡Bienvenido ${userName}!`);
-      
+      // Guardar datos en sessionStorage
+      sessionStorage.setItem('authToken', data.token);
+      sessionStorage.setItem('userData', JSON.stringify({
+        id: data.usuario.iD_Usuario,
+        name: data.usuario.nombre,
+        role: data.usuario.iD_Rol
+      }));
+
+      // Determinar nombre del rol
+      let roleName = '';
+      switch (data.usuario.iD_Rol) {
+        case 1:
+          roleName = 'Admin';
+          break;
+        case 2:
+          roleName = 'Publicador';
+          break;
+        default:
+          roleName = 'Usuario';
+          break;
+      }
+
+      // Usar el método login del contexto de autenticación
+      await authLogin(data.token, {
+        id: data.usuario.iD_Usuario.toString(),
+        name: data.usuario.nombre || username,
+        email: username, // Si no tienes email, usar username
+        role: roleName,
+        roleId: data.usuario.iD_Rol
+      });
+
       // Limpiar formulario
       setUsername('');
       setPassword('');
       
-      console.log('Usuario autenticado:', userName);
-      console.log('Rol:', Rol);
+      console.log('Usuario autenticado:', data.usuario.nombre);
+      console.log('Rol:', roleName);
 
-      // Después del login exitoso:
-      if (data.token && data.usuario?.nombre) {
-        if (!data.usuario.iD_Rol) {
-          setError('El usuario no tiene un rol asignado. Contacta al administrador.');
-          return;
-        }
-        if (!data.usuario.iD_Usuario) {
-          setError('El usuario no tiene un ID asignado. Contacta al administrador.');
-          return;
-        }
-        let RoleName = '';
-        switch (data.usuario.iD_Rol) {
-          case 1:
-            RoleName = 'Admin';
-            break;
-          case 2:
-            RoleName = 'Publicador';
-            break;
-          default:
-            RoleName = 'Usuario';
-            break;
-        }
-        const redirectPath = getRedirectPath(RoleName);
-      
-        // Guardar datos de usuario
-        sessionStorage.setItem('authToken', data.token);
-        sessionStorage.setItem('userData', JSON.stringify(userName));
-      
-        // Redirigir según el rol
-        navigate(redirectPath, { replace: true });
-    }
+      // La redirección será manejada automáticamente por PublicRoute
+      // ya que al cambiar el estado de autenticación, será redirigido
       
     } catch (error) {
       console.error('Error de login:', error);
@@ -145,7 +146,6 @@ const LoginPage: React.FC = () => {
       const axiosError = error as AxiosError<ApiError>;
       
       if (axiosError.response) {
-        // El servidor respondió con un código de error
         const status = axiosError.response.status;
         const errorData = axiosError.response.data;
         const errorMessage = errorData?.message || 
@@ -157,13 +157,12 @@ const LoginPage: React.FC = () => {
             setError('Datos de entrada inválidos. Verifica la información.');
             break;
           case 401:
-            setError('Credenciales incorrectas. Verifica tu email y contraseña.');
+            setError('Credenciales incorrectas. Verifica tu nombre de usuario y contraseña.');
             break;
           case 404:
             setError('Usuario no encontrado o endpoint no disponible.');
             break;
           case 422:
-            // Manejo especial para errores de validación
             if (errorData?.errors) {
               const validationErrors = Object.values(errorData.errors).flat();
               setError(validationErrors.join(', '));
@@ -181,10 +180,8 @@ const LoginPage: React.FC = () => {
             setError(errorMessage || 'Error al iniciar sesión. Intenta nuevamente.');
         }
       } else if (axiosError.request) {
-        // La petición se hizo pero no hubo respuesta
         setError('No se pudo conectar con el servidor. Verifica tu conexión y que el servidor esté ejecutándose.');
       } else {
-        // Algo más ocurrió al configurar la petición
         setError('Error inesperado. Intenta nuevamente.');
       }
     } finally {
@@ -225,7 +222,7 @@ const LoginPage: React.FC = () => {
           )}
           
           <form onSubmit={handleSubmit}>
-            {/* Campo de correo electrónico */}
+            {/* Campo de nombre de usuario */}
             <div className="space-y-2 mb-6">
               <label htmlFor="username" className="block text-sm font-medium text-gray-100">
                 Nombre de usuario
@@ -237,7 +234,7 @@ const LoginPage: React.FC = () => {
                 <input
                   id="username"
                   name="username"
-                  type="username"
+                  type="text"
                   value={username}
                   onChange={handleUsernameChange}
                   disabled={isLoading}
@@ -346,37 +343,3 @@ const LoginPage: React.FC = () => {
 };
 
 export default LoginPage;
-
-// Función auxiliar para hacer peticiones autenticadas después del login
-export const authenticatedRequest = async <T = any>(
-  endpoint: string, 
-  options: any = {}
-): Promise<T> => {
-  try {
-    const response: AxiosResponse<T> = await axiosInstance({
-      url: endpoint,
-      ...options
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error en petición autenticada:', error);
-    throw error;
-  }
-};
-
-// Función para limpiar la autenticación (logout)
-export const logout = (): void => {
-  delete axiosInstance.defaults.headers.common['Authorization'];
-  // Aquí también podrías limpiar el estado global de autenticación
-};
-
-// Función para verificar si el usuario está autenticado
-export const isAuthenticated = (): boolean => {
-  return !!axiosInstance.defaults.headers.common['Authorization'];
-};
-
-// Función para obtener el token actual
-export const getToken = (): string | undefined => {
-  const authHeader = axiosInstance.defaults.headers.common['Authorization'] as string;
-  return authHeader?.replace('Bearer ', '');
-};

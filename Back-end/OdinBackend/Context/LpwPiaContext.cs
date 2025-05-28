@@ -26,7 +26,7 @@ public partial class LpwPiaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=MIGUELLU\\MSSQLSERVER01;Database=LPW_PIA;User Id=apiuser;Password=F8zbVxwVB;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=192.168.0.231;Database=LPW_PIA;User Id=sa;Password=timty288;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -47,18 +47,18 @@ public partial class LpwPiaContext : DbContext
 
         modelBuilder.Entity<Noticia>(entity =>
         {
-            entity.HasKey(e => e.IdNoticia).HasName("PK__Noticias__58E91D207E6600B4");
+            entity.HasKey(e => e.ID_Noticia).HasName("PK__Noticias__58E91D207E6600B4");
             entity.ToTable("Noticias");
-            entity.Property(e => e.IdNoticia)
-                .ValueGeneratedNever()
+            entity.Property(e => e.ID_Noticia)
+                .ValueGeneratedOnAdd()
                 .HasColumnName("ID_Noticia");
-            entity.Property(e => e.Fecha).HasColumnType("datetime");
-            entity.Property(e => e.IdPoducto).HasColumnName("ID_Poducto");
-            entity.Property(e => e.IdUsuario).HasColumnName("ID_Usuario");
-            entity.Property(e => e.Imagen).HasColumnType("text");
-            entity.Property(e => e.Resumen).HasColumnType("text");
-            entity.Property(e => e.Texto).HasColumnName("Texto").HasColumnType("text");
-            entity.Property(e => e.Visitas).HasColumnName("Visitas");
+            entity.Property(e => e.Fecha).HasColumnType("date");
+            entity.Property(e => e.ID_Producto).HasColumnName("ID_Producto");
+            entity.Property(e => e.ID_Usuario).HasColumnName("ID_Usuario");
+            entity.Property(e => e.Imagen).HasColumnType("varchar(MAX)");
+            entity.Property(e => e.Titulo).HasColumnType("varchar(MAX)");
+            entity.Property(e => e.Resumen).HasColumnType("varchar(MAX)");
+            entity.Property(e => e.Texto).HasColumnName("Texto").HasColumnType("varchar(MAX)");
         });
 
         modelBuilder.Entity<Producto>(entity =>
@@ -71,7 +71,7 @@ public partial class LpwPiaContext : DbContext
             entity.Property(e => e.Bateria).HasColumnType("varchar(100)");
             entity.Property(e => e.Camara).HasColumnType("varchar(100)");
             entity.Property(e => e.Caracteristicas).HasColumnType("varchar(MAX)");
-            entity.Property(e => e.Fecha).HasColumnType("datetime");
+            entity.Property(e => e.Fecha).HasColumnType("date");
             entity.Property(e => e.Imagen).HasColumnType("varchar(MAX)");
             entity.Property(e => e.Nombre).HasColumnType("varchar(100)");
             entity.Property(e => e.Pantalla).HasColumnType("varchar(100)");

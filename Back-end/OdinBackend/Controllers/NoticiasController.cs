@@ -59,13 +59,13 @@ namespace OdinBackend.Controllers
 
             _context.Noticias.Add(noticia);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetNoticia), new { id = noticia.IdNoticia}, noticia);
+            return CreatedAtAction(nameof(GetNoticia), new { id = noticia.ID_Noticia}, noticia);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> ActualizarNoticia(int id, Noticia noticia)
         {
-            if (id != noticia.IdNoticia)
+            if (id != noticia.ID_Noticia)
                 return BadRequest("El ID no coincide");
             if (string.IsNullOrEmpty(noticia.Texto))
                 return BadRequest("El texto de la noticia no puede estar vacío");
@@ -80,7 +80,7 @@ namespace OdinBackend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Noticias.Any(e => e.IdNoticia == id))
+                if (!_context.Noticias.Any(e => e.ID_Noticia == id))
                     return NotFound();
                 else
                     throw;

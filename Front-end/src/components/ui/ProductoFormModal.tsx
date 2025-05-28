@@ -179,7 +179,7 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
         <div className="flex justify-between items-center p-6 border-b border-gray-200">
           <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
             <Plus className="w-5 h-5" />
-            Agregar Nuevo Producto
+            {productToEdit ? 'Editar Producto' : 'Agregar Nuevo Producto'}
           </h2>
           <button
             onClick={handleClose}
@@ -398,7 +398,7 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
             ) : (
               <>
                 <Plus className="w-4 h-4" />
-                Agregar Producto
+                {productToEdit ? 'Guardar Cambios' : 'Agregar Producto'}
               </>
             )}
           </button>

@@ -433,16 +433,16 @@
       "Noticia": {
         "type": "object",
         "properties": {
-          "idNoticia": {
+          "iD_Noticia": {
             "type": "integer",
             "format": "int32"
           },
-          "idUsuario": {
+          "iD_Usuario": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "idPoducto": {
+          "iD_Producto": {
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -464,16 +464,9 @@
             "type": "string",
             "nullable": true
           },
-          "visitas": {
-            "type": "integer",
-            "format": "int32",
+          "titulo": {
+            "type": "string",
             "nullable": true
-          },
-          "idPoductoNavigation": {
-            "$ref": "#/components/schemas/Producto"
-          },
-          "idUsuarioNavigation": {
-            "$ref": "#/components/schemas/Usuario"
           }
         },
         "additionalProperties": false
@@ -535,13 +528,6 @@
           "iD_Rol": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "noticia": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Noticia"
-            },
             "nullable": true
           }
         },

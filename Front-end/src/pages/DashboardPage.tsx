@@ -5,7 +5,7 @@ import axiosInstance from '../axios/Axios';
 import LoginPage from './LoginPage';
 import { useNavigate } from 'react-router-dom';
 import ProductoFormModal from '../components/ui/ProductoFormModal';
-import { create } from 'framer-motion/client';
+import NoticiaFormModal from '../components/ui/NoticiaFormModal';
 
 // Interfaces de Autenticación
 interface Usuario {
@@ -45,14 +45,6 @@ interface VisitStats {
   sourceDistribution: SourceDistribution[];
 }
 
-interface NewsItem {
-  id: number;
-  title: string;
-  visits: number;
-  publishDate: string;
-  status: 'published' | 'draft';
-}
-
 interface Productos {
   iD_Producto: number;
   nombre: string;
@@ -74,6 +66,26 @@ interface ProductoFormData {
   imagen: string;
 }
 
+interface Noticias {
+  iD_Noticia: number;
+  iD_Usuario: number;
+  iD_Producto?: number | null;
+  titulo: string;
+  imagen: string;
+  fecha: string;
+  texto: string;
+  resumen: string;
+}
+
+interface NoticiaFormData {
+  iD_Usuario: number;
+  iD_Producto?: number | null;
+  titulo: string; // AGREGADO: faltaba el título
+  imagen: string;
+  fecha: string;
+  texto: string;
+  resumen: string;
+}
 
 interface StatCardProps {
   title: string;
@@ -102,8 +114,8 @@ const useAuth = (): AuthContextType => {
         const token = sessionStorage.getItem('authToken');
 
         if (!token) {
-            logout(); // Sin token, cerrar sesión
-        return;
+          logout(); // Sin token, cerrar sesión
+          return;
         }
 
         const response = await authApi.revalidateUser(token);
@@ -221,8 +233,8 @@ const mockApi = {
   getProducts: (): Promise<ApiResponse<Productos[]>> => 
     axiosInstance.get<Productos[]>('/Productos'),
 
-  getNews: (): Promise<ApiResponse<NewsItem[]>> => 
-    axiosInstance.get<NewsItem[]>('/Noticias'),
+  getNews: (): Promise<ApiResponse<Noticias[]>> => 
+    axiosInstance.get<Noticias[]>('/Noticias'),
 
   deleteNews: (id: number): Promise<void> => 
     axiosInstance.delete(`/Noticias/${id}`).then(() => {}),
@@ -233,17 +245,26 @@ const mockApi = {
   editProduct: (id: number, updatedProductData: any): Promise<Productos> => 
     axiosInstance.put(`/Productos/${id}`, updatedProductData).then(res => res.data),
 
+  // CORREGIDO: Función para editar noticias
+  editNoticia: (id: number, updatedNoticiaData: any): Promise<Noticias> => 
+    axiosInstance.put(`/Noticias/${id}`, updatedNoticiaData).then(res => res.data),
+
   createProduct: (productData: ProductoFormData): Promise<Productos> =>
-    axiosInstance.post<Productos>('/Productos', productData).then(res => res.data)
+    axiosInstance.post<Productos>('/Productos', productData).then(res => res.data),
+
+  createNoticia: (noticiaData: NoticiaFormData): Promise<Noticias> =>
+    axiosInstance.post<Noticias>('/Noticias', noticiaData).then(res => res.data)
 };
 
 const AdminDashboard: React.FC = () => {
   const [editProduct, setEditProduct] = useState<Productos | null>(null);
+  const [editNoticia, setEditNoticia] = useState<Noticias | null>(null);
   const [showProductForm, setShowProductForm] = useState<boolean>(false);
+  const [showNoticiaForm, setShowNoticiaForm] = useState<boolean>(false);
   const { usuario, isAuthenticated, isAdmin, logout } = useAuth();
   const [visitStats, setVisitStats] = useState<VisitStats | null>(null);
-  const [news, setNews] = useState<NewsItem[]>([]);
   const [products, setProducts] = useState<Productos[]>([]);
+  const [noticias, setNoticias] = useState<Noticias[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -267,15 +288,15 @@ const AdminDashboard: React.FC = () => {
   const loadDashboardData = async (): Promise<void> => {
     setLoading(true);
     try {
-      const [statsResponse, productsResponse] = await Promise.all([
+      const [statsResponse, productsResponse, noticiasResponse] = await Promise.all([
         mockApi.getVisitStats(),
         mockApi.getProducts(),
-        //mockApi.getNews() 
+        mockApi.getNews() // CORREGIDO: Cargar noticias
       ]);
       
       setVisitStats(statsResponse.data);
       setProducts(productsResponse.data);
-      //setNews(newsResponse.data);
+      setNoticias(noticiasResponse.data); // CORREGIDO: Establecer noticias
     } catch (error) {
       console.error('Error loading dashboard data:', error);
     } finally {
@@ -292,7 +313,7 @@ const AdminDashboard: React.FC = () => {
   const handleDeleteNews = async (id: number): Promise<void> => {
     try {
       await mockApi.deleteNews(id);
-      setNews(prev => prev.filter(item => item.id !== id));
+      setNoticias(prev => prev.filter(item => item.iD_Noticia !== id));
     } catch (error) {
       console.error('Error deleting news:', error);
     }
@@ -324,20 +345,30 @@ const AdminDashboard: React.FC = () => {
     setShowProductForm(true);
   };
 
+  // CORREGIDO: Función para editar noticias
+  const handleEditNoticias = (noticia: Noticias): void => {
+    setEditNoticia(noticia);
+    setShowNoticiaForm(true);
+  };
+
   // Función para manejar nuevo producto
   const handleNewProduct = (): void => {
+    setEditProduct(null); // CORREGIDO: Limpiar producto en edición
     setShowProductForm(true);
   };
 
-// Función para manejar el envío del formulario
+  // Función para manejar nueva noticia
+  const handleNewNoticia = (): void => {
+    setEditNoticia(null); // CORREGIDO: Limpiar noticia en edición
+    setShowNoticiaForm(true);
+  };
 
+// Función para manejar el envío del formulario
 const handleSubmitProduct = async (product: ProductoFormData) => {
   setLoading(true);
   try {
     if (editProduct) {
-      const updated = await mockApi.editProduct(editProduct.iD_Producto, {
-        ...product
-      });
+      const updated = await mockApi.editProduct(editProduct.iD_Producto, product);
       setProducts(prev =>
         prev.map(p => (p.iD_Producto === editProduct.iD_Producto ? updated : p))
       );
@@ -354,48 +385,72 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
   }
 };
 
+// CORREGIDO: Función para manejar envío de noticias
+const handleSubmitNoticia = async (noticia: NoticiaFormData) => {
+  setLoading(true);
+  try {
+    if (editNoticia) {
+      // Editar noticia existente
+      const updated = await mockApi.editNoticia(editNoticia.iD_Noticia, noticia);
+      setNoticias(prev =>
+        prev.map(n => (n.iD_Noticia === editNoticia.iD_Noticia ? updated : n))
+      );
+    } else {
+      // Crear nueva noticia
+      const newNoticia = await mockApi.createNoticia(noticia);
+      setNoticias(prev => [...prev, newNoticia]);
+    }
+    setShowNoticiaForm(false);
+    setEditNoticia(null); // Limpiar estado de edición
+  } catch (error) {
+    console.error("Error guardando noticia:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   // Función para cerrar el modal
-  const handleCloseModal = (): void => {
+  const handleCloseModalProductos = (): void => {
     setShowProductForm(false);
+    setEditProduct(null);
   };
 
+  const handleCloseModalNoticias = (): void => {
+    setShowNoticiaForm(false);
+    setEditNoticia(null);
+  };
+
+  //#region Componente de tarjeta de estadísticas
   const StatCard: React.FC<StatCardProps> = ({ 
     title, 
     value, 
-    icon: Icon, 
-    trend
+    icon: Icon
   }) => (
-    <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500 hover:shadow-xl transition-shadow">
+    <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500 hover:shadow-xl transition-shadow">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-medium text-gray-600">{title}</p>
           <p className="text-3xl font-bold text-gray-900 mt-1">{value.toLocaleString()}</p>
-          {trend && (
-            <p className="text-sm text-green-600 flex items-center mt-2">
-              <TrendingUp className="w-4 h-4 mr-1" />
-              +{trend}% vs mes anterior
-            </p>
-          )}
         </div>
-        <div className="p-3 rounded-full bg-blue-100">
-          <Icon className="w-8 h-8 text-blue-600" />
+        <div className="p-3 rounded-full bg-red-100">
+          <Icon className="w-8 h-8 text-red-600" />
         </div>
       </div>
     </div>
   );
+  //#endregion
 
   const NewsTable: React.FC = () => {
-    const filteredNews = news.filter(item => 
-      item.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    
 
     return (
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="p-6 border-b border-gray-200">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xl font-bold text-gray-900">Noticias Populares</h3>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+            <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2"
+              onClick={handleNewNoticia}
+              disabled={loading}>
               <Plus className="w-4 h-4" />
               Nueva Noticia
             </button>
@@ -406,7 +461,7 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
               <input
                 type="text"
                 placeholder="Buscar noticias..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -422,49 +477,45 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Título</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Visitas</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Usuario</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Fecha</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Estado</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Resumen</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Acciones</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {filteredNews.map((item) => (
-                <tr key={item.id} className="hover:bg-gray-50">
+              {noticias.map((item) => (
+                <tr key={item.iD_Noticia} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
                     <div className="font-medium text-gray-900 hover:text-blue-600 cursor-pointer">
-                      {item.title}
+                      {item.titulo}
                     </div>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center text-gray-600">
-                      <Eye className="w-4 h-4 mr-2" />
-                      {item.visits.toLocaleString()}
+                      <User className="w-4 h-4 mr-2" />
+                      {item.iD_Usuario}
                     </div>
                   </td>
                   <td className="px-6 py-4 text-gray-600">
-                    {item.publishDate}
+                    {new Date(item.fecha).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                      item.status === 'published' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-yellow-100 text-yellow-800'
-                    }`}>
-                      {item.status === 'published' ? 'Publicado' : 'Borrador'}
-                    </span>
+                    <div className="text-sm text-gray-600 max-w-xs truncate">
+                      {item.resumen}
+                    </div>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">
                       <button 
                         className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg"
-                        onClick={() => console.log('Edit news:', item.id)}
+                        onClick={() => handleEditNoticias(item)}
                       >
                         <Edit className="w-4 h-4" />
                       </button>
                       <button 
                         className="p-2 text-red-600 hover:bg-red-100 rounded-lg"
-                        onClick={() => handleDeleteNews(item.id)}
+                        onClick={() => handleDeleteNews(item.iD_Noticia)}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -475,6 +526,16 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
             </tbody>
           </table>
         </div>
+        {/* CORREGIDO: Modal de Formulario de Noticia */}
+      <NoticiaFormModal
+        isOpen={showNoticiaForm}
+        onClose={handleCloseModalNoticias}
+        onSubmit={handleSubmitNoticia}
+        loading={loading}
+        noticiaToEdit={editNoticia}
+        usuarios={usuario ? [usuario] : []} // Asegurarse de pasar un array de usuarios
+        productos={products} // Pasar productos para el formulario
+      />
       </div>
     );
   };
@@ -557,7 +618,7 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
       {/* Modal de Formulario de Producto */}
       <ProductoFormModal
         isOpen={showProductForm}
-        onClose={handleCloseModal}
+        onClose={handleCloseModalProductos}
         onSubmit={handleSubmitProduct}
         loading={loading}
         productToEdit={editProduct}
@@ -565,8 +626,7 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
     </div>
   );
 
-    
-
+  // Definición de las pestañas de navegación
   const navigationTabs = [
     { id: 'overview' as TabType, name: 'Resumen', icon: TrendingUp },
     { id: 'news' as TabType, name: 'Noticias', icon: FileText },
@@ -615,7 +675,7 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
 
       <div className="flex">
         {/* Sidebar */}
-        <aside className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transition-transform duration-300 ease-in-out`}>
+        <aside className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-0 w-64 bg-white shadow-lg transition-transform duration-300 ease-in-out`}>
           <div className="flex items-center justify-between p-6 border-b border-gray-200 lg:hidden">
             <h2 className="text-lg font-semibold text-gray-900">Menú</h2>
             <button
@@ -639,7 +699,7 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
                     }}
                     className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-colors ${
                       activeTab === tab.id
-                        ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700'
+                        ? 'bg-red-50 text-red-700 border-r-2 border-red-700'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                     }`}
                   >
@@ -675,7 +735,7 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
                 />
                 <StatCard
                   title="Noticias Publicadas"
-                  value={news.filter(n => n.status === 'published').length}
+                  value={noticias.length}
                   icon={FileText}
                   trend={8}
                   color="green"
@@ -710,9 +770,9 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
                       <Line 
                         type="monotone" 
                         dataKey="visits" 
-                        stroke="#3B82F6" 
+                        stroke="#bf0603" 
                         strokeWidth={2}
-                        dot={{ fill: '#3B82F6', strokeWidth: 2, r: 4 }}
+                        dot={{ fill: '#8d0801', strokeWidth: 2, r: 4 }}
                       />
                     </LineChart>
                   </ResponsiveContainer>
@@ -747,20 +807,16 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Top 5 Noticias más Visitadas</h3>
                 <div className="space-y-4">
-                  {news.slice(0, 5).map((item, index) => (
-                    <div key={item.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                  {noticias.slice(0, 5).map((item, index) => (
+                    <div key={item.iD_Noticia} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                       <div className="flex items-center gap-4">
                         <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                           <span className="text-blue-600 font-bold">{index + 1}</span>
                         </div>
                         <div>
-                          <h4 className="font-medium text-gray-900">{item.title}</h4>
-                          <p className="text-sm text-gray-500">{item.publishDate}</p>
+                          <h4 className="font-medium text-gray-900">{item.titulo}</h4>
+                          <p className="text-sm text-gray-500">{item.fecha}</p>
                         </div>
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <Eye className="w-4 h-4" />
-                        <span className="font-medium">{item.visits.toLocaleString()}</span>
                       </div>
                     </div>
                   ))}

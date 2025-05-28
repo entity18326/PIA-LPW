@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OdinBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a531a802f2ff24e0cbe152821537ff27812ea2c9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+430a784cec3b0bc2a1d1cd2555b2ee87d995bc8b")]
 [assembly: System.Reflection.AssemblyProductAttribute("OdinBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OdinBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

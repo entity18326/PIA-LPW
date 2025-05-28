@@ -65,7 +65,7 @@ namespace OdinBackend.Controllers
                 var producto = new Producto
                 {
                     Nombre = productoDto.Nombre,
-                    Fecha = DateTime.Now,
+                    Fecha = DateTime.Now.Date,
                     Camara = productoDto.Camara,
                     Pantalla = productoDto.Pantalla,
                     Bateria = productoDto.Bateria,
