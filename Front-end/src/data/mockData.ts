@@ -1,128 +1,27 @@
-import { Phone, NewsArticle, Brand, ComparisonResult } from '../types';
+import { Productos, NewsArticle, Brand, ComparisonResult } from '../types';
+import { useEffect, useState } from 'react';
+import axiosInstance from '../axios/Axios';
 
-// Mock Telefonos
-export const phones: Phone[] = [
-  {
-    id: '1',
-    brand: 'Apple',
-    name: 'iPhone 15 Pro Max',
-    image: 'https://i.blogs.es/718a10/img_2085/1200_800.jpeg',
-    releaseDate: '2023-09-22',
-    specs: {
-      pantalla: '6.7-pulgadas Super Retina XDR OLED, 120Hz',
-      procesador: 'A17 Pro Bionic',
-      ram: '8GB',
-      almacenamiento: '256GB / 512GB / 1TB',
-      camara: '48MP principal, 12MP ultra gran angular, 12MP teleobjetivo con zoom óptico de 5x',
-      bateria: '4,441 mAh',
-      sistemaOperativo: 'iOS 17'
-    },
-    highlights: [
-      'El diseño de titanio reduce el peso en 19 gramos',
-      'El botón de acción reemplaza el interruptor de silencio',
-      'Chip A17 Pro líder en la industria',
-      'USB-C con velocidades USB 3.0',
-      'Sistema de cámara mejorado con zoom óptico de 5x'
-    ],
-    slug: 'apple-iphone-15-pro-max'
-  },
-  {
-    id: '2',
-    brand: 'Samsung',
-    name: 'Galaxy S24 Ultra',
-    image: 'https://images.samsung.com/is/image/samsung/assets/mx/smartphones/galaxy-s24-ultra/buy/01_S24Ultra-Group-KV_PC_0527_final.jpg?imbypass=true',
-    releaseDate: '2024-01-31',
-    specs: {
-      pantalla: '6.8-pulgadas Dynamic AMOLED 2X, 120Hz',
-      procesador: 'Snapdragon 8 Gen 3',
-      ram: '12GB',
-      almacenamiento: '256GB / 512GB / 1TB',
-      camara: '200MP principal, 12MP ultra gran angular, 50MP telefoto con zoom óptico de 5x, 10MP telefoto con zoom óptico de 3x',
-      bateria: '5,000 mAh',
-      sistemaOperativo: 'Android 14 con One UI 6.1'
-    },
-    highlights: [
-      'Estructura de titanio con durabilidad mejorada',
-      'S Pen incluido con mayor capacidad de respuesta',
-      'Funciones de fotografía mejoradas por IA',
-      'Siete años de actualizaciones de sistema operativo',
-      'Funciones Galaxy AI como Círculo para Buscar'
-    ],
-    slug: 'samsung-galaxy-s24-ultra'
-  },
-  {
-    id: '3',
-    brand: 'Google',
-    name: 'Pixel 8 Pro',
-    image: 'https://m.media-amazon.com/images/I/71XEjCc4yLL._AC_UF894,1000_QL80_.jpg',
-    releaseDate: '2023-10-12',
-    specs: {
-      pantalla: '6.7-pulgadas Super Actua OLED, 120Hz',
-      procesador: 'Google Tensor G3',
-      ram: '12GB',
-      almacenamiento: '128GB / 256GB / 512GB / 1TB',
-      camara: '50MP principal, 48MP ultra gran angular, 48MP telefoto con zoom óptico de 5x',
-      bateria: '5,050 mAh',
-      sistemaOperativo: 'Android 14'
-    },
-    highlights: [
-      'Funciones de IA de Google mejoradas',
-      'Sensor de temperatura para medir objetos',
-      'Fotografía Night Sight mejorada',
-      'Siete años de actualizaciones de sistema operativo y seguridad',
-      'Magic Editor para edición avanzada de fotos'
-    ],
-    slug: 'google-pixel-8-pro'
-  },
-  {
-    id: '4',
-    brand: 'Xiaomi',
-    name: 'Xiaomi 14 Ultra',
-    image: 'https://www.notebookcheck.org/uploads/tx_nbc2/Xiaomi_14_Ultra.jpg',
-    releaseDate: '2024-02-25',
-    specs: {
-      pantalla: '6.73-pulgadas LTPO AMOLED, 120Hz',
-      procesador: 'Snapdragon 8 Gen 3',
-      ram: '16GB',
-      almacenamiento: '512GB / 1TB',
-      camara: 'Sistema Leica cuádruple de 50MP con apertura variable',
-      bateria: '5,000 mAh',
-      sistemaOperativo: 'Android 14 con HyperOS'
-    },
-    highlights: [
-      'Sistema de cámara cuádruple Leica co-diseñado',
-      'Apertura variable de f/1.63 a f/4.0',
-      'Carga por cable de 90W y carga inalámbrica de 50W',
-      'Resistencia al agua y polvo IP68',
-      'Sensor de luz con contraste de 3,000,000:1'
-    ],
-    slug: 'xiaomi-14-ultra'
-  },
-  {
-    id: '5',
-    brand: 'OnePlus',
-    name: 'OnePlus 12',
-    image: 'https://www.oneplus.com/content/dam/oasis/page/2024/global/product/waffle/share.jpg',
-    releaseDate: '2024-01-23',
-    specs: {
-      pantalla: '6.82-pulgadas LTPO AMOLED, 120Hz',
-      procesador: 'Snapdragon 8 Gen 3',
-      ram: '12GB / 16GB',
-      almacenamiento: '256GB / 512GB',
-      camara: '50MP principal, 48MP ultra gran angular, 64MP telefoto con zoom óptico de 3x',
-      bateria: '5,400 mAh',
-      sistemaOperativo: 'Android 14 con OxygenOS 14'
-    },
-    highlights: [
-      'Carga SUPERVOOC de 100W líder en la industria',
-      'Sistema de cámara Hasselblad para colores naturales',
-      'Tecnología Rain Touch para uso con pantalla mojada',
-      'Aqua Touch para uso con manos mojadas',
-      '4ta generación de ajuste de cámara Hasselblad'
-    ],
-    slug: 'oneplus-12'
-  }
-];
+// Hook para obtener teléfonos desde la API
+export function usePhones() {
+  const [phones, setPhones] = useState<Productos[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    axiosInstance.get<Productos[]>('/Productos')
+      .then(response => {
+        setPhones(response.data.slice(0, 5));
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message || 'Error al obtener teléfonos');
+        setLoading(false);
+      });
+  }, []);
+
+  return { phones, loading, error };
+}
 
 // Mock Noticias
 export const news: NewsArticle[] = [

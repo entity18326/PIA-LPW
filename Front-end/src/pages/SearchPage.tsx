@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import PhoneCard from '../components/ui/PhoneCard';
 import NewsCard from '../components/ui/NewsCard';
 import SearchBar from '../components/ui/SearchBar';
-import { phones, news, brands } from '../data/mockData';
+import { usePhones, news, brands } from '../data/mockData';
 import { Phone, NewsArticle, Brand } from '../types';
 import { motion } from 'framer-motion';
 
@@ -11,6 +11,7 @@ const SearchPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const queryParam = params.get('q') || '';
+  const { phones, loading, error } = usePhones();
   
   const [query, setQuery] = useState(queryParam);
   const [searchResults, setSearchResults] = useState<{

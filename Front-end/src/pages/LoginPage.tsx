@@ -29,14 +29,6 @@ interface ApiError {
   errors?: Record<string, string[]>;
 }
 
-const getRedirectPath = (roleId: number): string => {
-  const roleRoutes: Record<number, string> = {
-    1: '/admin/dashboard',     // Admin
-    2: '/publisher/dashboard'  // Publicador
-  };
-  
-  return roleRoutes[roleId] || '/dashboard';
-};
 
 // Interceptor para manejar respuestas y errores globalmente
 axiosInstance.interceptors.response.use(
@@ -48,7 +40,7 @@ axiosInstance.interceptors.response.use(
 );
 
 const LoginPage: React.FC = () => {
-  const { login: authLogin } = useAuth(); // Usar el método login del contexto
+  const { login: authLogin } = useAuth();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -180,7 +172,7 @@ const LoginPage: React.FC = () => {
             setError(errorMessage || 'Error al iniciar sesión. Intenta nuevamente.');
         }
       } else if (axiosError.request) {
-        setError('No se pudo conectar con el servidor. Verifica tu conexión y que el servidor esté ejecutándose.');
+        setError('No se pudo conectar con el servidor. Verifica tu conexión a internet.');
       } else {
         setError('Error inesperado. Intenta nuevamente.');
       }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Plus, Upload, AlertCircle, FileText, Calendar, User } from 'lucide-react';
+import axiosInstance from '../../axios/Axios';
+import { image } from 'framer-motion/client';
 
 // Interface para el formulario de noticia
 interface NoticiaFormData {
@@ -176,15 +178,33 @@ const NoticiaFormModal: React.FC<NoticiaFormModalProps> = ({
   };
 
   // Manejar carga de imagen
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     const file = e.target.files?.[0];
-    if (file) {
-      // Aquí implementarías la lógica de subida de imagen
-      // Por ahora solo guardamos el nombre del archivo
+    if (!file) return; 
+
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await axiosInstance.post('/Image/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      const imageUrl = response.data.imageUrl;
+
       setFormData(prev => ({
         ...prev,
-        imagen: file.name
+        imagen: imageUrl
       }));
+    } catch (error) {
+      console.error('Error al cargar la imagen:', error);
+      setErrors(prev => ({
+        ...prev,
+        imagen: 'Error al cargar la imagen'
+      }));
+      return;
     }
   };
 

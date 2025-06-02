@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import PhoneCard from '../components/ui/PhoneCard';
-import { brands, phones } from '../data/mockData';
-import { Brand, Phone } from '../types';
+import { brands, usePhones } from '../data/mockData';
+import { Brand, Productos } from '../types';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const BrandPage = () => {
   const { brand } = useParams<{ brand: string }>();
   const [brandData, setBrandData] = useState<Brand | null>(null);
-  const [brandPhones, setBrandPhones] = useState<Phone[]>([]);
+  const [brandPhones, setBrandPhones] = useState<Productos[]>([]);
+  const { phones, loading, error } = usePhones();
   
   useEffect(() => {
     // Aqui se obtiene los datos de la API

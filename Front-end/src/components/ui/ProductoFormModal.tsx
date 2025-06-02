@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Plus, Upload, AlertCircle } from 'lucide-react';
+import axiosInstance from '../../axios/Axios';
 
 // Interface para el formulario de producto
 interface ProductoFormData {
@@ -157,16 +158,36 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
     onClose();
   };
 
-  // Manejar carga de imagen (placeholder para funcionalidad futura)
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  // Manejar carga de imagen
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     const file = e.target.files?.[0];
-    if (file) {
-      // Aquí implementarías la lógica de subida de imagen
-      // Por ahora solo guardamos el nombre del archivo
+    if (!file) return; 
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await axiosInstance.post('/Image/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      const imageUrl = response.data.url; // Asegúrate de que la respuesta tenga esta estructura
+      console.log('Imagen cargada:', imageUrl);
+
+      // Actualizar el estado del formulario con la URL de la imagen
       setFormData(prev => ({
         ...prev,
-        imagen: file.name
+        imagen: imageUrl
       }));
+    } catch (error) {
+      console.error('Error al cargar la imagen:', error);
+      setErrors(prev => ({
+        ...prev,
+        imagen: 'Error al cargar la imagen'
+      }));
+      return;
     }
   };
 

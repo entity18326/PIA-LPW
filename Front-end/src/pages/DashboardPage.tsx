@@ -22,11 +22,6 @@ interface AuthContextType {
   logout: () => void;
 }
 
-interface LoginCredentials {
-  username: string;
-  password: string;
-}
-
 // Interfaces de Datos
 interface DailyVisit {
   date: string;
@@ -80,7 +75,7 @@ interface Noticias {
 interface NoticiaFormData {
   iD_Usuario: number;
   iD_Producto?: number | null;
-  titulo: string; // AGREGADO: faltaba el título
+  titulo: string;
   imagen: string;
   fecha: string;
   texto: string;
@@ -245,7 +240,6 @@ const mockApi = {
   editProduct: (id: number, updatedProductData: any): Promise<Productos> => 
     axiosInstance.put(`/Productos/${id}`, updatedProductData).then(res => res.data),
 
-  // CORREGIDO: Función para editar noticias
   editNoticia: (id: number, updatedNoticiaData: any): Promise<Noticias> => 
     axiosInstance.put(`/Noticias/${id}`, updatedNoticiaData).then(res => res.data),
 
@@ -291,12 +285,12 @@ const AdminDashboard: React.FC = () => {
       const [statsResponse, productsResponse, noticiasResponse] = await Promise.all([
         mockApi.getVisitStats(),
         mockApi.getProducts(),
-        mockApi.getNews() // CORREGIDO: Cargar noticias
+        mockApi.getNews()
       ]);
       
       setVisitStats(statsResponse.data);
       setProducts(productsResponse.data);
-      setNoticias(noticiasResponse.data); // CORREGIDO: Establecer noticias
+      setNoticias(noticiasResponse.data);
     } catch (error) {
       console.error('Error loading dashboard data:', error);
     } finally {
@@ -328,24 +322,12 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
-  const handleEdittProducts = async (id: number, updatedProductData: any): Promise<void> => {
-    try {
-      const updatedProduct = await mockApi.editProduct(id, updatedProductData);
-      // Actualizar el producto en la lista local
-      setProducts(prev =>
-        prev.map(item => (item.iD_Producto === id ? updatedProduct : item))
-      );
-    } catch (error) {
-      console.error('Error al editar producto:', error);
-    }
-  };
-
   const handleEditProducts = (product: Productos): void => {
     setEditProduct(product);
     setShowProductForm(true);
   };
 
-  // CORREGIDO: Función para editar noticias
+  // Función para editar noticias
   const handleEditNoticias = (noticia: Noticias): void => {
     setEditNoticia(noticia);
     setShowNoticiaForm(true);
@@ -353,13 +335,13 @@ const AdminDashboard: React.FC = () => {
 
   // Función para manejar nuevo producto
   const handleNewProduct = (): void => {
-    setEditProduct(null); // CORREGIDO: Limpiar producto en edición
+    setEditProduct(null);
     setShowProductForm(true);
   };
 
   // Función para manejar nueva noticia
   const handleNewNoticia = (): void => {
-    setEditNoticia(null); // CORREGIDO: Limpiar noticia en edición
+    setEditNoticia(null);
     setShowNoticiaForm(true);
   };
 
@@ -385,7 +367,7 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
   }
 };
 
-// CORREGIDO: Función para manejar envío de noticias
+// Función para manejar envío de noticias
 const handleSubmitNoticia = async (noticia: NoticiaFormData) => {
   setLoading(true);
   try {
@@ -526,15 +508,15 @@ const handleSubmitNoticia = async (noticia: NoticiaFormData) => {
             </tbody>
           </table>
         </div>
-        {/* CORREGIDO: Modal de Formulario de Noticia */}
+        {/* Modal de Formulario de Noticia */}
       <NoticiaFormModal
         isOpen={showNoticiaForm}
         onClose={handleCloseModalNoticias}
         onSubmit={handleSubmitNoticia}
         loading={loading}
         noticiaToEdit={editNoticia}
-        usuarios={usuario ? [usuario] : []} // Asegurarse de pasar un array de usuarios
-        productos={products} // Pasar productos para el formulario
+        usuarios={usuario ? [usuario] : []}
+        productos={products}
       />
       </div>
     );
@@ -591,7 +573,9 @@ const handleSubmitNoticia = async (noticia: NoticiaFormData) => {
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex items-center">
-                    <span className="ml-1 text-gray-600">{product.imagen}</span>
+                    <span className="ml-1 text-gray-600">
+                      {product.imagen.length > 30 ? product.imagen.slice(0, 30) + '...' : product.imagen}
+                    </span>
                   </div>
                 </td>
                 <td className="px-6 py-4">

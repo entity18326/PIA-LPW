@@ -1,16 +1,15 @@
-// Phone related types
-export interface Phone {
-  id: string;
-  brand: string;
-  name: string;
-  image: string;
-  releaseDate: string;
-  specs: PhoneSpecs;
-  highlights: string[];
+export interface Productos {
+  iD_Producto: number;
+  nombre: string;
+  fecha: string;
+  caracteristicas: string;
+  imagen: string;
   slug: string;
+  marca: string;
+  especificaciones: EspecificacionesProducto;
 }
 
-export interface PhoneSpecs {
+export interface EspecificacionesProducto {
   pantalla: string;
   procesador: string;
   ram: string;
@@ -20,8 +19,7 @@ export interface PhoneSpecs {
   sistemaOperativo: string;
 }
 
-// News related types
-export interface NewsArticle {
+export interface Noticias {
   id: string;
   title: string;
   excerpt: string;
@@ -34,16 +32,14 @@ export interface NewsArticle {
   slug: string;
 }
 
-// Brand related types
-export interface Brand {
+export interface Marcas {
   id: string;
-  name: string;
+  nombre: string;
   logo: string;
-  description: string;
+  descripcion: string;
   slug: string;
 }
 
-// Comparison related types
 export interface ComparisonResult {
   category: string;
   phone1Score: number;

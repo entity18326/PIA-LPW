@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import PhoneCard from '../components/ui/PhoneCard';
 import SearchBar from '../components/ui/SearchBar';
-import { phones } from '../data/mockData';
+import { usePhones } from '../data/mockData';
 import { motion } from 'framer-motion';
 
 const ReviewsPage = () => {
   const [filterBrand, setFilterBrand] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('newest');
-  
-  // Get unique brands for filter
+
+  const { phones, loading, error } = usePhones();
+
   const brandOptions = ['all', ...new Set(phones.map(phone => phone.brand))];
-  
-  // Filter and sort phones
+
   const filteredPhones = phones
     .filter(phone => filterBrand === 'all' ? true : phone.brand === filterBrand)
     .sort((a, b) => {

@@ -48,6 +48,167 @@
         }
       }
     },
+    "/api/Image/upload": {
+      "post": {
+        "tags": [
+          "Image"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Image/{id}": {
+      "get": {
+        "tags": [
+          "Image"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Marcas": {
+      "get": {
+        "tags": [
+          "Marcas"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Marcas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Marcas"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Marcas"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Marcas"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Marcas/{id}": {
+      "get": {
+        "tags": [
+          "Marcas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Marcas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Marcas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Noticias/{id}": {
       "get": {
         "tags": [
@@ -276,17 +437,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Producto"
+                "$ref": "#/components/schemas/ProductoConEspecificacionesDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Producto"
+                "$ref": "#/components/schemas/ProductoConEspecificacionesDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Producto"
+                "$ref": "#/components/schemas/ProductoConEspecificacionesDto"
               }
             }
           }
@@ -430,6 +591,107 @@
         },
         "additionalProperties": false
       },
+      "EspecificacionesDto": {
+        "type": "object",
+        "properties": {
+          "pantalla": {
+            "type": "string",
+            "nullable": true
+          },
+          "procesador": {
+            "type": "string",
+            "nullable": true
+          },
+          "ram": {
+            "type": "string",
+            "nullable": true
+          },
+          "almacenamiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "camara": {
+            "type": "string",
+            "nullable": true
+          },
+          "bateria": {
+            "type": "string",
+            "nullable": true
+          },
+          "sistemaOperativo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EspecificacionesProducto": {
+        "type": "object",
+        "properties": {
+          "iD_Producto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pantalla": {
+            "type": "string",
+            "nullable": true
+          },
+          "procesador": {
+            "type": "string",
+            "nullable": true
+          },
+          "ram": {
+            "type": "string",
+            "nullable": true
+          },
+          "almacenamiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "camara": {
+            "type": "string",
+            "nullable": true
+          },
+          "bateria": {
+            "type": "string",
+            "nullable": true
+          },
+          "sistemaOperativo": {
+            "type": "string",
+            "nullable": true
+          },
+          "producto": {
+            "$ref": "#/components/schemas/Producto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Marcas": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombreMarca": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Noticia": {
         "type": "object",
         "properties": {
@@ -487,16 +749,38 @@
             "format": "date-time",
             "nullable": true
           },
-          "camara": {
+          "caracteristicas": {
             "type": "string",
             "nullable": true
           },
-          "pantalla": {
+          "imagen": {
             "type": "string",
             "nullable": true
           },
-          "bateria": {
+          "slug": {
             "type": "string",
+            "nullable": true
+          },
+          "marca": {
+            "type": "string",
+            "nullable": true
+          },
+          "especificaciones": {
+            "$ref": "#/components/schemas/EspecificacionesProducto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductoConEspecificacionesDto": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           },
           "caracteristicas": {
@@ -506,6 +790,17 @@
           "imagen": {
             "type": "string",
             "nullable": true
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true
+          },
+          "marca": {
+            "type": "string",
+            "nullable": true
+          },
+          "especificaciones": {
+            "$ref": "#/components/schemas/EspecificacionesDto"
           }
         },
         "additionalProperties": false

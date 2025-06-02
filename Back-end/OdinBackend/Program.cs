@@ -74,6 +74,7 @@ app.UseHttpsRedirection();
 // En Configure
 app.UseCors("AllowReactApp");
 
+app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 

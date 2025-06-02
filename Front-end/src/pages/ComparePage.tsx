@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CompareForm from '../components/compare/CompareForm';
 import ComparisonTable from '../components/compare/ComparisonTable';
 import { useLocation } from 'react-router-dom';
-import { phones, mockComparisonResults } from '../data/mockData';
+import { usePhones, mockComparisonResults } from '../data/mockData';
 import { Phone, ComparisonResult } from '../types';
 import { motion } from 'framer-motion';
 
@@ -11,6 +11,7 @@ const ComparePage = () => {
   const params = new URLSearchParams(location.search);
   const initialPhone1Id = params.get('phone1') || '';
   const initialPhone2Id = params.get('phone2') || '';
+  const { phones, loading, error } = usePhones();
   
   const [phone1, setPhone1] = useState<Phone | null>(
     phones.find(p => p.id === initialPhone1Id) || null
