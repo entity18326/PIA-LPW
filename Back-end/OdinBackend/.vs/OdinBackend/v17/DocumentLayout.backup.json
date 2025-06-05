@@ -114,8 +114,7 @@
               "RelativeToolTip": "Controllers\\CategoriasController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T14:48:45.848Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T14:48:45.848Z"
             },
             {
               "$type": "Document",
@@ -127,8 +126,7 @@
               "RelativeToolTip": "Models\\Categoria.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T14:47:33.526Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T14:47:33.526Z"
             },
             {
               "$type": "Document",
@@ -140,8 +138,7 @@
               "RelativeToolTip": "Models\\EspecificacionesProducto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T22:48:48.486Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T22:48:48.486Z"
             },
             {
               "$type": "Document",
@@ -153,8 +150,7 @@
               "RelativeToolTip": "Controllers\\ProductosController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T22:22:34.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T22:22:34.281Z"
             },
             {
               "$type": "Document",
@@ -178,8 +174,7 @@
               "RelativeToolTip": "Controllers\\MarcasController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGgAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T21:26:53.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T21:26:53.753Z"
             },
             {
               "$type": "Document",
@@ -203,8 +198,7 @@
               "RelativeToolTip": "Controllers\\NoticiasController.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAgwBwAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T09:23:33.899Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T09:23:33.899Z"
             },
             {
               "$type": "Document",
@@ -228,8 +222,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-20T18:49:13.547Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T18:49:13.547Z"
             },
             {
               "$type": "Document",
@@ -239,7 +232,7 @@
               "RelativeDocumentMoniker": "Context\\LpwPiaContext.cs",
               "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Context\\LpwPiaContext.cs",
               "RelativeToolTip": "Context\\LpwPiaContext.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAkwD4AAABoAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAkwEcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T18:47:12.012Z",
               "EditorCaption": ""
@@ -266,8 +259,7 @@
               "RelativeToolTip": "Models\\Noticia.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwA8AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T18:46:51.981Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T18:46:51.981Z"
             }
           ]
         },

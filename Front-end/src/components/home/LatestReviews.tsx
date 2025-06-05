@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { Phone } from '../../types';
+import { Productos } from '../../types';
 import PhoneCard from '../ui/PhoneCard';
 import { motion } from 'framer-motion';
 
 interface LatestReviewsProps {
-  phones: Phone[];
+  phones: Productos[];
 }
 
 const LatestReviews = ({ phones }: LatestReviewsProps) => {
@@ -55,7 +55,7 @@ const LatestReviews = ({ phones }: LatestReviewsProps) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-fr">
           {displayPhones.map((phone, index) => (
-            <React.Fragment key={phone.id}>
+            <React.Fragment key={phone.iD_Producto}>
               {index === 0 ? (
                 <div className="sm:col-span-2 lg:col-span-2 lg:row-span-2">
                   <PhoneCard phone={phone} featured={true} />

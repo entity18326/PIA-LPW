@@ -1,8 +1,8 @@
 import React from 'react';
-import { PhoneSpecs } from '../../types';
+import { EspecificacionesProducto } from '../../types';
 
 interface SpecTableProps {
-  specs: PhoneSpecs;
+  specs: EspecificacionesProducto;
   className?: string;
 }
 

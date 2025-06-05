@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Phone } from '../../types';
+import { Productos } from '../../types';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import SearchBar from '../ui/SearchBar';
 
 interface HeroSectionProps {
-  featuredPhone: Phone;
+  featuredPhone: Productos;
 }
 
 const HeroSection = ({ featuredPhone }: HeroSectionProps) => {
@@ -29,10 +29,10 @@ const HeroSection = ({ featuredPhone }: HeroSectionProps) => {
               Reseña destacada
             </span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              {featuredPhone.brand} {featuredPhone.name}
+              {featuredPhone.marca} {featuredPhone.nombre}
             </h1>
             <p className="text-primary-100 dark:text-gray-300 text-lg mb-6 max-w-lg">
-              Descubre las últimas novedades de {featuredPhone.brand} así como sus lanzamientos y tecnologías. 
+              Descubre las últimas novedades de {featuredPhone.marca} así como sus lanzamientos y tecnologías. 
               Mira porque este dispositivo está revolucionando la industria.
             </p>
             
@@ -60,8 +60,8 @@ const HeroSection = ({ featuredPhone }: HeroSectionProps) => {
           >
             <div className="relative z-10">
               <img
-                src={featuredPhone.image}
-                alt={`${featuredPhone.brand} ${featuredPhone.name}`}
+                src={featuredPhone.imagen}
+                alt={`${featuredPhone.marca} ${featuredPhone.nombre}`}
                 className="max-h-[500px] object-contain drop-shadow-2xl"
               />
             </div>
