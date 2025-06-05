@@ -48,40 +48,44 @@ namespace OdinBackend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CrearProducto(Producto productoDto)
+        public async Task<IActionResult> CrearProductoConEspecificaciones([FromBody] ProductoConEspecificacionesDto dto)
         {
-            try
+            var producto = new Producto
             {
-                if (productoDto == null)
-                {
-                    return BadRequest(new { message = "Datos del producto son requeridos" });
-                }
+                Nombre = dto.Nombre,
+                Fecha = dto.Fecha,
+                Caracteristicas = dto.Caracteristicas,
+                Imagen = dto.Imagen,
+                Slug = dto.Slug,
+                Marca = dto.Marca
+            };
 
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+            _context.Productos.Add(producto);
+            await _context.SaveChangesAsync(); // Se necesita para obtener el ID_Producto
 
-                var producto = new Producto
+            if (dto.Especificaciones != null)
+            {
+                var especificaciones = new EspecificacionesProducto
                 {
-                    Nombre = productoDto.Nombre,
-                    Fecha = DateTime.Now.Date,
-                    Camara = productoDto.Camara,
-                    Pantalla = productoDto.Pantalla,
-                    Bateria = productoDto.Bateria,
-                    Caracteristicas = productoDto.Caracteristicas,
-                    Imagen = productoDto.Imagen
+                    ID_Producto = producto.ID_Producto,
+                    Pantalla = dto.Especificaciones.Pantalla,
+                    Procesador = dto.Especificaciones.Procesador,
+                    RAM = dto.Especificaciones.RAM,
+                    Almacenamiento = dto.Especificaciones.Almacenamiento,
+                    Camara = dto.Especificaciones.Camara,
+                    Bateria = dto.Especificaciones.Bateria,
+                    SistemaOperativo = dto.Especificaciones.SistemaOperativo
                 };
 
-                _context.Productos.Add(producto);
+                _context.EspecificacionesProductos.Add(especificaciones);
                 await _context.SaveChangesAsync();
+            }
 
-                return CreatedAtAction(nameof(GetProducto), new { id = producto.ID_Producto }, producto);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Error al crear producto", error = ex.InnerException.Message });
-            }
+            return Ok(new { 
+                producto.ID_Producto,
+                producto.Nombre,
+                producto.Especificaciones
+            });
         }
 
         [HttpPut("{id}")]
@@ -120,4 +124,28 @@ namespace OdinBackend.Controllers
             return NoContent();
         }
     }
+
+    public class ProductoConEspecificacionesDto
+    {
+        public string? Nombre { get; set; }
+        public DateTime? Fecha { get; set; }
+        public string? Caracteristicas { get; set; }
+        public string? Imagen { get; set; }
+        public string? Slug { get; set; }
+        public string? Marca { get; set; }
+
+        public EspecificacionesDto? Especificaciones { get; set; }
+    }
+
+    public class EspecificacionesDto
+    {
+        public string? Pantalla { get; set; }
+        public string? Procesador { get; set; }
+        public string? RAM { get; set; }
+        public string? Almacenamiento { get; set; }
+        public string? Camara { get; set; }
+        public string? Bateria { get; set; }
+        public string? SistemaOperativo { get; set; }
+    }
+
 }

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import NewsCard from '../components/ui/NewsCard';
 import SearchBar from '../components/ui/SearchBar';
-import { news } from '../data/mockData';
+import { useNews } from '../data/mockData';
 import { motion } from 'framer-motion';
 
 const NewsPage = () => {
   const [category, setCategory] = useState('all');
+  const { news, loading: newsLoading, error: newsError } = useNews();
   
-  const categories = ['all', ...new Set(news.map(article => article.category))];
+  const categories = ['all', ...new Set(news.map(article => article.categoria))];
   
   const filteredNews = news.filter(article => 
-    category === 'all' ? true : article.category === category
+    category === 'all' ? true : article.categoria === category
   );
 
   return (
@@ -51,7 +52,7 @@ const NewsPage = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredNews.map((article, index) => (
-          <React.Fragment key={article.id}>
+          <React.Fragment key={article.iD_Noticia}>
             {index === 0 ? (
               <div className="md:col-span-2">
                 <NewsCard article={article} featured={true} />

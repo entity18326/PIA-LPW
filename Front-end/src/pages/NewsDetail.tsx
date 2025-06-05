@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, User, Tag, Share2 } from 'lucide-react';
-import { NewsArticle } from '../types';
-import { news } from '../data/mockData';
+import { Noticias } from '../types';
+import { useNews } from '../data/mockData';
 import { motion } from 'framer-motion';
 
 const NewsDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [article, setArticle] = useState<NewsArticle | null>(null);
-  const [relatedArticles, setRelatedArticles] = useState<NewsArticle[]>([]);
+  const [article, setArticle] = useState<Noticias | null>(null);
+  const [relatedArticles, setRelatedArticles] = useState<Noticias[]>([]);
+  const { news, loading: newsLoading, error: newsError } = useNews();
   
   useEffect(() => {
     // Aqui se obtiene los datos de la API
@@ -17,9 +18,8 @@ const NewsDetail = () => {
     
     if (foundArticle) {
       const related = news
-        .filter(a => a.id !== foundArticle.id && 
-          (a.category === foundArticle.category || 
-           a.tags.some(tag => foundArticle.tags.includes(tag))))
+        .filter(a => a.iD_Noticia !== foundArticle.iD_Noticia && 
+          (a.categoria === foundArticle.categoria || a.etiquetas.some(etiqueta => foundArticle.etiquetas.includes(etiqueta))))
         .slice(0, 3);
       setRelatedArticles(related);
     }
@@ -49,8 +49,8 @@ const NewsDetail = () => {
       <div className="relative h-[400px] sm:h-[500px] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={article.image}
-            alt={article.title}
+            src={article.imagen}
+            alt={article.titulo}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
@@ -75,26 +75,26 @@ const NewsDetail = () => {
           >
             <div className="mb-4">
               <span className="inline-block bg-accent-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                {article.category}
+                {article.categoria}
               </span>
             </div>
             
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              {article.title}
+              {article.titulo}
             </h1>
             
             <div className="flex flex-wrap items-center text-white/80 text-sm gap-4 md:gap-6">
               <div className="flex items-center">
                 <User size={16} className="mr-2" />
-                <span>{article.author}</span>
+                <span>{article.iD_Usuario}</span>
               </div>
               <div className="flex items-center">
                 <Calendar size={16} className="mr-2" />
-                <span>{formatDate(article.date)}</span>
+                <span>{formatDate(article.fecha)}</span>
               </div>
               <div className="flex items-center flex-wrap gap-2">
                 <Tag size={16} className="mr-1" />
-                {article.tags.map((tag, index) => (
+                {article.etiquetas.map((tag, index) => (
                   <span key={index} className="bg-white/20 px-2 py-0.5 rounded text-xs">
                     {tag}
                   </span>
@@ -116,7 +116,7 @@ const NewsDetail = () => {
           >
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 md:p-8">
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                {article.content.split('\n\n').map((paragraph, index) => (
+                {article.texto.split('\n\n').map((paragraph, index) => (
                   <p key={index} className="mb-6 text-gray-700 dark:text-gray-300">
                     {paragraph}
                   </p>
@@ -128,12 +128,12 @@ const NewsDetail = () => {
                   <div className="flex items-center">
                     <img
                       src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                      alt={article.author}
+                      alt={article.iD_Usuario.toString()}
                       className="w-12 h-12 rounded-full object-cover mr-4"
                     />
                     <div>
                       <p className="font-semibold text-gray-900 dark:text-white">
-                        {article.author}
+                        {article.iD_Usuario}
                       </p>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
                         Redactor de tecnología
@@ -165,22 +165,22 @@ const NewsDetail = () => {
                 <div className="divide-y divide-gray-200 dark:divide-gray-700">
                   {relatedArticles.map((relatedArticle) => (
                     <Link
-                      key={relatedArticle.id}
+                      key={relatedArticle.iD_Noticia}
                       to={`/news/${relatedArticle.slug}`}
                       className="block p-6 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
                     >
                       <div className="flex items-start">
                         <img
-                          src={relatedArticle.image}
-                          alt={relatedArticle.title}
+                          src={relatedArticle.imagen}
+                          alt={relatedArticle.titulo}
                           className="w-20 h-20 object-cover rounded-md mr-4 flex-shrink-0"
                         />
                         <div>
                           <h4 className="font-medium text-gray-900 dark:text-white mb-1 line-clamp-2">
-                            {relatedArticle.title}
+                            {relatedArticle.titulo}
                           </h4>
                           <p className="text-sm text-gray-500 dark:text-gray-400">
-                            {formatDate(relatedArticle.date)}
+                            {formatDate(relatedArticle.fecha)}
                           </p>
                         </div>
                       </div>

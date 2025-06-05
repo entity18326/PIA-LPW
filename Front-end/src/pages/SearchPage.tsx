@@ -3,20 +3,23 @@ import { useLocation, Link } from 'react-router-dom';
 import PhoneCard from '../components/ui/PhoneCard';
 import NewsCard from '../components/ui/NewsCard';
 import SearchBar from '../components/ui/SearchBar';
-import { phones, news, brands } from '../data/mockData';
-import { Phone, NewsArticle, Brand } from '../types';
+import { usePhones, useNews, useBrands } from '../data/mockData';
+import { Productos, Noticias, Marcas } from '../types';
 import { motion } from 'framer-motion';
 
 const SearchPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const queryParam = params.get('q') || '';
+  const { phones, loading: phonesLoading, error: phonesError } = usePhones();
+  const { brands, loading: brandsLoading, error: brandsError } = useBrands();
+  const { news, loading: newsLoading, error: newsError } = useNews();
   
   const [query, setQuery] = useState(queryParam);
   const [searchResults, setSearchResults] = useState<{
-    phones: Phone[];
-    news: NewsArticle[];
-    brands: Brand[];
+    phones: Productos[];
+    news: Noticias[];
+    brands: Marcas[];
   }>({
     phones: [],
     news: [],
@@ -38,26 +41,25 @@ const SearchPage = () => {
     
     // Search phones
     const matchedPhones = phones.filter(phone => 
-      phone.brand.toLowerCase().includes(lowerQuery) ||
-      phone.name.toLowerCase().includes(lowerQuery) ||
-      Object.values(phone.specs).some(spec => 
+      phone.marca.toLowerCase().includes(lowerQuery) ||
+      phone.nombre.toLowerCase().includes(lowerQuery) ||
+      Object.values(phone.especificaciones).some(spec => 
         spec.toLowerCase().includes(lowerQuery)
       )
     );
     
     // Search news
     const matchedNews = news.filter(article => 
-      article.title.toLowerCase().includes(lowerQuery) ||
-      article.excerpt.toLowerCase().includes(lowerQuery) ||
-      article.content.toLowerCase().includes(lowerQuery) ||
-      article.category.toLowerCase().includes(lowerQuery) ||
-      article.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
+      article.titulo.toLowerCase().includes(lowerQuery) ||
+      article.texto.toLowerCase().includes(lowerQuery) ||
+      article.categoria.toLowerCase().includes(lowerQuery) ||
+      article.etiquetas.some(etiqueta => etiqueta.toLowerCase().includes(lowerQuery))
     );
     
     // Search brands
     const matchedBrands = brands.filter(brand => 
-      brand.name.toLowerCase().includes(lowerQuery) ||
-      brand.description.toLowerCase().includes(lowerQuery)
+      brand.nombreMarca.toLowerCase().includes(lowerQuery) ||
+      brand.descripcion.toLowerCase().includes(lowerQuery)
     );
     
     setSearchResults({
@@ -122,7 +124,7 @@ const SearchPage = () => {
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {searchResults.phones.map((phone) => (
-                      <PhoneCard key={phone.id} phone={phone} />
+                      <PhoneCard key={phone.iD_Producto} phone={phone} />
                     ))}
                   </div>
                 </div>
@@ -136,7 +138,7 @@ const SearchPage = () => {
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {searchResults.news.map((article) => (
-                      <NewsCard key={article.id} article={article} />
+                      <NewsCard key={article.iD_Noticia} article={article} />
                     ))}
                   </div>
                 </div>
@@ -158,12 +160,12 @@ const SearchPage = () => {
                         <div className="w-16 h-16 flex items-center justify-center mb-4">
                           <img
                             src={brand.logo}
-                            alt={brand.name}
+                            alt={brand.nombreMarca}
                             className="max-w-full max-h-full transition-transform group-hover:scale-110"
                           />
                         </div>
                         <h3 className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">
-                          {brand.name}
+                          {brand.nombreMarca}
                         </h3>
                       </Link>
                     ))}

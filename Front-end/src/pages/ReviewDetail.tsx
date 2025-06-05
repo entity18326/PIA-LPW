@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Share2, ChevronRight } from 'lucide-react';
-import { Phone } from '../types';
-import { phones } from '../data/mockData';
+import { Productos } from '../types';
+import { useBrands, usePhones } from '../data/mockData';
 import SpecTable from '../components/ui/SpecTable';
 import { motion } from 'framer-motion';
 
 const ReviewDetail = () => {
+  const { phones, loading: phonesLoading, error: phonesError } = usePhones();
   const { id } = useParams<{ id: string }>();
-  const [phone, setPhone] = useState<Phone | null>(null);
-  const [relatedPhones, setRelatedPhones] = useState<Phone[]>([]);
+  const [phone, setPhone] = useState<Productos | null>(null);
+  const [relatedPhones, setRelatedPhones] = useState<Productos[]>([]);
+  // Removed unused useBrands destructuring
   
   useEffect(() => {
     const foundPhone = phones.find(p => p.slug === id);
@@ -17,7 +19,7 @@ const ReviewDetail = () => {
     
     if (foundPhone) {
       const related = phones
-        .filter(p => p.brand === foundPhone.brand && p.id !== foundPhone.id)
+        .filter(p => p.marca === foundPhone.marca && p.iD_Producto !== foundPhone.iD_Producto)
         .slice(0, 3);
       setRelatedPhones(related);
     }
@@ -54,8 +56,8 @@ const ReviewDetail = () => {
               className="flex justify-center"
             >
               <img
-                src={phone.image}
-                alt={`${phone.brand} ${phone.name}`}
+                src={phone.imagen}
+                alt={`${phone.nombre} ${phone.nombre}`}
                 className="max-h-[500px] object-contain drop-shadow-xl"
               />
             </motion.div>
@@ -66,11 +68,11 @@ const ReviewDetail = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <span className="inline-block bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 text-xs font-semibold px-3 py-1 rounded-full mb-4">
-                {phone.brand}
+                {phone.nombre} Review
               </span>
               
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                {phone.name}
+                {phone.nombre}
               </h1>
               
               <div className="mb-8">
@@ -78,14 +80,7 @@ const ReviewDetail = () => {
                   Características clave
                 </h3>
                 <ul className="space-y-3">
-                  {phone.highlights.map((highlight, index) => (
-                    <li key={index} className="flex items-start">
-                      <ChevronRight size={18} className="text-primary-500 dark:text-primary-400 mr-2 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700 dark:text-gray-300">
-                        {highlight}
-                      </span>
-                    </li>
-                  ))}
+                  {phone.caracteristicas}
                 </ul>
               </div>
               
@@ -116,16 +111,14 @@ const ReviewDetail = () => {
                 Descripción general
               </h2>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                El {phone.brand} {phone.name} es un smartphone insignia que muestra las últimas innovaciones y tecnología de punta de la marca. Lanzado el {new Date(phone.releaseDate).toLocaleDateString()}, este dispositivo se ha convertido rápidamente en un referente para los smartphones premium.
+                El {phone.nombre} es un smartphone insignia que muestra las últimas innovaciones y tecnología de punta de la marca. Lanzado el {new Date(phone.fecha).toLocaleDateString()}, este dispositivo se ha convertido rápidamente en un referente para los smartphones premium.
               </p>
+              
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                Impulsado por el procesador {phone.specs.procesador} y equipado con {phone.specs.ram} de RAM, el {phone.name} ofrece un rendimiento excepcional incluso para las aplicaciones y juegos más exigentes. La pantalla {phone.specs.pantalla} ofrece imágenes impresionantes con colores vivos y movimiento fluido, perfecta para consumir multimedia y jugar.
-              </p>
-              <p className="text-gray-700 dark:text-gray-300 mb-4">
-                En el apartado de cámaras, el {phone.name} cuenta con {phone.specs.camara}, permitiendo a los usuarios capturar fotos y videos de calidad profesional en diversas condiciones de iluminación. El dispositivo funciona con {phone.specs.sistemaOperativo}, ofreciendo una interfaz limpia e intuitiva con las últimas funciones y actualizaciones de seguridad.
+                En el apartado de cámaras, el {phone.nombre} cuenta con {phone.especificaciones.camara}, permitiendo a los usuarios capturar fotos y videos de calidad profesional en diversas condiciones de iluminación. El dispositivo funciona con {phone.especificaciones.sistemaOperativo}, ofreciendo una interfaz limpia e intuitiva con las últimas funciones y actualizaciones de seguridad.
               </p>
               <p className="text-gray-700 dark:text-gray-300">
-                Con una batería de {phone.specs.bateria}, el {phone.name} proporciona autonomía para todo el día para la mayoría de los usuarios, incluso con uso intensivo. El dispositivo también soporta carga rápida, carga inalámbrica y carga inalámbrica inversa, ofreciendo opciones versátiles para usuarios en movimiento.
+                Con una batería de {phone.especificaciones.bateria}, el {phone.nombre} proporciona autonomía para todo el día para la mayoría de los usuarios, incluso con uso intensivo. El dispositivo también soporta carga rápida, carga inalámbrica y carga inalámbrica inversa, ofreciendo opciones versátiles para usuarios en movimiento.
               </p>
             </motion.div>
             
@@ -134,7 +127,7 @@ const ReviewDetail = () => {
                 Rendimiento y experiencia de usuario
               </h2>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                El {phone.name} ofrece un excelente rendimiento en las tareas del día a día, con aplicaciones que se abren rápidamente y multitarea fluida. El rendimiento en juegos es particularmente impresionante, incluso en títulos exigentes que corren a altas tasas de cuadros y con estabilidad constante.
+                El {phone.nombre} ofrece un excelente rendimiento en las tareas del día a día, con aplicaciones que se abren rápidamente y multitarea fluida. El rendimiento en juegos es particularmente impresionante, incluso en títulos exigentes que corren a altas tasas de cuadros y con estabilidad constante.
               </p>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
                 La interfaz de usuario es pulida y responsiva, con funciones pensadas para mejorar la experiencia general. Las animaciones son fluidas y el sistema rara vez muestra retrasos o parpadeos, incluso bajo cargas pesadas.
@@ -146,7 +139,7 @@ const ReviewDetail = () => {
           </div>
           
           <div className="space-y-8">
-            <SpecTable specs={phone.specs} />
+            <SpecTable specs={phone.especificaciones} />
             
             {relatedPhones.length > 0 && (
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
@@ -159,18 +152,18 @@ const ReviewDetail = () => {
                   <div className="space-y-4">
                     {relatedPhones.map((related) => (
                       <Link
-                        key={related.id}
+                        key={related.iD_Producto}
                         to={`/reviews/${related.slug}`}
                         className="flex items-center hover:bg-gray-50 dark:hover:bg-gray-750 p-2 rounded-lg transition-colors"
                       >
                         <img
-                          src={related.image}
-                          alt={`${related.brand} ${related.name}`}
+                          src={related.imagen}
+                          alt={`${related.marca} ${related.nombre}`}
                           className="w-16 h-16 object-cover rounded-md mr-4"
                         />
                         <div>
                           <h4 className="font-medium text-gray-900 dark:text-white">
-                            {related.name}
+                            {related.nombre}
                           </h4>
                         </div>
                       </Link>

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import CompareForm from '../components/compare/CompareForm';
 import ComparisonTable from '../components/compare/ComparisonTable';
 import { useLocation } from 'react-router-dom';
-import { phones, mockComparisonResults } from '../data/mockData';
-import { Phone, ComparisonResult } from '../types';
+import { usePhones, mockComparisonResults } from '../data/mockData';
+import { Productos, ComparisonResult } from '../types';
 import { motion } from 'framer-motion';
 
 const ComparePage = () => {
@@ -11,19 +11,22 @@ const ComparePage = () => {
   const params = new URLSearchParams(location.search);
   const initialPhone1Id = params.get('phone1') || '';
   const initialPhone2Id = params.get('phone2') || '';
+  const { phones, loading, error } = usePhones();
   
-  const [phone1, setPhone1] = useState<Phone | null>(
-    phones.find(p => p.id === initialPhone1Id) || null
+  const [phone1, setPhone1] = useState<Productos | null>(
+    phones.find(p => p.iD_Producto === Number(initialPhone1Id)) || null
   );
-  const [phone2, setPhone2] = useState<Phone | null>(
-    phones.find(p => p.id === initialPhone2Id) || null
+  const [phone2, setPhone2] = useState<Productos | null>(
+    phones.find(p => p.iD_Producto === Number(initialPhone2Id)) || null
   );
   const [results, setResults] = useState<ComparisonResult[]>([]);
   const [hasCompared, setHasCompared] = useState(false);
   
   const handleCompare = (phone1Id: string, phone2Id: string) => {
-    const selectedPhone1 = phones.find(p => p.id === phone1Id) || null;
-    const selectedPhone2 = phones.find(p => p.id === phone2Id) || null;
+    const id1 = Number(phone1Id);
+    const id2 = Number(phone2Id);
+    const selectedPhone1 = phones.find(p => p.iD_Producto === id1) || null;
+    const selectedPhone2 = phones.find(p => p.iD_Producto === id2) || null;
     
     setPhone1(selectedPhone1);
     setPhone2(selectedPhone2);

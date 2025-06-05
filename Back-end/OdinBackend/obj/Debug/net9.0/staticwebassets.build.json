@@ -1,1 +1,125 @@
-{"Version":1,"Hash":"pcxOSMSZw1q72ET2Y4wS0YWQegAjHczHeulKnkD14Yg=","Source":"OdinBackend","BasePath":"_content/OdinBackend","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "rmG8MfRD04JikZ6hFhfkW1IOB3vqxhfLI04SSSg2L3I=",
+  "Source": "OdinBackend",
+  "BasePath": "_content/OdinBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "OdinBackend\\wwwroot",
+      "Source": "OdinBackend",
+      "ContentRoot": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\wwwroot\\",
+      "BasePath": "_content/OdinBackend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\wwwroot\\images\\9f749531-fd66-4eb1-b64b-f44eda4de40e.png",
+      "SourceId": "OdinBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\wwwroot\\",
+      "BasePath": "_content/OdinBackend",
+      "RelativePath": "images/9f749531-fd66-4eb1-b64b-f44eda4de40e#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "z6tabgs1l9",
+      "Integrity": "S90YXV1bgXxJfoceFiLNlR1UG7M3265+mrsJ2NhhQ+4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\9f749531-fd66-4eb1-b64b-f44eda4de40e.png"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "images/9f749531-fd66-4eb1-b64b-f44eda4de40e.png",
+      "AssetFile": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\wwwroot\\images\\9f749531-fd66-4eb1-b64b-f44eda4de40e.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "216129"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"S90YXV1bgXxJfoceFiLNlR1UG7M3265+mrsJ2NhhQ+4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 16:56:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-S90YXV1bgXxJfoceFiLNlR1UG7M3265+mrsJ2NhhQ+4="
+        }
+      ]
+    },
+    {
+      "Route": "images/9f749531-fd66-4eb1-b64b-f44eda4de40e.z6tabgs1l9.png",
+      "AssetFile": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\wwwroot\\images\\9f749531-fd66-4eb1-b64b-f44eda4de40e.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "216129"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"S90YXV1bgXxJfoceFiLNlR1UG7M3265+mrsJ2NhhQ+4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 16:56:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z6tabgs1l9"
+        },
+        {
+          "Name": "label",
+          "Value": "images/9f749531-fd66-4eb1-b64b-f44eda4de40e.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-S90YXV1bgXxJfoceFiLNlR1UG7M3265+mrsJ2NhhQ+4="
+        }
+      ]
+    }
+  ]
+}

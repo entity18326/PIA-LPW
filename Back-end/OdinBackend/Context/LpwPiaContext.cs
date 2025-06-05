@@ -17,16 +17,17 @@ public partial class LpwPiaContext : DbContext
     }
 
     public virtual DbSet<Estadistica> Estadisticas { get; set; }
-
     public virtual DbSet<Noticia> Noticias { get; set; }
-
     public virtual DbSet<Producto> Productos { get; set; }
-
     public virtual DbSet<Usuario> Usuarios { get; set; }
+    public virtual DbSet<Imagen> Imagenes { get; set; }
+    public virtual DbSet<Marcas> Marcas { get; set; }
+    public virtual DbSet<EspecificacionesProducto> EspecificacionesProductos { get; set; }
+    public virtual DbSet<Categoria> Categorias { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=192.168.0.231;Database=LPW_PIA;User Id=sa;Password=timty288;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=192.168.1.83;Database=LPW_PIA;User Id=sa;Password=timty288;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -59,22 +60,30 @@ public partial class LpwPiaContext : DbContext
             entity.Property(e => e.Titulo).HasColumnType("varchar(MAX)");
             entity.Property(e => e.Resumen).HasColumnType("varchar(MAX)");
             entity.Property(e => e.Texto).HasColumnName("Texto").HasColumnType("varchar(MAX)");
+            entity.Property(e => e.Categoria).HasColumnName("Categoria").HasColumnType("nvarchar(100)");
+            entity.Property(e => e.Slug).HasColumnName("Slug").HasColumnType("nvarchar(100)");
         });
 
         modelBuilder.Entity<Producto>(entity =>
         {
+            
             entity.HasKey(e => e.ID_Producto);
             entity.ToTable("Productos");
+
             entity.Property(e => e.ID_Producto)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("ID_Producto");
-            entity.Property(e => e.Bateria).HasColumnType("varchar(100)");
-            entity.Property(e => e.Camara).HasColumnType("varchar(100)");
+
+            entity.HasOne(e => e.Especificaciones)
+                .WithOne(e => e.Producto)
+                .HasForeignKey<EspecificacionesProducto>(e => e.ID_Producto);
+
             entity.Property(e => e.Caracteristicas).HasColumnType("varchar(MAX)");
             entity.Property(e => e.Fecha).HasColumnType("date");
-            entity.Property(e => e.Imagen).HasColumnType("varchar(MAX)");
+            entity.Property(e => e.Imagen).HasColumnType("varchar(255)");
             entity.Property(e => e.Nombre).HasColumnType("varchar(100)");
-            entity.Property(e => e.Pantalla).HasColumnType("varchar(100)");
+            entity.Property(e => e.Slug).HasColumnType("nvarchar(255)");
+            entity.Property(e => e.Marca).HasColumnType("nvarchar(255)");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
@@ -86,6 +95,59 @@ public partial class LpwPiaContext : DbContext
                 .HasColumnName("ID_Usuario");
             entity.Property(e => e.Contraseña).HasColumnType("varchar(100)");
             entity.Property(e => e.Nombre).HasColumnType("varchar(100)");
+        });
+
+        modelBuilder.Entity<Imagen>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.ToTable("Imagenes");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("Id");
+            entity.Property(e => e.NombreArchivo).HasColumnType("nvarchar(255)");
+            entity.Property(e => e.Url).HasColumnType("nvarchar(500)");
+            entity.Property(e => e.FechaSubida).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<Marcas>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.ToTable("Marcas");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("Id");
+            entity.Property(e => e.NombreMarca).HasColumnType("nvarchar(255)");
+            entity.Property(e => e.descripcion).HasColumnType("nvarchar(500)");
+            entity.Property(e => e.logo).HasColumnType("nvarchar(500)");
+            entity.Property(e => e.slug).HasColumnType("nvarchar(255)");
+        });
+
+        modelBuilder.Entity<EspecificacionesProducto>(entity =>
+        {
+            entity.HasKey(e => e.ID_Producto);
+            entity.ToTable("EspecificacionesProducto");
+            entity.Property(e => e.ID_Producto)
+                .ValueGeneratedNever();
+
+            entity.Property(e => e.Pantalla).HasColumnType("varchar(255)").IsRequired(false);
+            entity.Property(e => e.Procesador).HasColumnType("varchar(255)").IsRequired(false);
+            entity.Property(e => e.RAM).HasColumnType("varchar(100)").IsRequired(false);
+            entity.Property(e => e.Almacenamiento).HasColumnType("varchar(100)").IsRequired(false);
+            entity.Property(e => e.Camara).HasColumnType("varchar(255)").IsRequired(false);
+            entity.Property(e => e.Bateria).HasColumnType("varchar(100)").IsRequired(false);
+            entity.Property(e => e.SistemaOperativo).HasColumnType("varchar(100)").IsRequired(false);
+        });
+
+        modelBuilder.Entity<Categoria>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.ToTable("Categorias");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("Id");
+            entity.Property(e => e.Nombre).HasColumnType("NVARCHAR(100)");
+            entity.Property(e => e.Descripcion).HasColumnType("NVARCHAR(255)");
+            entity.Property(e => e.Slug).HasColumnType("NVARCHAR(100)");
         });
 
         OnModelCreatingPartial(modelBuilder);

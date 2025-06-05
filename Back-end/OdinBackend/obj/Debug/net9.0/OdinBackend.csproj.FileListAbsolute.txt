@@ -331,3 +331,4 @@ C:\Users\GAMER\Desktop\UANL\Trabajos\DecimoSemestre\ProyectoLabWeb\PIA-LPW\Back-
 C:\Users\GAMER\Desktop\UANL\Trabajos\DecimoSemestre\ProyectoLabWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\OdinBackend.genruntimeconfig.cache
 C:\Users\GAMER\Desktop\UANL\Trabajos\DecimoSemestre\ProyectoLabWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\ref\OdinBackend.dll
 C:\Users\GAMER\Desktop\UANL\Trabajos\DecimoSemestre\ProyectoLabWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\bin\Debug\net9.0\OdinBackend.staticwebassets.runtime.json
