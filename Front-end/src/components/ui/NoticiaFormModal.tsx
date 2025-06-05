@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { X, Plus, Upload, AlertCircle, FileText, Calendar, User } from 'lucide-react';
+import { X, Upload, AlertCircle, FileText } from 'lucide-react';
 import axiosInstance from '../../axios/Axios';
-import { image } from 'framer-motion/client';
 
 // Interface para el formulario de noticia
 interface NoticiaFormData {

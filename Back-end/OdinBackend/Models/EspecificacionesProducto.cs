@@ -1,4 +1,6 @@
-﻿namespace OdinBackend.Models
+﻿using System.Text.Json.Serialization;
+
+namespace OdinBackend.Models
 {
     public class EspecificacionesProducto
     {
@@ -11,6 +13,7 @@
         public string? Bateria { get; set; }
         public string? SistemaOperativo { get; set; }
 
+        [JsonIgnore]
         public Producto? Producto { get; set; }
     }
 }

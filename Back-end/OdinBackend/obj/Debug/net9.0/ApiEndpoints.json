@@ -291,7 +291,7 @@
   },
   {
     "ContainingType": "OdinBackend.Controllers.ProductosController",
-    "Method": "GetProductos",
+    "Method": "BuscarProductos",
     "RelativePath": "api/Productos",
     "HttpMethod": "GET",
     "IsController": true,
@@ -333,7 +333,7 @@
   },
   {
     "ContainingType": "OdinBackend.Controllers.ProductosController",
-    "Method": "ActualizarProducto",
+    "Method": "ActualizarProductoConEspecificaciones",
     "RelativePath": "api/Productos/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -345,8 +345,8 @@
         "IsRequired": true
       },
       {
-        "Name": "producto",
-        "Type": "OdinBackend.Models.Producto",
+        "Name": "dto",
+        "Type": "OdinBackend.Controllers.ProductoConEspecificacionesDto",
         "IsRequired": true
       }
     ],

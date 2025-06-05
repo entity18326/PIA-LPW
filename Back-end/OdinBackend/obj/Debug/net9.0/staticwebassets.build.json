@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rmG8MfRD04JikZ6hFhfkW1IOB3vqxhfLI04SSSg2L3I=",
+  "Hash": "SzKzK3PivOrRed3xyWcDtdEZXY/zqBfhR7pUAUY0804=",
   "Source": "OdinBackend",
   "BasePath": "_content/OdinBackend",
   "Mode": "Default",
@@ -16,6 +16,27 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\wwwroot\\images\\3db167ee-58be-4dc1-8b9b-0c0c139838a7.png",
+      "SourceId": "OdinBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\wwwroot\\",
+      "BasePath": "_content/OdinBackend",
+      "RelativePath": "images/3db167ee-58be-4dc1-8b9b-0c0c139838a7#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "sycuuw9sfd",
+      "Integrity": "3HSb6N33Og+GFOPV0wV6HBJq99K/2kCFBX+nSC0UeBA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\3db167ee-58be-4dc1-8b9b-0c0c139838a7.png"
+    },
     {
       "Identity": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\wwwroot\\images\\9f749531-fd66-4eb1-b64b-f44eda4de40e.png",
       "SourceId": "OdinBackend",
@@ -39,6 +60,88 @@
     }
   ],
   "Endpoints": [
+    {
+      "Route": "images/3db167ee-58be-4dc1-8b9b-0c0c139838a7.png",
+      "AssetFile": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\wwwroot\\images\\3db167ee-58be-4dc1-8b9b-0c0c139838a7.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "646965"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3HSb6N33Og+GFOPV0wV6HBJq99K/2kCFBX+nSC0UeBA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Jun 2025 23:06:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3HSb6N33Og+GFOPV0wV6HBJq99K/2kCFBX+nSC0UeBA="
+        }
+      ]
+    },
+    {
+      "Route": "images/3db167ee-58be-4dc1-8b9b-0c0c139838a7.sycuuw9sfd.png",
+      "AssetFile": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\wwwroot\\images\\3db167ee-58be-4dc1-8b9b-0c0c139838a7.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "646965"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3HSb6N33Og+GFOPV0wV6HBJq99K/2kCFBX+nSC0UeBA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Jun 2025 23:06:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sycuuw9sfd"
+        },
+        {
+          "Name": "label",
+          "Value": "images/3db167ee-58be-4dc1-8b9b-0c0c139838a7.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3HSb6N33Og+GFOPV0wV6HBJq99K/2kCFBX+nSC0UeBA="
+        }
+      ]
+    },
     {
       "Route": "images/9f749531-fd66-4eb1-b64b-f44eda4de40e.png",
       "AssetFile": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\wwwroot\\images\\9f749531-fd66-4eb1-b64b-f44eda4de40e.png",

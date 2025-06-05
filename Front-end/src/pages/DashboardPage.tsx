@@ -396,7 +396,9 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
   setLoading(true);
   try {
     if (editProduct) {
+      
       const updated = await mockApi.editProduct(editProduct.iD_Producto, product);
+      
       setProducts(prev =>
         prev.map(p => (p.iD_Producto === editProduct.iD_Producto ? updated : p))
       );
@@ -405,7 +407,7 @@ const handleSubmitProduct = async (product: ProductoFormData) => {
       setProducts(prev => [...prev, newProduct]);
     }
     setShowProductForm(false);
-    setEditProduct(null); // Limpiar estado de edición
+    setEditProduct(null);
   } catch (error) {
     console.error("Error guardando producto:", error);
   } finally {
@@ -661,7 +663,7 @@ const handleSubmitMarca = async (marca: any) => {
                 </td>
                 <td className="px-6 py-4 text-gray-600">{product.fecha}</td>
                 <td className="px-6 py-4">
-                  {product.especificaciones?.camara ?? 'N/A'}
+                  {product.especificaciones?.camara ?? 'N/A'} 
                 </td>
                 <td className="px-6 py-4">
                   {product.especificaciones?.pantalla ?? 'N/A'}
@@ -678,7 +680,9 @@ const handleSubmitMarca = async (marca: any) => {
                 <td className="px-6 py-4">
                   <div className="flex items-center">
                     <span className="ml-1 text-gray-600">
-                      {product.imagen.length > 30 ? product.imagen.slice(0, 30) + '...' : product.imagen}
+                      {product.imagen && product.imagen.length > 30
+                        ? product.imagen.slice(0, 30) + '...'
+                        : product.imagen ?? 'Sin imagen'}
                     </span>
                   </div>
                 </td>

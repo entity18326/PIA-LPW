@@ -500,17 +500,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Producto"
+                "$ref": "#/components/schemas/ProductoConEspecificacionesDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Producto"
+                "$ref": "#/components/schemas/ProductoConEspecificacionesDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Producto"
+                "$ref": "#/components/schemas/ProductoConEspecificacionesDto"
               }
             }
           }
@@ -772,47 +772,6 @@
         },
         "additionalProperties": false
       },
-      "EspecificacionesProducto": {
-        "type": "object",
-        "properties": {
-          "iD_Producto": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pantalla": {
-            "type": "string",
-            "nullable": true
-          },
-          "procesador": {
-            "type": "string",
-            "nullable": true
-          },
-          "ram": {
-            "type": "string",
-            "nullable": true
-          },
-          "almacenamiento": {
-            "type": "string",
-            "nullable": true
-          },
-          "camara": {
-            "type": "string",
-            "nullable": true
-          },
-          "bateria": {
-            "type": "string",
-            "nullable": true
-          },
-          "sistemaOperativo": {
-            "type": "string",
-            "nullable": true
-          },
-          "producto": {
-            "$ref": "#/components/schemas/Producto"
-          }
-        },
-        "additionalProperties": false
-      },
       "Marcas": {
         "type": "object",
         "properties": {
@@ -884,44 +843,6 @@
           "slug": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Producto": {
-        "type": "object",
-        "properties": {
-          "iD_Producto": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nombre": {
-            "type": "string",
-            "nullable": true
-          },
-          "fecha": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "caracteristicas": {
-            "type": "string",
-            "nullable": true
-          },
-          "imagen": {
-            "type": "string",
-            "nullable": true
-          },
-          "slug": {
-            "type": "string",
-            "nullable": true
-          },
-          "marca": {
-            "type": "string",
-            "nullable": true
-          },
-          "especificaciones": {
-            "$ref": "#/components/schemas/EspecificacionesProducto"
           }
         },
         "additionalProperties": false

@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Share2, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Share2 } from 'lucide-react';
 import { Productos } from '../types';
-import { useBrands, usePhones } from '../data/mockData';
+import { usePhones } from '../data/mockData';
 import SpecTable from '../components/ui/SpecTable';
 import { motion } from 'framer-motion';
 
 const ReviewDetail = () => {
-  const { phones, loading: phonesLoading, error: phonesError } = usePhones();
+  const { phones } = usePhones();
   const { id } = useParams<{ id: string }>();
   const [phone, setPhone] = useState<Productos | null>(null);
   const [relatedPhones, setRelatedPhones] = useState<Productos[]>([]);
-  // Removed unused useBrands destructuring
   
   useEffect(() => {
     const foundPhone = phones.find(p => p.slug === id);

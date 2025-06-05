@@ -28,11 +28,12 @@ namespace OdinBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProductos()
+        public async Task<IActionResult> BuscarProductos()
         {
             try
             {
-                var productos = await _context.Productos.ToListAsync();
+                var productos = await _context.Productos.Include(p => p.Especificaciones)
+                    .ToListAsync();
 
                 if (productos == null || !productos.Any())
                 {
@@ -89,27 +90,62 @@ namespace OdinBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> ActualizarProducto(int id, Producto producto)
+        public async Task<IActionResult> ActualizarProductoConEspecificaciones(int id, [FromBody] ProductoConEspecificacionesDto dto)
         {
-            if (id != producto.ID_Producto)
-                return BadRequest("El ID no coincide");
+            var productoExistente = await _context.Productos
+                .Include(p => p.Especificaciones)
+                .FirstOrDefaultAsync(p => p.ID_Producto == id);
 
-            _context.Entry(producto).State = EntityState.Modified;
+            if (productoExistente == null)
+                return NotFound();
 
-            try
+            // Actualizar propiedades del producto
+            productoExistente.Nombre = dto.Nombre;
+            productoExistente.Fecha = dto.Fecha;
+            productoExistente.Caracteristicas = dto.Caracteristicas;
+            productoExistente.Imagen = dto.Imagen;
+            productoExistente.Slug = dto.Slug;
+            productoExistente.Marca = dto.Marca;
+
+            // Actualizar o agregar especificaciones
+            if (dto.Especificaciones != null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.Productos.Any(e => e.ID_Producto == id))
-                    return NotFound();
+                if (productoExistente.Especificaciones == null)
+                {
+                    // Crear nuevas especificaciones
+                    var especificaciones = new EspecificacionesProducto
+                    {
+                        ID_Producto = id,
+                        Pantalla = dto.Especificaciones.Pantalla,
+                        Procesador = dto.Especificaciones.Procesador,
+                        RAM = dto.Especificaciones.RAM,
+                        Almacenamiento = dto.Especificaciones.Almacenamiento,
+                        Camara = dto.Especificaciones.Camara,
+                        Bateria = dto.Especificaciones.Bateria,
+                        SistemaOperativo = dto.Especificaciones.SistemaOperativo
+                    };
+
+                    _context.EspecificacionesProductos.Add(especificaciones);
+                }
                 else
-                    throw;
+                {
+                    // Actualizar especificaciones existentes
+                    var especificaciones = productoExistente.Especificaciones;
+                    especificaciones.Pantalla = dto.Especificaciones.Pantalla;
+                    especificaciones.Procesador = dto.Especificaciones.Procesador;
+                    especificaciones.RAM = dto.Especificaciones.RAM;
+                    especificaciones.Almacenamiento = dto.Especificaciones.Almacenamiento;
+                    especificaciones.Camara = dto.Especificaciones.Camara;
+                    especificaciones.Bateria = dto.Especificaciones.Bateria;
+                    especificaciones.SistemaOperativo = dto.Especificaciones.SistemaOperativo;
+                }
             }
 
-            return NoContent();
+            await _context.SaveChangesAsync();
+
+            return Ok(productoExistente);
         }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> EliminarProducto(int id)
