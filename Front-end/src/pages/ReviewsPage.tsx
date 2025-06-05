@@ -7,16 +7,16 @@ import { motion } from 'framer-motion';
 const ReviewsPage = () => {
   const [filterBrand, setFilterBrand] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('newest');
-
   const { phones, loading, error } = usePhones();
 
-  const brandOptions = ['all', ...new Set(phones.map(phone => phone.brand))];
+
+  const brandOptions = ['all', ...new Set(phones.map(phone => phone.marca))];
 
   const filteredPhones = phones
-    .filter(phone => filterBrand === 'all' ? true : phone.brand === filterBrand)
+    .filter(phone => filterBrand === 'all' ? true : phone.marca === filterBrand)
     .sort((a, b) => {
       if (sortBy === 'newest') {
-        return new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime();
+        return new Date(b.fecha).getTime() - new Date(a.fecha).getTime();
       }
       return 0;
     });
@@ -74,7 +74,7 @@ const ReviewsPage = () => {
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {filteredPhones.map((phone) => (
-          <PhoneCard key={phone.id} phone={phone} />
+          <PhoneCard key={phone.iD_Producto} phone={phone} />
         ))}
       </div>
       

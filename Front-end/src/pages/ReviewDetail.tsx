@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Share2, ChevronRight } from 'lucide-react';
 import { Productos } from '../types';
-import { usePhones } from '../data/mockData';
+import { useBrands, usePhones } from '../data/mockData';
 import SpecTable from '../components/ui/SpecTable';
 import { motion } from 'framer-motion';
 
 const ReviewDetail = () => {
+  const { phones, loading: phonesLoading, error: phonesError } = usePhones();
   const { id } = useParams<{ id: string }>();
   const [phone, setPhone] = useState<Productos | null>(null);
   const [relatedPhones, setRelatedPhones] = useState<Productos[]>([]);
-  const { phones, loading, error } = usePhones();
+  // Removed unused useBrands destructuring
   
   useEffect(() => {
     const foundPhone = phones.find(p => p.slug === id);
@@ -18,7 +19,7 @@ const ReviewDetail = () => {
     
     if (foundPhone) {
       const related = phones
-        .filter(p => p.brand === foundPhone.brand && p.id !== foundPhone.id)
+        .filter(p => p.marca === foundPhone.marca && p.iD_Producto !== foundPhone.iD_Producto)
         .slice(0, 3);
       setRelatedPhones(related);
     }
@@ -110,14 +111,14 @@ const ReviewDetail = () => {
                 Descripción general
               </h2>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                El {phone.nombre} es un smartphone insignia que muestra las últimas innovaciones y tecnología de punta de la marca. Lanzado el {new Date(phone.releaseDate).toLocaleDateString()}, este dispositivo se ha convertido rápidamente en un referente para los smartphones premium.
+                El {phone.nombre} es un smartphone insignia que muestra las últimas innovaciones y tecnología de punta de la marca. Lanzado el {new Date(phone.fecha).toLocaleDateString()}, este dispositivo se ha convertido rápidamente en un referente para los smartphones premium.
               </p>
               
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                En el apartado de cámaras, el {phone.nombre} cuenta con {phone.camara}, permitiendo a los usuarios capturar fotos y videos de calidad profesional en diversas condiciones de iluminación. El dispositivo funciona con {phone.specs.sistemaOperativo}, ofreciendo una interfaz limpia e intuitiva con las últimas funciones y actualizaciones de seguridad.
+                En el apartado de cámaras, el {phone.nombre} cuenta con {phone.especificaciones.camara}, permitiendo a los usuarios capturar fotos y videos de calidad profesional en diversas condiciones de iluminación. El dispositivo funciona con {phone.especificaciones.sistemaOperativo}, ofreciendo una interfaz limpia e intuitiva con las últimas funciones y actualizaciones de seguridad.
               </p>
               <p className="text-gray-700 dark:text-gray-300">
-                Con una batería de {phone.specs.bateria}, el {phone.name} proporciona autonomía para todo el día para la mayoría de los usuarios, incluso con uso intensivo. El dispositivo también soporta carga rápida, carga inalámbrica y carga inalámbrica inversa, ofreciendo opciones versátiles para usuarios en movimiento.
+                Con una batería de {phone.especificaciones.bateria}, el {phone.nombre} proporciona autonomía para todo el día para la mayoría de los usuarios, incluso con uso intensivo. El dispositivo también soporta carga rápida, carga inalámbrica y carga inalámbrica inversa, ofreciendo opciones versátiles para usuarios en movimiento.
               </p>
             </motion.div>
             
@@ -126,7 +127,7 @@ const ReviewDetail = () => {
                 Rendimiento y experiencia de usuario
               </h2>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                El {phone.name} ofrece un excelente rendimiento en las tareas del día a día, con aplicaciones que se abren rápidamente y multitarea fluida. El rendimiento en juegos es particularmente impresionante, incluso en títulos exigentes que corren a altas tasas de cuadros y con estabilidad constante.
+                El {phone.nombre} ofrece un excelente rendimiento en las tareas del día a día, con aplicaciones que se abren rápidamente y multitarea fluida. El rendimiento en juegos es particularmente impresionante, incluso en títulos exigentes que corren a altas tasas de cuadros y con estabilidad constante.
               </p>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
                 La interfaz de usuario es pulida y responsiva, con funciones pensadas para mejorar la experiencia general. Las animaciones son fluidas y el sistema rara vez muestra retrasos o parpadeos, incluso bajo cargas pesadas.
@@ -138,7 +139,7 @@ const ReviewDetail = () => {
           </div>
           
           <div className="space-y-8">
-            <SpecTable specs={phone.specs} />
+            <SpecTable specs={phone.especificaciones} />
             
             {relatedPhones.length > 0 && (
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
@@ -151,18 +152,18 @@ const ReviewDetail = () => {
                   <div className="space-y-4">
                     {relatedPhones.map((related) => (
                       <Link
-                        key={related.id}
+                        key={related.iD_Producto}
                         to={`/reviews/${related.slug}`}
                         className="flex items-center hover:bg-gray-50 dark:hover:bg-gray-750 p-2 rounded-lg transition-colors"
                       >
                         <img
-                          src={related.image}
-                          alt={`${related.brand} ${related.name}`}
+                          src={related.imagen}
+                          alt={`${related.marca} ${related.nombre}`}
                           className="w-16 h-16 object-cover rounded-md mr-4"
                         />
                         <div>
                           <h4 className="font-medium text-gray-900 dark:text-white">
-                            {related.name}
+                            {related.nombre}
                           </h4>
                         </div>
                       </Link>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
-import { Eye, Smartphone, FileText, Users, TrendingUp, Search, Filter, Plus, Edit, Trash2, RefreshCw, LucideIcon, AlertCircle, LogOut, User, Menu, X } from 'lucide-react';
+import { Eye, Smartphone, ListChecks, Star, FileText, Users, TrendingUp, Search, Filter, Plus, Edit, Trash2, RefreshCw, LucideIcon, AlertCircle, LogOut, User, Menu, X, Bus } from 'lucide-react';
 import axiosInstance from '../axios/Axios';
 import LoginPage from './LoginPage';
 import { useNavigate } from 'react-router-dom';
 import ProductoFormModal from '../components/ui/ProductoFormModal';
 import NoticiaFormModal from '../components/ui/NoticiaFormModal';
+import { Productos, Noticias, Categorias, Marcas, EspecificacionesProducto } from '../types';
+import CategoriaFormModal from '../components/ui/CategoriaFormModal';
 
 // Interfaces de Autenticación
 interface Usuario {
@@ -40,36 +42,14 @@ interface VisitStats {
   sourceDistribution: SourceDistribution[];
 }
 
-interface Productos {
-  iD_Producto: number;
-  nombre: string;
-  fecha: string;
-  camara: string;
-  pantalla: string;
-  bateria: string;
-  caracteristicas: string;
-  imagen: string;
-}
-
 interface ProductoFormData {
   nombre: string;
   fecha: string;
-  camara: string;
-  pantalla: string;
-  bateria: string;
   caracteristicas: string;
   imagen: string;
-}
-
-interface Noticias {
-  iD_Noticia: number;
-  iD_Usuario: number;
-  iD_Producto?: number | null;
-  titulo: string;
-  imagen: string;
-  fecha: string;
-  texto: string;
-  resumen: string;
+  slug: string;
+  marca: string;
+  especificaciones: EspecificacionesProducto;
 }
 
 interface NoticiaFormData {
@@ -94,7 +74,7 @@ interface ApiResponse<T> {
   data: T;
 }
 
-type TabType = 'overview' | 'news' | 'products';
+type TabType = 'overview' | 'news' | 'products' | 'category' | 'brands';
 
 const useAuth = (): AuthContextType => {
     const navigate = useNavigate();
@@ -231,11 +211,23 @@ const mockApi = {
   getNews: (): Promise<ApiResponse<Noticias[]>> => 
     axiosInstance.get<Noticias[]>('/Noticias'),
 
+  getCategories: (): Promise<ApiResponse<Categorias[]>> =>
+    axiosInstance.get<Categorias[]>('/Categorias'),
+
+  getBrands: (): Promise<ApiResponse<Marcas[]>> =>
+    axiosInstance.get<Marcas[]>('/Marcas'),
+
   deleteNews: (id: number): Promise<void> => 
     axiosInstance.delete(`/Noticias/${id}`).then(() => {}),
 
   deleteProduct: (id: number): Promise<void> => 
     axiosInstance.delete(`/Productos/${id}`).then(() => {}),
+
+  deleteCategoria: (id: number): Promise<void> => 
+    axiosInstance.delete(`/Categorias/${id}`).then(() => {}),
+
+  deleteMarca: (id: number): Promise<void> =>
+    axiosInstance.delete(`/Marcas/${id}`).then(() => {}),
 
   editProduct: (id: number, updatedProductData: any): Promise<Productos> => 
     axiosInstance.put(`/Productos/${id}`, updatedProductData).then(res => res.data),
@@ -243,22 +235,45 @@ const mockApi = {
   editNoticia: (id: number, updatedNoticiaData: any): Promise<Noticias> => 
     axiosInstance.put(`/Noticias/${id}`, updatedNoticiaData).then(res => res.data),
 
+  editCategoria: (id: number, updatedCategoriaData: any): Promise<Categorias> =>
+    axiosInstance.put(`/Categorias/${id}`, updatedCategoriaData).then(res => res.data),
+
+  editMarca: (id: number, updatedMarcaData: any): Promise<Marcas> =>
+    axiosInstance.put(`/Marcas/${id}`, updatedMarcaData).then(res => res.data),
+
   createProduct: (productData: ProductoFormData): Promise<Productos> =>
     axiosInstance.post<Productos>('/Productos', productData).then(res => res.data),
 
   createNoticia: (noticiaData: NoticiaFormData): Promise<Noticias> =>
-    axiosInstance.post<Noticias>('/Noticias', noticiaData).then(res => res.data)
+    axiosInstance.post<Noticias>('/Noticias', noticiaData).then(res => res.data),
+
+  createCategoria: (categoriaData: any): Promise<Categorias> =>
+    axiosInstance.post<Categorias>('/Categorias', categoriaData).then(res => res.data),
+
+  createMarca: (marcaData: any): Promise<Marcas> =>
+    axiosInstance.post<Marcas>('/Marcas', marcaData).then(res => res.data)
 };
 
 const AdminDashboard: React.FC = () => {
   const [editProduct, setEditProduct] = useState<Productos | null>(null);
   const [editNoticia, setEditNoticia] = useState<Noticias | null>(null);
-  const [showProductForm, setShowProductForm] = useState<boolean>(false);
-  const [showNoticiaForm, setShowNoticiaForm] = useState<boolean>(false);
-  const { usuario, isAuthenticated, isAdmin, logout } = useAuth();
-  const [visitStats, setVisitStats] = useState<VisitStats | null>(null);
+  const [editCategoria, setEditCategoria] = useState<Categorias | null>(null);
+  const [editMarca, setEditMarca] = useState<Marcas | null>(null);
+
   const [products, setProducts] = useState<Productos[]>([]);
   const [noticias, setNoticias] = useState<Noticias[]>([]);
+  const [categorias, setCategorias] = useState<Categorias[]>([]);
+  const [marcas, setMarcas] = useState<Marcas[]>([]);
+
+  const [showProductForm, setShowProductForm] = useState<boolean>(false);
+  const [showNoticiaForm, setShowNoticiaForm] = useState<boolean>(false);
+  const [showCategoriaForm, setShowCategoriaForm] = useState<boolean>(false);
+  const [showMarcaForm, setShowMarcaForm] = useState<boolean>(false);
+
+  const { usuario, isAuthenticated, isAdmin, logout } = useAuth();
+  const [visitStats, setVisitStats] = useState<VisitStats | null>(null);
+
+
   const [loading, setLoading] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -322,6 +337,15 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
+  const handleDeleteCategoria = async (id: number): Promise<void> => {
+    try {
+      await mockApi.deleteProduct(id);
+      setProducts(prev => prev.filter(item => item.iD_Producto !== id));
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  };
+
   const handleEditProducts = (product: Productos): void => {
     setEditProduct(product);
     setShowProductForm(true);
@@ -331,6 +355,16 @@ const AdminDashboard: React.FC = () => {
   const handleEditNoticias = (noticia: Noticias): void => {
     setEditNoticia(noticia);
     setShowNoticiaForm(true);
+  };
+
+  const handleEditCategorias = (categoria: Categorias): void => {
+    setEditCategoria(categoria);
+    setShowCategoriaForm(true);
+  };
+
+  const handleEditMarcas = (marca: Marcas): void => {
+    setEditMarca(marca);
+    setShowMarcaForm(true);
   };
 
   // Función para manejar nuevo producto
@@ -343,6 +377,18 @@ const AdminDashboard: React.FC = () => {
   const handleNewNoticia = (): void => {
     setEditNoticia(null);
     setShowNoticiaForm(true);
+  };
+
+  // Función para manejar nueva categoría
+  const handleNewCategoria = (): void => {
+    setEditCategoria(null);
+    setShowCategoriaForm(true);
+  };
+
+  // Función para manejar nueva marca
+  const handleNewMarca = (): void => {
+    setEditMarca(null);
+    setShowProductForm(true);
   };
 
 // Función para manejar el envío del formulario
@@ -391,6 +437,54 @@ const handleSubmitNoticia = async (noticia: NoticiaFormData) => {
   }
 };
 
+  // Función para manejar envío de categorías
+const handleSubmitCategoria = async (categoria: any) => {
+  setLoading(true);
+  try {
+    if (editCategoria) {
+      // Editar categoría existente
+      const updated = await mockApi.editCategoria(editCategoria.id, categoria);
+      setCategorias(prev =>
+        prev.map(c => (c.id === editCategoria.id ? updated : c))
+      );
+    } else {
+      // Crear nueva categoría
+      const newCategoria = await mockApi.createCategoria(categoria);
+      setCategorias(prev => [...prev, newCategoria]);
+    }
+    setShowCategoriaForm(false);
+    setEditCategoria(null); // Limpiar estado de edición
+  } catch (error) {
+    console.error("Error guardando categoría:", error);
+  } finally {
+    setLoading(false);
+  }
+}
+
+  // Función para manejar envío de marcas
+const handleSubmitMarca = async (marca: any) => {
+    setLoading(true);
+    try {
+      if (editMarca) {
+        // Editar marca existente
+        const updated = await mockApi.editMarca(editMarca.id, marca);
+        setMarcas(prev =>
+          prev.map(m => (m.id === editMarca.id ? updated : m))
+        );
+      } else {
+        // Crear nueva marca
+        const newMarca = await mockApi.createMarca(marca);
+        setMarcas(prev => [...prev, newMarca]);
+      }
+      setShowMarcaForm(false);
+      setEditMarca(null); // Limpiar estado de edición
+    } catch (error) {
+      console.error("Error guardando marca:", error);
+    } finally {
+      setLoading(false);
+    }
+};
+
   // Función para cerrar el modal
   const handleCloseModalProductos = (): void => {
     setShowProductForm(false);
@@ -400,6 +494,16 @@ const handleSubmitNoticia = async (noticia: NoticiaFormData) => {
   const handleCloseModalNoticias = (): void => {
     setShowNoticiaForm(false);
     setEditNoticia(null);
+  };
+
+  const handleCloseModalCategorias = (): void => {
+    setShowCategoriaForm(false);
+    setEditCategoria(null);
+  };
+
+  const handleCloseModalMarcas = (): void => {
+    setShowProductForm(false);
+    setEditMarca(null);
   };
 
   //#region Componente de tarjeta de estadísticas
@@ -557,13 +661,13 @@ const handleSubmitNoticia = async (noticia: NoticiaFormData) => {
                 </td>
                 <td className="px-6 py-4 text-gray-600">{product.fecha}</td>
                 <td className="px-6 py-4">
-                  {product.camara}
+                  {product.especificaciones?.camara ?? 'N/A'}
                 </td>
                 <td className="px-6 py-4">
-                  {product.pantalla}
+                  {product.especificaciones?.pantalla ?? 'N/A'}
                 </td>
                 <td className="px-6 py-4">
-                  {product.bateria}
+                  {product.especificaciones?.bateria ?? 'N/A'}
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex items-center">
@@ -605,7 +709,97 @@ const handleSubmitNoticia = async (noticia: NoticiaFormData) => {
         onClose={handleCloseModalProductos}
         onSubmit={handleSubmitProduct}
         loading={loading}
-        productToEdit={editProduct}
+        productToEdit={
+          editProduct
+            ? {
+                nombre: editProduct.nombre,
+                fecha: editProduct.fecha,
+                caracteristicas: editProduct.caracteristicas,
+                imagen: editProduct.imagen,
+                slug: editProduct.slug,
+                marca: editProduct.marca,
+                especificaciones: {
+                  camara: editProduct.especificaciones?.camara || '',
+                  pantalla: editProduct.especificaciones?.pantalla || '',
+                  bateria: editProduct.especificaciones?.bateria || '',
+                  procesador: editProduct.especificaciones?.procesador || '',
+                  ram: editProduct.especificaciones?.ram || '',
+                  almacenamiento: editProduct.especificaciones?.almacenamiento || '',
+                  sistemaOperativo: editProduct.especificaciones?.sistemaOperativo || '',
+                },
+              }
+            : null
+        }
+      />
+    </div>
+  );
+
+  const CategoryTable: React.FC = () => (
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+      <div className="p-6 border-b border-gray-200">
+        <h3 className="text-xl font-bold text-gray-900">Categorías</h3>
+        <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 mt-4"
+          onClick={handleNewCategoria}
+          disabled={loading}>
+          <Plus className="w-4 h-4" />
+          Nueva Categoría
+        </button>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Nombre</th>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Descripción</th>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Acciones</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {categorias.map((categoria) => (
+              <tr key={categoria.id} className="hover:bg-gray-50">
+                <td className="px-6 py-4">
+                  <div className="font-medium text-gray-900">{categoria.nombre}</div>
+                </td>
+                <td className="px-6 py-4 text-gray-600">{categoria.descripcion}</td>
+                <td className="px-6 py-4">
+                  {categoria.slug}
+                </td>
+                <td className="px-6 py-4">
+                  <div className="flex gap-2">
+                    <button 
+                      className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg"
+                      onClick={() => handleEditCategorias(categoria)}
+                    >
+                      <Edit className="w-4 h-4" />
+                    </button>
+                    <button 
+                      className="p-2 text-red-600 hover:bg-red-100 rounded-lg"
+                      onClick={() => handleDeleteCategoria(categoria.id)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {/* Modal de Formulario de Categoria */}
+      <CategoriaFormModal
+        isOpen={showCategoriaForm}
+        onClose={handleCloseModalCategorias}
+        onSubmit={handleSubmitCategoria}
+        loading={loading}
+        categoriaToEdit={
+          editCategoria
+            ? {
+                nombre: editCategoria.nombre,
+                descripcion: editCategoria.descripcion,
+                slug: editCategoria.slug,
+              }
+            : null
+        }
       />
     </div>
   );
@@ -614,7 +808,9 @@ const handleSubmitNoticia = async (noticia: NoticiaFormData) => {
   const navigationTabs = [
     { id: 'overview' as TabType, name: 'Resumen', icon: TrendingUp },
     { id: 'news' as TabType, name: 'Noticias', icon: FileText },
-    { id: 'products' as TabType, name: 'Productos', icon: Smartphone }
+    { id: 'products' as TabType, name: 'Productos', icon: Smartphone },
+    { id: 'category' as TabType, name: 'Categorías', icon: ListChecks },
+    { id: 'brands' as TabType, name: 'Marcas', icon:  Star},
   ];
 
   if (loading) {
@@ -811,6 +1007,7 @@ const handleSubmitNoticia = async (noticia: NoticiaFormData) => {
 
           {activeTab === 'news' && <NewsTable />}
           {activeTab === 'products' && <ProductsTable />}
+          {activeTab === 'category' && <CategoryTable />}
         </main>
       </div>
     </div>

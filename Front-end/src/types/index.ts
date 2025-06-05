@@ -20,22 +20,30 @@ export interface EspecificacionesProducto {
 }
 
 export interface Noticias {
-  id: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  image: string;
-  author: string;
-  date: string;
-  category: string;
-  tags: string[];
+  iD_Noticia: number;
+  iD_Usuario: number;
+  iD_Producto: number;
+  titulo: string;
+  texto: string;
+  resumen: string;
+  imagen: string;
+  fecha: string;
+  categoria: string;
+  etiquetas: string[];
   slug: string;
 }
 
 export interface Marcas {
-  id: string;
-  nombre: string;
+  id: number;
+  nombreMarca: string;
   logo: string;
+  descripcion: string;
+  slug: string;
+}
+
+export interface Categorias {
+  id: number;
+  nombre: string;
   descripcion: string;
   slug: string;
 }

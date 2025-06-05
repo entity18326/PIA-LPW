@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { X, Plus, Upload, AlertCircle } from 'lucide-react';
 import axiosInstance from '../../axios/Axios';
+import { EspecificacionesProducto} from '../../types';
 
 // Interface para el formulario de producto
 interface ProductoFormData {
   nombre: string;
   fecha: string;
-  camara: string;
-  pantalla: string;
-  bateria: string;
   caracteristicas: string;
   imagen: string;
+  slug: string;
+  marca: string;
+  especificaciones: EspecificacionesProducto;
 }
 
 // Interface para errores de validación
@@ -22,6 +23,10 @@ interface FormErrors {
   bateria?: string;
   caracteristicas?: string;
   imagen?: string;
+  procesador?: string;
+  almacenamiento?: string;
+  sistemaOperativo?: string;
+  ram?: string;
 }
 
 // Props para el componente modal
@@ -43,11 +48,19 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
   const [formData, setFormData] = useState<ProductoFormData>({
     nombre: '',
     fecha: '',
-    camara: '',
-    pantalla: '',
-    bateria: '',
     caracteristicas: '',
-    imagen: ''
+    imagen: '',
+    slug: '',
+    marca: '',
+    especificaciones: {
+      camara: '',
+      pantalla: '',
+      bateria: '',
+      procesador: '',
+      almacenamiento: '',
+      sistemaOperativo: '',
+      ram: ''
+    }
   });
 
   useEffect(() => {
@@ -58,11 +71,19 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
     setFormData({
       nombre: '',
       fecha: '',
-      camara: '',
-      pantalla: '',
-      bateria: '',
       caracteristicas: '',
-      imagen: ''
+      imagen: '',
+      slug: '',
+      marca: '',
+      especificaciones: {
+        camara: '',
+        pantalla: '',
+        bateria: '',
+        procesador: '',
+        almacenamiento: '',
+        sistemaOperativo: '',
+        ram: ''
+      }
     });
   }
 }, [productToEdit, isOpen]);
@@ -82,15 +103,15 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
       newErrors.fecha = 'La fecha es obligatoria';
     }
 
-    if (!formData.camara.trim()) {
+    if (!formData.especificaciones.camara.trim()) {
       newErrors.camara = 'La información de la cámara es obligatoria';
     }
 
-    if (!formData.pantalla.trim()) {
+    if (!formData.especificaciones.pantalla.trim()) {
       newErrors.pantalla = 'La información de la pantalla es obligatoria';
     }
 
-    if (!formData.bateria.trim()) {
+    if (!formData.especificaciones.bateria.trim()) {
       newErrors.bateria = 'La información de la batería es obligatoria';
     }
 
@@ -148,11 +169,19 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
     setFormData({
       nombre: '',
       fecha: '',
-      camara: '',
-      pantalla: '',
-      bateria: '',
       caracteristicas: '',
-      imagen: ''
+      imagen: '',
+      slug: '',
+      marca: '',
+      especificaciones: {
+        camara: '',
+        pantalla: '',
+        bateria: '',
+        procesador: '',
+        almacenamiento: '',
+        sistemaOperativo: '',
+        ram: ''
+      }
     });
     setErrors({});
     onClose();
@@ -273,7 +302,7 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
                 type="text"
                 id="camara"
                 name="camara"
-                value={formData.camara}
+                value={formData.especificaciones.camara}
                 onChange={handleInputChange}
                 className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                   errors.camara ? 'border-red-500' : 'border-gray-300'
@@ -298,12 +327,62 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
                 type="text"
                 id="pantalla"
                 name="pantalla"
-                value={formData.pantalla}
+                value={formData.especificaciones.pantalla}
                 onChange={handleInputChange}
                 className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                   errors.pantalla ? 'border-red-500' : 'border-gray-300'
                 }`}
                 placeholder="Ej: 6.7 pulgadas Super Retina XDR"
+                disabled={submitting}
+              />
+              {errors.pantalla && (
+                <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.pantalla}
+                </p>
+              )}
+            </div>
+
+            {/* Procesador */}
+            <div>
+              <label htmlFor="procesador" className="block text-sm font-medium text-gray-700 mb-2">
+                Procesador *
+              </label>
+              <input
+                type="text"
+                id="procesador"
+                name="procesador"
+                value={formData.especificaciones.procesador}
+                onChange={handleInputChange}
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  errors.procesador ? 'border-red-500' : 'border-gray-300'
+                }`}
+                placeholder="Ej: Snapdragon 8 Gen 2"
+                disabled={submitting}
+              />
+              {errors.pantalla && (
+                <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.pantalla}
+                </p>
+              )}
+            </div>
+
+            {/* RAM */}
+            <div>
+              <label htmlFor="ram" className="block text-sm font-medium text-gray-700 mb-2">
+                RAM *
+              </label>
+              <input
+                type="text"
+                id="ram"
+                name="ram"
+                value={formData.especificaciones.procesador}
+                onChange={handleInputChange}
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  errors.procesador ? 'border-red-500' : 'border-gray-300'
+                }`}
+                placeholder="Ej: Snapdragon 8 Gen 2"
                 disabled={submitting}
               />
               {errors.pantalla && (
@@ -324,7 +403,7 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
               type="text"
               id="bateria"
               name="bateria"
-              value={formData.bateria}
+              value={formData.especificaciones.bateria}
               onChange={handleInputChange}
               className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                 errors.bateria ? 'border-red-500' : 'border-gray-300'

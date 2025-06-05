@@ -23,10 +23,11 @@ public partial class LpwPiaContext : DbContext
     public virtual DbSet<Imagen> Imagenes { get; set; }
     public virtual DbSet<Marcas> Marcas { get; set; }
     public virtual DbSet<EspecificacionesProducto> EspecificacionesProductos { get; set; }
+    public virtual DbSet<Categoria> Categorias { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=192.168.0.231;Database=LPW_PIA;User Id=sa;Password=timty288;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=192.168.1.83;Database=LPW_PIA;User Id=sa;Password=timty288;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -59,6 +60,8 @@ public partial class LpwPiaContext : DbContext
             entity.Property(e => e.Titulo).HasColumnType("varchar(MAX)");
             entity.Property(e => e.Resumen).HasColumnType("varchar(MAX)");
             entity.Property(e => e.Texto).HasColumnName("Texto").HasColumnType("varchar(MAX)");
+            entity.Property(e => e.Categoria).HasColumnName("Categoria").HasColumnType("nvarchar(100)");
+            entity.Property(e => e.Slug).HasColumnName("Slug").HasColumnType("nvarchar(100)");
         });
 
         modelBuilder.Entity<Producto>(entity =>
@@ -121,7 +124,7 @@ public partial class LpwPiaContext : DbContext
 
         modelBuilder.Entity<EspecificacionesProducto>(entity =>
         {
-            entity.HasKey(e => e.ID_Producto); // <- Aquí defines la PK correctamente
+            entity.HasKey(e => e.ID_Producto);
             entity.ToTable("EspecificacionesProducto");
             entity.Property(e => e.ID_Producto)
                 .ValueGeneratedNever();
@@ -133,6 +136,18 @@ public partial class LpwPiaContext : DbContext
             entity.Property(e => e.Camara).HasColumnType("varchar(255)").IsRequired(false);
             entity.Property(e => e.Bateria).HasColumnType("varchar(100)").IsRequired(false);
             entity.Property(e => e.SistemaOperativo).HasColumnType("varchar(100)").IsRequired(false);
+        });
+
+        modelBuilder.Entity<Categoria>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.ToTable("Categorias");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("Id");
+            entity.Property(e => e.Nombre).HasColumnType("NVARCHAR(100)");
+            entity.Property(e => e.Descripcion).HasColumnType("NVARCHAR(255)");
+            entity.Property(e => e.Slug).HasColumnType("NVARCHAR(100)");
         });
 
         OnModelCreatingPartial(modelBuilder);

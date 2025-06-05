@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import PhoneCard from '../components/ui/PhoneCard';
-import { brands, usePhones } from '../data/mockData';
-import { Brand, Productos } from '../types';
+import { useBrands, usePhones } from '../data/mockData';
+import { Marcas, Productos } from '../types';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const BrandPage = () => {
   const { brand } = useParams<{ brand: string }>();
-  const [brandData, setBrandData] = useState<Brand | null>(null);
+  const [brandData, setBrandData] = useState<Marcas | null>(null);
   const [brandPhones, setBrandPhones] = useState<Productos[]>([]);
   const { phones, loading, error } = usePhones();
+  const { brands, loading: brandsLoading, error: brandsError } = useBrands();
   
   useEffect(() => {
     // Aqui se obtiene los datos de la API
@@ -19,7 +20,7 @@ const BrandPage = () => {
     
     if (foundBrand) {
       // Obtener los teléfonos de la marca
-      const brandPhones = phones.filter(p => p.brand.toLowerCase() === foundBrand.name.toLowerCase());
+      const brandPhones = phones.filter(p => p.marca.toLowerCase() === foundBrand.nombreMarca.toLowerCase());
       setBrandPhones(brandPhones);
     }
   }, [brand]);
@@ -56,7 +57,7 @@ const BrandPage = () => {
             >
               <img
                 src={brandData.logo}
-                alt={brandData.name}
+                alt={brandData.nombreMarca}
                 className="max-w-full max-h-full"
               />
             </motion.div>
@@ -68,10 +69,10 @@ const BrandPage = () => {
               className="text-center md:text-left"
             >
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                {brandData.name}
+                {brandData.nombreMarca}
               </h1>
               <p className="text-gray-600 dark:text-gray-400 max-w-2xl">
-                {brandData.description}
+                {brandData.descripcion || 'No hay descripción disponible para esta marca.'}
               </p>
             </motion.div>
           </div>
@@ -87,13 +88,13 @@ const BrandPage = () => {
             transition={{ duration: 0.5 }}
             className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8"
           >
-            Teléfonos {brandData.name}
+            Teléfonos {brandData.nombreMarca}
           </motion.h2>
           
           {brandPhones.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {brandPhones.map((phone) => (
-                <PhoneCard key={phone.id} phone={phone} />
+                <PhoneCard key={phone.iD_Producto} phone={phone} />
               ))}
             </div>
           ) : (
