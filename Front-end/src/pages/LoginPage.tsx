@@ -99,6 +99,14 @@ const LoginPage: React.FC = () => {
         role: data.usuario.iD_Rol
       }));
 
+      // Guardar token en localStorage para persistencia
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('userData', JSON.stringify({
+        id: data.usuario.iD_Usuario,
+        name: data.usuario.nombre,
+        role: data.usuario.iD_Rol
+      }));
+
       // Determinar nombre del rol
       let roleName = '';
       switch (data.usuario.iD_Rol) {
@@ -126,7 +134,6 @@ const LoginPage: React.FC = () => {
       setUsername('');
       setPassword('');
       
-      console.log('Usuario autenticado:', data.usuario.nombre);
       console.log('Rol:', roleName);
 
       // La redirección será manejada automáticamente por PublicRoute

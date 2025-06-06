@@ -67,8 +67,8 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     const checkAuth = () => {
-      const token = sessionStorage.getItem('authToken');
-      const userData = sessionStorage.getItem('userData');
+      const token = sessionStorage.getItem('authToken') || localStorage.getItem('authToken');
+      const userData = sessionStorage.getItem('userData' ) || localStorage.getItem('userData');
       
       if (token && userData) {
         try {
@@ -108,7 +108,11 @@ function AuthProvider({ children }: AuthProviderProps) {
       
       // Guardar en sessionStorage
       sessionStorage.setItem('authToken', token);
+      localStorage.setItem('authToken', token); // Opcional: también guardar en localStorage
+
+      // Guardar datos del usuario en sessionStorage
       sessionStorage.setItem('userData', JSON.stringify(userData));
+      localStorage.setItem('userData', JSON.stringify(userData)); // Opcional: también guardar en localStorage
       
       // Establecer estado
       setUser(userData);

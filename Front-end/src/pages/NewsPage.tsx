@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 const NewsPage = () => {
   const [category, setCategory] = useState('all');
-  const { news, loading: newsLoading, error: newsError } = useNews();
+  const { news } = useNews();
   
   const categories = ['all', ...new Set(news.map(article => article.categoria))];
   
