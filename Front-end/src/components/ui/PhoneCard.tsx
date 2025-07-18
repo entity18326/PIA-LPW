@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Phone } from '../../types';
+import { Productos } from '../../types';
 import { motion } from 'framer-motion';
 
 interface PhoneCardProps {
-  phone: Phone;
+  phone: Productos;
   featured?: boolean;
 }
 
@@ -21,8 +21,8 @@ const PhoneCard = ({ phone, featured = false }: PhoneCardProps) => {
       <Link to={`/reviews/${phone.slug}`} className="block">
         <div className="relative overflow-hidden">
           <img
-            src={phone.image}
-            alt={`${phone.brand} ${phone.name}`}
+            src={phone.imagen}
+            alt={`${phone.marca} ${phone.nombre}`}
             className={`w-full object-cover transition-transform duration-500 hover:scale-105 ${
               featured ? 'h-64 md:h-80' : 'h-48'
             }`}
@@ -39,25 +39,23 @@ const PhoneCard = ({ phone, featured = false }: PhoneCardProps) => {
         </div>
         <div className="p-4">
           <div className="text-xs text-primary-500 dark:text-primary-400 uppercase font-semibold tracking-wider mb-1">
-            {phone.brand}
+            {phone.marca}
           </div>
           <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-2">
-            {phone.name}
+            {phone.nombre}
           </h3>
           <div className="flex justify-between items-center">
             <span className="text-xs text-gray-500 dark:text-gray-400">
-              Released: {new Date(phone.releaseDate).toLocaleDateString()}
+              Released: {new Date(phone.fecha).toLocaleDateString()}
             </span>
           </div>
           {featured && (
             <div className="mt-4">
               <ul className="space-y-1">
-                {phone.highlights.slice(0, 3).map((highlight, index) => (
-                  <li key={index} className="text-sm text-gray-600 dark:text-gray-300 flex items-center">
-                    <span className="inline-block w-1.5 h-1.5 bg-primary-500 rounded-full mr-2"></span>
-                    {highlight}
-                  </li>
-                ))}
+                <li className="text-sm text-gray-600 dark:text-gray-300 flex items-center">
+                  <span className="inline-block w-1.5 h-1.5 bg-primary-500 rounded-full mr-2"></span>
+                  {phone.caracteristicas}
+                </li>
               </ul>
             </div>
           )}

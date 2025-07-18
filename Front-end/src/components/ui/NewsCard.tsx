@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Clock } from 'lucide-react';
-import { NewsArticle } from '../../types';
+import { Noticias } from '../../types';
 import { motion } from 'framer-motion';
 
 interface NewsCardProps {
-  article: NewsArticle;
+  article: Noticias;
   featured?: boolean;
 }
 
@@ -33,24 +33,24 @@ const NewsCard = ({ article, featured = false }: NewsCardProps) => {
       <Link to={`/news/${article.slug}`} className="block">
         <div className="relative overflow-hidden">
           <img
-            src={article.image}
-            alt={article.title}
+            src={article.imagen}
+            alt={article.titulo}
             className={`w-full object-cover transition-transform duration-500 hover:scale-105 ${
               featured ? 'h-64' : 'h-48'
             }`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-6">
             <div className="px-2 py-1 bg-accent-500 text-white text-xs font-semibold rounded-full w-fit mb-3">
-              {article.category}
+              {article.categoria}
             </div>
             <h3 className={`text-white font-bold mb-2 ${featured ? 'text-2xl' : 'text-lg'}`}>
-              {article.title}
+              {article.titulo}
             </h3>
             <div className="flex items-center text-xs text-white/90">
               <Clock size={14} className="mr-1" />
-              <span>{formatDate(article.date)}</span>
+              <span>{formatDate(article.fecha)}</span>
               <span className="mx-2">•</span>
-              <span>{article.author}</span>
+              <span>{article.iD_Usuario}</span>
             </div>
           </div>
         </div>
@@ -58,7 +58,7 @@ const NewsCard = ({ article, featured = false }: NewsCardProps) => {
         {!featured && (
           <div className="p-4">
             <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
-              {article.excerpt}
+              {article.resumen}
             </p>
           </div>
         )}

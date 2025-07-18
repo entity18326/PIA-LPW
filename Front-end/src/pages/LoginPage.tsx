@@ -11,7 +11,7 @@ interface LoginRequest {
 }
 
 interface Usuario {
-  iD_Usuario: number;
+  iD_Usuario: string;
   nombre?: string;
   iD_Rol: number;
 }
@@ -90,14 +90,6 @@ const LoginPage: React.FC = () => {
 
       // Configurar token para futuras peticiones
       axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-      
-      // Guardar datos en sessionStorage
-      sessionStorage.setItem('authToken', data.token);
-      sessionStorage.setItem('userData', JSON.stringify({
-        id: data.usuario.iD_Usuario,
-        name: data.usuario.nombre,
-        role: data.usuario.iD_Rol
-      }));
 
       // Determinar nombre del rol
       let roleName = '';
@@ -113,10 +105,30 @@ const LoginPage: React.FC = () => {
           break;
       }
 
+      // Guardar datos en sessionStorage
+      sessionStorage.setItem('authToken', data.token);
+      sessionStorage.setItem('userData', JSON.stringify({
+        iD_Usuario: data.usuario.iD_Usuario,
+        nombre: data.usuario.nombre || username,
+        email: username, // Si no tienes email, usar username
+        role: roleName,
+        roleId: data.usuario.iD_Rol
+      }));
+
+      // Guardar token en localStorage para persistencia
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('userData', JSON.stringify({
+        iD_Usuario: data.usuario.iD_Usuario,
+        nombre: data.usuario.nombre || username,
+        email: username,
+        role: roleName,
+        roleId: data.usuario.iD_Rol
+      }));
+
       // Usar el método login del contexto de autenticación
       await authLogin(data.token, {
-        id: data.usuario.iD_Usuario.toString(),
-        name: data.usuario.nombre || username,
+        iD_Usuario: data.usuario.iD_Usuario,
+        nombre: data.usuario.nombre || username,
         email: username, // Si no tienes email, usar username
         role: roleName,
         roleId: data.usuario.iD_Rol
@@ -126,7 +138,6 @@ const LoginPage: React.FC = () => {
       setUsername('');
       setPassword('');
       
-      console.log('Usuario autenticado:', data.usuario.nombre);
       console.log('Rol:', roleName);
 
       // La redirección será manejada automáticamente por PublicRoute

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Phone } from '../../types';
+import { Productos } from '../../types';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface CompareFormProps {
-  phones: Phone[];
+  phones: Productos[];
   onCompare: (phone1Id: string, phone2Id: string) => void;
 }
 
@@ -58,8 +58,8 @@ const CompareForm = ({ phones, onCompare }: CompareFormProps) => {
             >
               <option value="">Selecciona un Teléfono</option>
               {phones.map((phone) => (
-                <option key={phone.id} value={phone.id}>
-                  {phone.brand} {phone.name}
+                <option key={phone.iD_Producto} value={phone.iD_Producto}>
+                  {phone.marca} {phone.nombre}
                 </option>
               ))}
             </select>
@@ -80,8 +80,8 @@ const CompareForm = ({ phones, onCompare }: CompareFormProps) => {
             >
               <option value="">Selecciona un Teléfono</option>
               {phones.map((phone) => (
-                <option key={phone.id} value={phone.id}>
-                  {phone.brand} {phone.name}
+                <option key={phone.iD_Producto} value={phone.iD_Producto}>
+                  {phone.marca} {phone.nombre}
                 </option>
               ))}
             </select>

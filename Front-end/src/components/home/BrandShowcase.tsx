@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Brand } from '../../types';
+import { Marcas } from '../../types';
 import { motion } from 'framer-motion';
 
 interface BrandShowcaseProps {
-  brands: Brand[];
+  brands: Marcas[];
 }
 
 const BrandShowcase = ({ brands }: BrandShowcaseProps) => {
@@ -42,12 +42,12 @@ const BrandShowcase = ({ brands }: BrandShowcaseProps) => {
                 <div className="w-16 h-16 flex items-center justify-center mb-4">
                   <img
                     src={brand.logo}
-                    alt={brand.name}
+                    alt={brand.nombreMarca}
                     className="max-w-full max-h-full transition-transform group-hover:scale-110"
                   />
                 </div>
                 <h3 className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">
-                  {brand.name}
+                  {brand.nombreMarca}
                 </h3>
               </Link>
             </motion.div>

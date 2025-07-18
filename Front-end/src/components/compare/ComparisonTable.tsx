@@ -1,10 +1,10 @@
-import { Phone, ComparisonResult } from '../../types';
+import { Productos, ComparisonResult } from '../../types';
 import { Check, X, Minus } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface ComparisonTableProps {
-  phone1: Phone;
-  phone2: Phone;
+  phone1: Productos;
+  phone2: Productos;
   results: ComparisonResult[];
 }
 
@@ -34,12 +34,12 @@ const ComparisonTable = ({ phone1, phone2, results }: ComparisonTableProps) => {
         </div>
         <div className="bg-gray-50 dark:bg-gray-700 p-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-center">
-            {phone1.brand} {phone1.name}
+            {phone1.marca} {phone1.nombre}
           </h3>
         </div>
         <div className="bg-gray-50 dark:bg-gray-700 p-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-center">
-            {phone2.brand} {phone2.name}
+            {phone2.marca} {phone2.nombre}
           </h3>
         </div>
       </div>
@@ -51,22 +51,22 @@ const ComparisonTable = ({ phone1, phone2, results }: ComparisonTableProps) => {
         </div>
         <div className="p-6 flex items-center justify-center">
           <img 
-            src={phone1.image} 
-            alt={`${phone1.brand} ${phone1.name}`}
+            src={phone1.imagen} 
+            alt={`${phone1.marca} ${phone1.nombre}`}
             className="h-48 object-contain"
           />
         </div>
         <div className="p-6 flex items-center justify-center">
           <img 
-            src={phone2.image} 
-            alt={`${phone2.brand} ${phone2.name}`}
+            src={phone2.imagen} 
+            alt={`${phone2.marca} ${phone2.nombre}`}
             className="h-48 object-contain"
           />
         </div>
       </div>
 
       {/* Especificaciones */}
-      {Object.entries(phone1.specs).map(([key, value], index) => (
+      {Object.entries(phone1.especificaciones).map(([key, value], index) => (
         <div 
           key={key}
           className={`grid grid-cols-3 divide-x divide-gray-200 dark:divide-gray-700 ${
@@ -82,7 +82,7 @@ const ComparisonTable = ({ phone1, phone2, results }: ComparisonTableProps) => {
             {value}
           </div>
           <div className="p-6 flex items-center justify-center text-gray-900 dark:text-white">
-            {phone2.specs[key as keyof typeof phone2.specs]}
+            {phone2.especificaciones[key as keyof typeof phone2.especificaciones || ''] || 'N/A'}
           </div>
         </div>
       ))}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Plus, Upload, AlertCircle } from 'lucide-react';
 import axiosInstance from '../../axios/Axios';
-import { EspecificacionesProducto} from '../../types';
+import { EspecificacionesProducto, Marcas} from '../../types';
 
 // Interface para el formulario de producto
 interface ProductoFormData {
@@ -27,6 +27,7 @@ interface FormErrors {
   almacenamiento?: string;
   sistemaOperativo?: string;
   ram?: string;
+  marca?: string;
 }
 
 // Props para el componente modal
@@ -62,6 +63,20 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
       ram: ''
     }
   });
+
+  const [marcas, setMarcas] = useState<Marcas[]>([]);
+
+  useEffect(() => {
+    const fetchMarcas = async () => {
+      try {
+        const response = await axiosInstance.get('/Marcas');
+        setMarcas(response.data);
+      } catch (error) {
+        console.error('Error al obtener marcas:', error);
+      }
+    };
+    fetchMarcas();
+  }, []);
 
   useEffect(() => {
   if (productToEdit) {
@@ -124,23 +139,61 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
   };
 
   // Manejar cambios en los inputs
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    const handleInputChange = (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    ): void => {
+      const { name, value } = e.target;
+      
+      // Manejar campos anidados para especificaciones
+      let processedValue: string | number = value;
 
-    // Limpiar error del campo si existe
-    if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({
+      // Si el campo pertenece a especificaciones, actualiza el objeto anidado
+      const especificacionesFields = [
+        'camara',
+        'pantalla',
+        'bateria',
+        'procesador',
+        'almacenamiento',
+        'sistemaOperativo',
+        'ram'
+      ];
+
+      if (especificacionesFields.includes(name)) {
+        setFormData(prev => ({
+          ...prev,
+          especificaciones: {
+        ...prev.especificaciones,
+        [name]: processedValue
+          }
+        }));
+        // Limpiar error del campo si existe
+        if (errors[name as keyof FormErrors]) {
+          setErrors(prev => ({
         ...prev,
         [name]: undefined
+          }));
+        }
+        return;
+      }
+
+      // Si el campo es marca (id), asegúrate de que sea string o number según tu backend
+      if (name == 'marca') {
+        processedValue = value;
+      }
+  
+      setFormData(prev => ({
+        ...prev,
+        [name]: processedValue
       }));
-    }
-  };
+  
+      // Limpiar error del campo si existe
+      if (errors[name as keyof FormErrors]) {
+        setErrors(prev => ({
+          ...prev,
+          [name]: undefined
+        }));
+      }
+    };
 
   // Manejar envío del formulario
   const handleSubmit = async (): Promise<void> => {
@@ -242,6 +295,36 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
 
         {/* Contenido del formulario */}
         <div className="p-6 space-y-6">
+          {/* Marca del producto */}
+          <div>
+            <label htmlFor="marca" className="block text-sm font-medium text-gray-700 mb-2">
+              Marca del Producto *
+            </label>
+            <select
+                id="marca"
+                name="marca"
+                value={formData.marca}
+                onChange={handleInputChange}
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-gray-200 ${
+                  errors.marca ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                }`}
+                disabled={submitting}
+              >
+                <option value={0}>Seleccionar marca</option>
+                {marcas.map(marca => (
+                  <option key={marca.id} value={marca.nombreMarca}>
+                    {marca.nombreMarca}
+                  </option>
+                ))}
+              </select>
+            {errors.almacenamiento && (
+              <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                <AlertCircle className="w-4 h-4" />
+                {errors.almacenamiento}
+              </p>
+            )}
+          </div>
+
           {/* Nombre del producto */}
           <div>
             <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-2">
@@ -377,7 +460,7 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
                 type="text"
                 id="ram"
                 name="ram"
-                value={formData.especificaciones.procesador}
+                value={formData.especificaciones.ram}
                 onChange={handleInputChange}
                 className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                   errors.procesador ? 'border-red-500' : 'border-gray-300'
@@ -389,6 +472,56 @@ const ProductoFormModal: React.FC<ProductoFormModalProps> = ({
                 <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
                   <AlertCircle className="w-4 h-4" />
                   {errors.pantalla}
+                </p>
+              )}
+            </div>
+
+            {/* Almacenamiento */}
+            <div>
+              <label htmlFor="almacenamiento" className="block text-sm font-medium text-gray-700 mb-2">
+                Almacenamiento *
+              </label>
+              <input
+                type="text"
+                id="almacenamiento"
+                name="almacenamiento"
+                value={formData.especificaciones.almacenamiento}
+                onChange={handleInputChange}
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  errors.almacenamiento ? 'border-red-500' : 'border-gray-300'
+                }`}
+                placeholder="Ej: 128GB, 256GB, 512GB"
+                disabled={submitting}
+              />
+              {errors.almacenamiento && (
+                <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.almacenamiento}
+                </p>
+              )}
+            </div>
+
+            {/* Sistema Operativo */}
+            <div>
+              <label htmlFor="sistemaOperativo" className="block text-sm font-medium text-gray-700 mb-2">
+                Sistema Operativo *
+              </label>
+              <input
+                type="text"
+                id="sistemaOperativo"
+                name="sistemaOperativo"
+                value={formData.especificaciones.sistemaOperativo}
+                onChange={handleInputChange}
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  errors.sistemaOperativo ? 'border-red-500' : 'border-gray-300'
+                }`}
+                placeholder="Ej: Android 14, iOS 17"
+                disabled={submitting}
+              />
+              {errors.sistemaOperativo && (
+                <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.sistemaOperativo}
                 </p>
               )}
             </div>

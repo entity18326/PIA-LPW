@@ -3,8 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\context\\lpwpiacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:context\\lpwpiacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\especificacionesproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\especificacionesproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\estadistica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\estadistica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\marcascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\marcascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,32 +47,8 @@
       "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\noticia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\noticiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\noticiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\especificacionesproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\especificacionesproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\marcascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:controllers\\marcascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\controllers\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -49,10 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|c:\\users\\ti-mty-288\\desktop\\paginaweb\\pia-lpw\\back-end\\odinbackend\\models\\estadistica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E4997AB-9E2A-48AE-838A-0ACF81149BC9}|OdinBackend.csproj|solutionrelative:models\\estadistica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 289,
-          "SelectedChildIndex": 20,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -105,8 +109,25 @@
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACAAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T22:25:47.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "CategoriasController.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\CategoriasController.cs",
               "RelativeDocumentMoniker": "Controllers\\CategoriasController.cs",
@@ -114,12 +135,11 @@
               "RelativeToolTip": "Controllers\\CategoriasController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T14:48:45.848Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T14:48:45.848Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "Categoria.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Categoria.cs",
               "RelativeDocumentMoniker": "Models\\Categoria.cs",
@@ -127,8 +147,7 @@
               "RelativeToolTip": "Models\\Categoria.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T14:47:33.526Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T14:47:33.526Z"
             },
             {
               "$type": "Document",
@@ -138,33 +157,31 @@
               "RelativeDocumentMoniker": "Models\\EspecificacionesProducto.cs",
               "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\EspecificacionesProducto.cs",
               "RelativeToolTip": "Models\\EspecificacionesProducto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T22:48:48.486Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T22:48:48.486Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "ProductosController.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\ProductosController.cs",
               "RelativeDocumentMoniker": "Controllers\\ProductosController.cs",
               "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\ProductosController.cs",
               "RelativeToolTip": "Controllers\\ProductosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAowI8AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T22:22:34.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T22:22:34.281Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 3,
               "Title": "Producto.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Producto.cs",
               "RelativeDocumentMoniker": "Models\\Producto.cs",
               "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Producto.cs",
               "RelativeToolTip": "Models\\Producto.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-02T22:14:53.319Z"
             },
@@ -176,14 +193,13 @@
               "RelativeDocumentMoniker": "Controllers\\MarcasController.cs",
               "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\MarcasController.cs",
               "RelativeToolTip": "Controllers\\MarcasController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGgAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T21:26:53.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T21:26:53.753Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "ImageController.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\ImageController.cs",
               "RelativeDocumentMoniker": "Controllers\\ImageController.cs",
@@ -195,7 +211,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "NoticiasController.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Controllers\\NoticiasController.cs",
               "RelativeDocumentMoniker": "Controllers\\NoticiasController.cs",
@@ -203,12 +219,11 @@
               "RelativeToolTip": "Controllers\\NoticiasController.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAgwBwAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T09:23:33.899Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T09:23:33.899Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -220,7 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -228,25 +243,23 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-20T18:49:13.547Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T18:49:13.547Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "LpwPiaContext.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Context\\LpwPiaContext.cs",
               "RelativeDocumentMoniker": "Context\\LpwPiaContext.cs",
               "ToolTip": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Context\\LpwPiaContext.cs",
               "RelativeToolTip": "Context\\LpwPiaContext.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAkwD4AAABoAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAIAxwB0AAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T18:47:12.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T18:47:12.012Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 7,
               "Title": "Estadistica.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Estadistica.cs",
               "RelativeDocumentMoniker": "Models\\Estadistica.cs",
@@ -258,7 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "Noticia.cs",
               "DocumentMoniker": "C:\\Users\\TI-MTY-288\\Desktop\\PaginaWeb\\PIA-LPW\\Back-end\\OdinBackend\\Models\\Noticia.cs",
               "RelativeDocumentMoniker": "Models\\Noticia.cs",
@@ -266,8 +279,7 @@
               "RelativeToolTip": "Models\\Noticia.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwA8AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T18:46:51.981Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T18:46:51.981Z"
             }
           ]
         },

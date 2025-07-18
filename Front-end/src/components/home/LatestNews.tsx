@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { NewsArticle } from '../../types';
+import { Noticias } from '../../types';
 import NewsCard from '../ui/NewsCard';
 import { motion } from 'framer-motion';
 
 interface LatestNewsProps {
-  news: NewsArticle[];
+  news: Noticias[];
 }
 
 const LatestNews = ({ news }: LatestNewsProps) => {
@@ -55,7 +55,7 @@ const LatestNews = ({ news }: LatestNewsProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayNews.map((article, index) => (
-            <React.Fragment key={article.id}>
+            <React.Fragment key={article.iD_Noticia}>
               {index === 0 ? (
                 <div className="lg:col-span-2">
                   <NewsCard article={article} featured={true} />
