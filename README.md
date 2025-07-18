@@ -8,7 +8,6 @@
 ## 📌 Características
 
 - **Autenticación basada en tokens** (JWT)
-- Persistencia de sesión en `localStorage`
 - Protección de rutas mediante componentes `<ProtectedRoute>` y `<PublicRoute>`
 - Roles de usuario (Admin, Publisher, etc.) con redirección personalizada
 - Contextos para tema (`ThemeContext`) y autenticación (`AuthContext`)
