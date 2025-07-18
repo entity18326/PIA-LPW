@@ -1,6 +1,6 @@
 import { useEffect, createContext, useContext, useState, ReactNode } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import axiosInstance from './axios/Axios'; // Ajusta la ruta según tu estructura
+import axiosInstance from './axios/Axios';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -14,22 +14,21 @@ import SearchPage from './pages/SearchPage';
 import BrandPage from './pages/BrandPage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
-//import AdminDashboard from './pages/AdminDashboard'; // Ajusta según tus páginas
-//import PublisherDashboard from './pages/PublisherDashboard'; // Ajusta según tus páginas
 
 // Tipos para la autenticación
 interface User {
-  id: string;
-  name: string;
+  iD_Usuario: string;
+  nombre: string;
   email: string;
   role: string;
   roleId: number;
 }
 
 interface AuthContextType {
-  user: User | null;
+  usuario: User | null;
   isAuthenticated: boolean;
   loading: boolean;
+  isAdmin: boolean;
   login: (token: string, userData: User) => Promise<void>;
   logout: () => Promise<void>;
 }
@@ -67,31 +66,36 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     const checkAuth = () => {
-      const token = sessionStorage.getItem('authToken') || localStorage.getItem('authToken');
-      const userData = sessionStorage.getItem('userData' ) || localStorage.getItem('userData');
-      
+      const token = localStorage.getItem('authToken');
+      const userData = localStorage.getItem('userData');
+      console.log('userData encontrado:', userData);
       if (token && userData) {
         try {
+          console.log('Intentando parsear userData...');
           const parsedUserData = JSON.parse(userData);
           // Configurar el token en axios
           axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-          
+
+
+          console.log('Datos configurados:', parsedUserData);
           // Si tienes los datos del usuario, establecer el estado
-          if (parsedUserData.id && parsedUserData.name) {
+          if (parsedUserData.iD_Usuario && parsedUserData.nombre) {
             setUser({
-              id: parsedUserData.id.toString(),
-              name: parsedUserData.name,
-              email: parsedUserData.email || parsedUserData.name, // Fallback si no hay email
+              iD_Usuario: parsedUserData.iD_Usuario,
+              nombre: parsedUserData.nombre,
+              email: parsedUserData.email || parsedUserData.nombre,
               role: parsedUserData.role || 'Usuario',
               roleId: parsedUserData.roleId || 0
             });
             setIsAuthenticated(true);
+            console.log('Usuario autenticado desde localStorage:', parsedUserData.nombre);
           }
         } catch (error) {
-          console.error('Error parsing user data:', error);
+          console.error('Error al parsear userData:', error);
+          console.log('Contenido inválido de userData:', userData);
           // Limpiar datos corruptos
-          sessionStorage.removeItem('authToken');
-          sessionStorage.removeItem('userData');
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('userData');
         }
       }
       
@@ -107,18 +111,16 @@ function AuthProvider({ children }: AuthProviderProps) {
       axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       
       // Guardar en sessionStorage
-      sessionStorage.setItem('authToken', token);
       localStorage.setItem('authToken', token); // Opcional: también guardar en localStorage
 
       // Guardar datos del usuario en sessionStorage
-      sessionStorage.setItem('userData', JSON.stringify(userData));
       localStorage.setItem('userData', JSON.stringify(userData)); // Opcional: también guardar en localStorage
       
       // Establecer estado
       setUser(userData);
       setIsAuthenticated(true);
       
-      console.log('Usuario autenticado exitosamente:', userData.name);
+      console.log('Usuario autenticado exitosamente:', userData.nombre);
     } catch (error) {
       console.error('Error en login:', error);
       throw error;
@@ -131,11 +133,16 @@ function AuthProvider({ children }: AuthProviderProps) {
       // await axiosInstance.post('/Auth/logout');
       
       // Limpiar token de axios
-      delete axiosInstance.defaults.headers.common['Authorization'];
+      var token = localStorage.getItem('authToken');
+      if (token) {
+        console.log('Token encontrado, cerrando sesión...', token);
+      }
+      axiosInstance.defaults.headers.common['Authorization'] = '';
+
       
       // Limpiar storage
-      sessionStorage.removeItem('authToken');
-      sessionStorage.removeItem('userData');
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userData');
       
       // Limpiar estado
       setUser(null);
@@ -146,17 +153,20 @@ function AuthProvider({ children }: AuthProviderProps) {
       console.error('Error en logout:', error);
       // Aún así limpiar el estado local
       delete axiosInstance.defaults.headers.common['Authorization'];
-      sessionStorage.removeItem('authToken');
-      sessionStorage.removeItem('userData');
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userData');
       setUser(null);
       setIsAuthenticated(false);
     }
   };
 
+  const isAdmin = user?.roleId === 1;
+
   const value: AuthContextType = {
-    user,
+    usuario: user,
     isAuthenticated,
     loading,
+    isAdmin,
     login,
     logout
   };
@@ -170,7 +180,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
 // Componente para proteger rutas que requieren autenticación
 function ProtectedRoute({ children, requiredRole }: ProtectedRouteProps) {
-  const { user, isAuthenticated, loading } = useAuth();
+  const { usuario, isAuthenticated, loading } = useAuth();
 
   if (loading) {
     return (
@@ -180,16 +190,19 @@ function ProtectedRoute({ children, requiredRole }: ProtectedRouteProps) {
     );
   }
 
+  console.log('Estado de autenticación:', isAuthenticated);
+  console.log('Estado de usuario:', usuario);
+  console.log('Estado de carga:', loading);
+  
+  // Verificar si el usuario está autenticado
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
 
   // Verificar rol si es requerido
-  if (requiredRole && user?.roleId !== requiredRole) {
+  if (requiredRole && usuario?.roleId !== requiredRole) {
     // Redirigir a dashboard apropiado según el rol del usuario
-    const redirectPath = user?.roleId === 1 ? '/dashboard' : 
-                        user?.roleId === 2 ? '/publisher/dashboard' : 
-                        '/dashboard';
+    const redirectPath = usuario?.roleId === 1 ? '/dashboard' : '/#';
     return <Navigate to={redirectPath} replace />;
   }
 
@@ -198,7 +211,7 @@ function ProtectedRoute({ children, requiredRole }: ProtectedRouteProps) {
 
 // Componente para proteger la ruta de login (redirigir si ya está autenticado)
 function PublicRoute({ children }: PublicRouteProps) {
-  const { user, isAuthenticated, loading } = useAuth();
+  const { usuario, isAuthenticated, loading } = useAuth();
 
   if (loading) {
     return (
@@ -208,11 +221,9 @@ function PublicRoute({ children }: PublicRouteProps) {
     );
   }
 
-  if (isAuthenticated && user) {
+  if (isAuthenticated && usuario) {
     // Redirigir según el rol del usuario
-    const redirectPath = user.roleId === 1 ? '/dashboard' : 
-                        user.roleId === 2 ? '/publisher/dashboard' : 
-                        '/dashboard';
+    const redirectPath = usuario.roleId === 1 ? '/dashboard' : '/#';
     return <Navigate to={redirectPath} replace />;
   }
 

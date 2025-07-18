@@ -8,20 +8,14 @@ import ProductoFormModal from '../components/ui/ProductoFormModal';
 import NoticiaFormModal from '../components/ui/NoticiaFormModal';
 import { Productos, Noticias, Categorias, Marcas, EspecificacionesProducto } from '../types';
 import CategoriaFormModal from '../components/ui/CategoriaFormModal';
+import { useAuth } from '../App';
 
 // Interfaces de Autenticación
 interface Usuario {
-  iD_Usuario: number;
+  iD_Usuario: string;
   nombre: string;
   iD_Rol: number;
   roleName: string;
-}
-
-interface AuthContextType {
-  usuario: Usuario | null;
-  isAuthenticated: boolean;
-  isAdmin: boolean;
-  logout: () => void;
 }
 
 // Interfaces de Datos
@@ -76,81 +70,10 @@ interface ApiResponse<T> {
 
 type TabType = 'overview' | 'news' | 'products' | 'category' | 'brands';
 
-const useAuth = (): AuthContextType => {
-    const navigate = useNavigate();
-    const [user, setUser] = useState<Usuario | null>(null);
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-    useEffect(() => {
-        checkAuthStatus();
-    }, []);
-
-    const checkAuthStatus = async (): Promise<void> => {
-        const token = sessionStorage.getItem('authToken');
-
-        if (!token) {
-          logout(); // Sin token, cerrar sesión
-          return;
-        }
-
-        const response = await authApi.revalidateUser(token);
-
-        if (response.success && response.usuario) {
-            setUser(response.usuario);
-            setIsAuthenticated(true);
-            sessionStorage.setItem('userData', JSON.stringify(response.usuario));
-        } else {
-            logout(); // Token inválido
-        }
-    };
-
-    const logout = (): void => {
-        setUser(null);
-        setIsAuthenticated(false);
-        sessionStorage.removeItem('userData');
-        sessionStorage.removeItem('authToken');
-        navigate('/login'); // Redirigir al login
-    };
-
-    return {
-        usuario: user,
-        isAuthenticated,
-        isAdmin: user?.iD_Rol == 1,
-        logout
-    };
-};
-
-const authApi = {
-    revalidateUser: async (token: string): Promise<{
-        success: boolean;
-        usuario?: Usuario;
-        mensaje?: string;
-        iD_Rol?: number;
-    }> => {
-        try {
-        const response = await axiosInstance.get('/Auth/me', {
-            headers: {
-            Authorization: `Bearer ${token}`,
-            },
-        });
-
-        return {
-            success: true,
-            usuario: response.data.usuario,
-            mensaje: 'Usuario revalidado correctamente',
-            iD_Rol: response.data.iD_Rol,
-        };
-        } catch (error: any) {
-        return {
-            success: false,
-            mensaje: 'Token inválido o expirado',
-        };
-        }
-    }
-};
 
 // Componente de Acceso Denegado
-const AccessDenied: React.FC<{ user: Usuario; onLogout: () => void }> = ({ user, onLogout }) => (
+const AccessDenied: React.FC<{ usuario: Usuario; onLogout: () => void }> = ({ usuario, onLogout }) => (
   <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
     <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8 text-center">
       <div className="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
@@ -164,9 +87,9 @@ const AccessDenied: React.FC<{ user: Usuario; onLogout: () => void }> = ({ user,
       <div className="bg-gray-50 rounded-lg p-4 mb-6">
         <div className="flex items-center justify-center gap-3">
           <div className="text-left">
-            <p className="font-medium text-gray-900">{user.nombre}</p>
+            <p className="font-medium text-gray-900">{usuario.nombre}</p>
             <span className="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full">
-              {user.iD_Rol == 1 ? 'Administrador' : 'Usuario'}
+              {usuario.iD_Rol == 1 ? 'Administrador' : 'Usuario'}
             </span>
           </div>
         </div>
@@ -270,7 +193,7 @@ const AdminDashboard: React.FC = () => {
   const [showCategoriaForm, setShowCategoriaForm] = useState<boolean>(false);
   const [showMarcaForm, setShowMarcaForm] = useState<boolean>(false);
 
-  const { usuario, isAuthenticated, isAdmin, logout } = useAuth();
+  const { usuario, isAuthenticated, logout, isAdmin } = useAuth();
   const [visitStats, setVisitStats] = useState<VisitStats | null>(null);
 
 
@@ -291,7 +214,14 @@ const AdminDashboard: React.FC = () => {
   }
 
   if (isAuthenticated && !isAdmin) {
-    return <AccessDenied user={usuario!} onLogout={logout} />;
+    // Ensure usuario has all properties required by Usuario interface
+    const usuarioWithRole: Usuario = {
+      iD_Usuario: String(usuario?.iD_Usuario ?? 0),
+      nombre: usuario?.nombre ?? '',
+      iD_Rol: (usuario as any)?.iD_Rol ?? 0,
+      roleName: (usuario as any)?.roleName ?? 'Usuario',
+    };
+    return <AccessDenied usuario={usuarioWithRole} onLogout={logout} />;
   }
 
   const loadDashboardData = async (): Promise<void> => {

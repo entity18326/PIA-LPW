@@ -154,12 +154,6 @@ C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net
 C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets\msbuild.OdinBackend.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets\msbuild.OdinBackend.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets\msbuild.build.OdinBackend.props
-C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.OdinBackend.props
-C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.OdinBackend.props
-C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets.pack.json
 C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\OdinBack.3F0FD8E9.Up2Date
 C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\OdinBackend.dll
@@ -332,3 +326,8 @@ C:\Users\GAMER\Desktop\UANL\Trabajos\DecimoSemestre\ProyectoLabWeb\PIA-LPW\Back-
 C:\Users\GAMER\Desktop\UANL\Trabajos\DecimoSemestre\ProyectoLabWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\ref\OdinBackend.dll
 C:\Users\GAMER\Desktop\UANL\Trabajos\DecimoSemestre\ProyectoLabWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\bin\Debug\net9.0\OdinBackend.staticwebassets.runtime.json
+C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\TI-MTY-288\Desktop\PaginaWeb\PIA-LPW\Back-end\OdinBackend\obj\Debug\net9.0\staticwebassets.build.json.cache

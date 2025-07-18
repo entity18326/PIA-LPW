@@ -30,7 +30,7 @@ interface Producto {
 
 // Interface para usuarios (para el dropdown)
 interface Usuario {
-  iD_Usuario: number;
+  iD_Usuario: string;
   nombre: string;
 }
 

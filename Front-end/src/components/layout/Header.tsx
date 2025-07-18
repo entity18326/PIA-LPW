@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
-  const { user, isAuthenticated, logout } = useAuth();
+  const { usuario, isAuthenticated, logout } = useAuth();
   const location = useLocation();
 
   const navLinks = [
@@ -43,9 +43,10 @@ const Header: React.FC = () => {
   };
 
   const getDashboardLink = () => {
-    if (!user) return '/dashboard';
+    console.log('user', usuario);
+    if (!usuario) return '/dashboard';
     
-    switch (user.roleId) {
+    switch (usuario.roleId) {
       case 1:
         return '/dashboard';
       case 2:
@@ -56,9 +57,9 @@ const Header: React.FC = () => {
   };
 
   const getDashboardText = () => {
-    if (!user) return 'Dashboard';
+    if (!usuario) return 'Dashboard';
     
-    switch (user.roleId) {
+    switch (usuario.roleId) {
       case 1:
         return 'Panel Admin';
       case 2:
@@ -69,8 +70,8 @@ const Header: React.FC = () => {
   };
 
   const getRoleBadge = () => {
-    if (!user) return null;
-    
+    if (!usuario) return null;
+    console.log('user header', usuario);
     const roleColors = {
       1: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200', // Admin
       2: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200', // Publicador
@@ -81,8 +82,8 @@ const Header: React.FC = () => {
       2: 'Publicador',
     };
 
-    const colorClass = roleColors[user.roleId as keyof typeof roleColors] || 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
-    const roleName = roleNames[user.roleId as keyof typeof roleNames] || 'Usuario';
+    const colorClass = roleColors[usuario.roleId as keyof typeof roleColors] || 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
+    const roleName = roleNames[usuario.roleId as keyof typeof roleNames] || 'Usuario';
 
     return (
       <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${colorClass}`}>
@@ -169,7 +170,7 @@ const Header: React.FC = () => {
                 <div className="flex items-center space-x-3">
                   <div className="text-right">
                     <div className="text-sm font-medium text-gray-50">
-                      {user?.name}
+                      {usuario?.nombre}
                     </div>
                     <div className="flex justify-end mt-1">
                       {getRoleBadge()}
@@ -278,7 +279,7 @@ const Header: React.FC = () => {
                     <div className="space-y-3">
                       <div className="px-3 py-2">
                         <div className="text-sm font-medium text-gray-50 mb-2">
-                          {user?.name}
+                          {usuario?.nombre}
                         </div>
                         {getRoleBadge()}
                       </div>
