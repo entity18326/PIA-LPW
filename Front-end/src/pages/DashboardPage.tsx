@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
-import { Eye, Smartphone, ListChecks, Star, FileText, Users, TrendingUp, Search, Filter, Plus, Edit, Trash2, RefreshCw, LucideIcon, AlertCircle, LogOut, User, Menu, X, Bus } from 'lucide-react';
+import { Eye, Smartphone, ListChecks, Star, FileText, Users, TrendingUp, Search, Filter, Plus, Edit, Trash2, RefreshCw, LucideIcon, AlertCircle, LogOut, User, Menu, X } from 'lucide-react';
 import axiosInstance from '../axios/Axios';
 import LoginPage from './LoginPage';
-import { useNavigate } from 'react-router-dom';
 import ProductoFormModal from '../components/ui/ProductoFormModal';
 import NoticiaFormModal from '../components/ui/NoticiaFormModal';
 import { Productos, Noticias, Categorias, Marcas, EspecificacionesProducto } from '../types';
